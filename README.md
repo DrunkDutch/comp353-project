@@ -8,7 +8,8 @@ public -> Should be used as "Folder available for Client"
 Config -> Used for Back-end config
 
 
--> app --> template: Used to create Layout Function for PHP (Unfinished)
+-> app --> template: Used to create Layout Function for PHP (finished), 
+Please only use this file as template for the other pages...
 
 -> config --> config.php : Still Empty
 
