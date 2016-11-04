@@ -9,16 +9,62 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="http://localhost">Hubert</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="btn-success"><a style="color:white" href="">Sign In</a></li>
+      <ul class="nav navbar-nav" style="float:none">
+        <li class="btn-primary btn pull-right"><a  id="menu-toggle"style="color:white" href="">MENU</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="http://localhost">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="http://localhost/public/view/main/LOG_IN.php">Sign In</a>
+                </li>
+                <li>
+                    <a href="http://localhost/public/view/main/Sign_up.php">Sign Up</a>
+                </li>
+                <li>
+                    <a href="http://localhost/public/view/main/Secured/Account.php">Account</a>
+                </li>
+                <li>
+                    <a href="http://localhost/public/view/main/Secured/Drivers.php">Drivers Available</a>
+                </li>
+                <li>
+                    <a href="http://localhost/public/view/main/Secured/Rides.php">Rides Request/Create</a>
+                </li>
+                <li>
+                    <a href="http://localhost/public/view/main/Secured/Reviews.php">Reviews</a>
+                </li>
+				<li>
+                    <a href="http://localhost/public/view/main/Secured/Directory.php">Directory</a>
+                </li>
+                <li>
+                    <a href="http://localhost/public/view/main/Secured/Rides-Details.php">Ride Details</a>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> Home </title>
+	<title> Sign In </title>
 	<!-- This section is for the Head -->
 	<?php include($_SERVER['DOCUMENT_ROOT']. 'public/view/include/Head.php');?>
 </head>
@@ -11,7 +11,7 @@
 	<?php include($_SERVER['DOCUMENT_ROOT']. 'public/view/include/Header.php');?>
     <!-- INCLUDE CONTENT OF PAGE HERE -->
     <div id="page-content-wrapper">
-    <p> Hello FROM Home page COMP353</p>
+    <p> Sign In page COMP353</p>
     </div>
     <!-- END OF CONTENT --> 
 	<div><?php echo $this_page; ?></div>
