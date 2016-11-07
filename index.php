@@ -11,7 +11,10 @@
 	<?php include($_SERVER['DOCUMENT_ROOT']. 'public/view/include/Header.php');?>
     <!-- INCLUDE CONTENT OF PAGE HERE -->
     <div id="page-content-wrapper">
-    <p> Hello FROM Home page COMP353</p>
+    <div class="container-fluid" style="margin-bottom:200px;">
+    <H1> Hubert let's replace Taxi...</H1>
+     <img src="http://localhost/public/media/covoiturage.jpg" class="img-rounded" alt="Car and People" height="100%" width="100%" >
+    </div>
     </div>
     <!-- END OF CONTENT --> 
 	<div><?php echo $this_page; ?></div>

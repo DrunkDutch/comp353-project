@@ -20,5 +20,8 @@
 <!-- Load App JS -->
 <script src="/public/js/app.js"></script>
 <?php $rootVar = "http://localhost"; ?>
+
+<script src="https://use.fontawesome.com/14dbbb1c44.js"></script>
+
 </Head>
 
