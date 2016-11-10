@@ -1,5 +1,6 @@
 # comp353-project
 Final Group Project for COMP 353
+<<<<<<< HEAD
 
 Folder:
 app -> Reserved to Back-End Function
@@ -28,3 +29,6 @@ INSTALLATION: Copy all file and paste them in your /var/www/html/
 folder ...
 
  
+=======
+Rideshare application
+>>>>>>> master
