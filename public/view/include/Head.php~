@@ -18,7 +18,7 @@
 <!-- Load App StyleSheet -->
 <link rel="stylesheet" href="/comp353-project/public/css/app.css" type="text/css">
 <!-- Load App JS -->
-<script src="/comp353-project/public/js/app.js"></script>
+<script src="/public/js/app.js"></script>
 <?php $rootVar = "http://localhost"; ?>
 
 <script src="https://use.fontawesome.com/14dbbb1c44.js"></script>
