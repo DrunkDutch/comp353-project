@@ -2,11 +2,11 @@
 
 // Variables Connection to the database 
 $host = "localhost";
-$user = "root";
+$username = "root";
 $password = "root";
 $db_name = "comp353";
 mysqli_report(MYSQLI_REPORT_STRICT); 
-$connection = new mysqli($host, $user, $password, $db_name);
+$connection = new mysqli($host, $username, $password, $db_name);
 function ConnectionCheck(){
 	try{
 		if($connection -> connect_error){
@@ -14,6 +14,7 @@ function ConnectionCheck(){
 			return false;		
 		}
 		else{
+			$GLOBALS['host2'] = $host;
 			return true;	
 		}
 	}
@@ -23,5 +24,24 @@ function ConnectionCheck(){
 
 
 }
+
+class Makeconnection {
+	public $conn;
+	public function __construct(){
+		require 'dbconfig.php';
+		$this-> host = $host;
+		$this-> username = $username;
+		$this-> password = $password;
+		$this-> db_name = $db_name;
+		
+		$this -> conn = new PDO('mysql:host=' .$host. ';dbname=' .$db_name.';charset=utf8', $username, $password);
+
+		$this -> conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERMODE_EXCEPTION);	
+		
+	}
+}
+	
+
+
 
 ?>

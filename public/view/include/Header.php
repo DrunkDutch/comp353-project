@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://localhost">Hubert</a>
+      <a class="navbar-brand" href="http://localhost/comp353-project">Hubert</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
