@@ -25,12 +25,6 @@
                     </p>
                 </div>
 
-                <div class="mastfoot">
-                    <div class="inner">
-                        <p>Copyright 2016 Best Team.</p>
-                    </div>
-                </div>
-
             </div>
 
         </div>
