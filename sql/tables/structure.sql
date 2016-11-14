@@ -38,6 +38,15 @@ CREATE TABLE `Comment` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Comment`
+--
+
+LOCK TABLES `Comment` WRITE;
+/*!40000 ALTER TABLE `Comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Driver`
 --
 
@@ -53,6 +62,15 @@ CREATE TABLE `Driver` (
   CONSTRAINT `RideD` FOREIGN KEY (`RideId`) REFERENCES `Ride` (`RideId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Driver`
+--
+
+LOCK TABLES `Driver` WRITE;
+/*!40000 ALTER TABLE `Driver` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Driver` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Location`
@@ -74,6 +92,15 @@ CREATE TABLE `Location` (
   UNIQUE KEY `LocationId_UNIQUE` (`LocationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Location`
+--
+
+LOCK TABLES `Location` WRITE;
+/*!40000 ALTER TABLE `Location` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Location` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Member`
@@ -103,8 +130,18 @@ CREATE TABLE `Member` (
   UNIQUE KEY `Email_UNIQUE` (`Email`),
   UNIQUE KEY `Permit_UNIQUE` (`Permit`),
   UNIQUE KEY `Insurance_UNIQUE` (`Insurance`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Member`
+--
+
+LOCK TABLES `Member` WRITE;
+/*!40000 ALTER TABLE `Member` DISABLE KEYS */;
+INSERT INTO `Member` VALUES (1,'Root','Root','Root','Root','root@test.com','2016-11-01',1,0.00,1,1,'8005556832',NULL,NULL),(2,'Admin','Admin','Admin','Admin','test@test.com','2016-11-02',1,0.00,1,2,'8005557334',NULL,NULL),(3,'Member','Member','Member','Member','member@test.com','2016-11-03',1,0.00,1,3,'8005557201',NULL,NULL);
+/*!40000 ALTER TABLE `Member` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Message`
@@ -129,6 +166,15 @@ CREATE TABLE `Message` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Message`
+--
+
+LOCK TABLES `Message` WRITE;
+/*!40000 ALTER TABLE `Message` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Rating`
 --
 
@@ -150,6 +196,15 @@ CREATE TABLE `Rating` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Rating`
+--
+
+LOCK TABLES `Rating` WRITE;
+/*!40000 ALTER TABLE `Rating` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Rating` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Ride`
 --
 
@@ -160,7 +215,7 @@ CREATE TABLE `Ride` (
   `RideId` int(8) NOT NULL AUTO_INCREMENT,
   `Date` date NOT NULL,
   `DepartTime` time NOT NULL,
-  `Repeat` varchar(45) DEFAULT NULL,
+  `RepeatDay` varchar(45) DEFAULT NULL,
   `DepartureId` int(8) NOT NULL,
   `DestinationId` int(8) NOT NULL,
   `Distance` double NOT NULL,
@@ -173,6 +228,15 @@ CREATE TABLE `Ride` (
   CONSTRAINT `Destination` FOREIGN KEY (`DestinationId`) REFERENCES `Location` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Ride`
+--
+
+LOCK TABLES `Ride` WRITE;
+/*!40000 ALTER TABLE `Ride` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Ride` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Rider`
@@ -190,6 +254,15 @@ CREATE TABLE `Rider` (
   CONSTRAINT `Rider` FOREIGN KEY (`RiderId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Rider`
+--
+
+LOCK TABLES `Rider` WRITE;
+/*!40000 ALTER TABLE `Rider` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Rider` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Transaction`
@@ -213,6 +286,15 @@ CREATE TABLE `Transaction` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Transaction`
+--
+
+LOCK TABLES `Transaction` WRITE;
+/*!40000 ALTER TABLE `Transaction` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Transaction` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping events for database 'comp353'
 --
 
@@ -229,4 +311,4 @@ CREATE TABLE `Transaction` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-09 19:47:48
+-- Dump completed on 2016-11-12 18:57:05
