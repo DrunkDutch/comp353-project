@@ -11,17 +11,17 @@
 	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php');?>
     <!-- INCLUDE CONTENT OF PAGE HERE -->
 
-    <div class="site-wrapper">
+    <div class="site-wrapper" id="page-content-wrapper">
 
         <div class="site-wrapper-inner">
 
             <div class="cover-container">
 
                 <div class="inner cover">
-                    <h1 class="cover-heading">Welcome, Stella.</h1>
+                    <h1 class="cover-heading">Welcome, Stella!</h1>
                     <p class="lead">EZ-RIDERZ is your best option for ride-sharing.</p>
                     <p class="lead">
-                        <a href="#" class="btn btn-lg btn-default">Start Now</a>
+                        <a href="#" class="btn btn-lg btn-default">Get started</a>
                     </p>
                 </div>
 
