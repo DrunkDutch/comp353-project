@@ -6,6 +6,7 @@
 	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Head.php');?>
     <script>
         function showUserDetails() {
+            console.log("stella1");
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
@@ -15,8 +16,8 @@
             xmlhttp.open("GET","/comp353-project/app/getUser.php",true);
             xmlhttp.send();
         }
+        showUserDetails();
     </script>
-    <script>showUserDetails();</script>
 </head>
 <body>
 	<!-- Page Content -->
@@ -30,8 +31,8 @@
     <h1>My Account</h1>
 <!--        <img src="http://localhost/comp353-project/public/media/covoiturage.jpg" class="img-rounded img-centered" alt="Car and People" height="20%" width="20%" >-->
 
-
         <div id="userInfo">Stuff</div>
+        <div>Stuff2</div>
 
 <!--        <div class="text-centered">-->
 <!--        Name: Stella Lee-->
