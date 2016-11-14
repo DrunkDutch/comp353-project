@@ -180,7 +180,8 @@ a:hover {
 /* Custom default button */
 .btn-default,
 .btn-default:hover,
-.btn-default:focus {
+.btn-default:focus,
+.btn-default:active {
     color: white;
     text-shadow: none; /* Prevent inheritance from `body` */
     background-color: black;
