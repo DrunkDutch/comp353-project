@@ -69,8 +69,6 @@ echo "<td>" . $result['Insurance'] . "</td>";
 echo "</tr>";
 
 echo "</table>";
-echo "result";
-print_r($result);
 ?>
 </body>
 </html>

@@ -29,25 +29,7 @@
 
     <h1>My Account</h1>
 
-        <div id="userInfo"><p>Stuff</p></div>
-        <div>Stuff2</div>
-
-<!--        <div class="text-centered">-->
-<!--        Name: Stella Lee-->
-<!--        <br />-->
-<!--        Email: stuff-->
-<!--        <br />-->
-<!--        DOB: stuff-->
-<!--        <br />-->
-<!--        Balance: $999999-->
-<!--        <br />-->
-<!--        Phone: stuff-->
-<!--        <br />-->
-<!--        Permit Number: stuff-->
-<!--        <br />-->
-<!--        Insurance Number: stuff-->
-<!--        </div>-->
-
+        <div id="userInfo"><p>User Account Info</p></div>
 
     </div>
 
