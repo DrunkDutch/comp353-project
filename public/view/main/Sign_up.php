@@ -15,8 +15,8 @@
 </div></div>	
     <form class="container-fluid col-md-4 col-md-offset-4" style="margin-bottom:300px;" action="SignUp.php" method="post">
 	<div class="form-group">
-    <label for="UserID">User ID</label>
-    <input type="UserID" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUser1" placeholder="Username">
+    <label for="UserId">User Id</label>
+    <input type="UserId" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUser1" placeholder="Username">
     </div>
     <div class="form-group">
     <label for="FirstName">First Name</label>
@@ -45,7 +45,23 @@
     <div class="form-group">
     <label for="exampleInputPhone1">Phone</label>
     <input type="text" class="form-control" aria-describedby="PhoneHelp" id="exampleInputPhone1" placeholder="">
-    </div>    
+    </div>
+    <div class="form-group">
+    <label for="DOB">Date of Birth</label>
+    <input type="text" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="">
+    </div>
+    <div class="form-group">
+    <label for="exampleInputPhone1">Referrer User Id</label>
+    <input type="text" class="form-control" aria-describedby="RUsernameHelp" id="exampleInputRUser" placeholder="">
+    </div>
+    <div class="form-group">
+    <label for="exampleInputPhone1">Driver's Permit Number (Optional)</label>
+    <input type="text" class="form-control" aria-describedby="PermitHelp" id="exampleInputPermit" placeholder="">
+    </div>
+    <div class="form-group">
+    <label for="exampleInputPhone1">Insurance Policy Number (Optional)</label>
+    <input type="text" class="form-control" aria-describedby="InsuranceHelp" id="exampleInputInsurance" placeholder="">
+    </div>
     <button type="reset" class="btn btn-danger">Clear</button>
     <button type="submit" class="btn btn-success">Create Account</button>
     </form>
