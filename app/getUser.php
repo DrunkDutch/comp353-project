@@ -8,7 +8,7 @@
         }
 
         table, td, th {
-            border: 1px solid black;
+            border: 0;
             padding: 5px;
         }
 
@@ -34,31 +34,43 @@ $u = $_SESSION['username'];
 $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UName = :u");
 $stmt->bindParam(':u', $u);
 $stmt->execute();
-echo("OKuser");
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-echo "<table>
-<tr>
-<th>Firstname</th>
-<th>Lastname</th>
-<th>Email</th>
-<th>DOB</th>
-<th>Balance</th>
-<th>Phone</th>
-<th>Permit Number</th>
-<th>Insurance Number</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['FirstName'] . "</td>";
-    echo "<td>" . $row['LastName'] . "</td>";
-    echo "<td>" . $row['Age'] . "</td>";
-    echo "<td>" . $row['Hometown'] . "</td>";
-    echo "<td>" . $row['Job'] . "</td>";
-    echo "</tr>";
-}
+echo "<table><tr><td>Firstname</td>";
+echo "<td>" . $result['FName'] . "</td>";
+echo "<tr>";
+
+echo "<td>Lastname</td>";
+echo "<td>" . $result['LName'] . "</td>";
+echo "</tr>";
+
+echo "<td>Email</td>";
+echo "<td>" . $result['Email'] . "</td>";
+echo "</tr>";
+
+echo "<td>DOB</td>";
+echo "<td>" . $result['DOB'] . "</td>";
+echo "</tr>";
+
+echo "<td>Balance</td>";
+echo "<td>" . $result['Balance'] . "</td>";
+echo "</tr>";
+
+echo "<td>Phone</td>";
+echo "<td>" . $result['Phone'] . "</td>";
+echo "</tr>";
+
+echo "<td>Permit Number</td>";
+echo "<td>" . $result['Permit'] . "</td>";
+echo "</tr>";
+
+echo "<td>Insurance Number</td>";
+echo "<td>" . $result['Insurance'] . "</td>";
+echo "</tr>";
+
 echo "</table>";
-//mysqli_close($con);
+echo "result";
+print_r($result);
 ?>
 </body>
 </html>
