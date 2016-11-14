@@ -4,6 +4,19 @@
 	<title> Account </title>
 	<!-- This section is for the Head -->
 	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Head.php');?>
+    <script>
+        function showUserDetails() {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("userInfo").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET","/comp353-project/app/getUser.php",true);
+            xmlhttp.send();
+        }
+        showUserDetails();
+    </script>
 </head>
 <body>
 	<!-- Page Content -->
@@ -14,24 +27,10 @@
     <div id="page-content-wrapper">
 
 
-    <p> Account page COMP353</p>
-        <img src="http://localhost/comp353-project/public/media/covoiturage.jpg" class="img-rounded img-centered" alt="Car and People" height="20%" width="20%" >
+    <h1>My Account</h1>
 
-        <div class="text-centered">
-        Name: Stella Lee
-        <br />
-        Email: stuff
-        <br />
-        DOB: stuff
-        <br />
-        Balance: $999999
-        <br />
-        Phone: stuff
-        <br />
-        Permit Number: stuff
-        <br />
-        Insurance Number: stuff
-        </div>
+        <div id="userInfo"><p>User Account Info</p></div>
+
     </div>
 
     <!-- END OF CONTENT -->
