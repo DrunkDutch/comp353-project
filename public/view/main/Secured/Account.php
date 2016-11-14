@@ -6,14 +6,17 @@
 	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Head.php');?>
     <script>
         function showUserDetails() {
-            console.log("stella1");
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById("userInfo").innerHTML = this.responseText;
                 }
+                else {
+                    console.log("stella1");
+                }
             };
             xmlhttp.open("GET","/comp353-project/app/getUser.php",true);
+            console.log("stella2");
             xmlhttp.send();
         }
         showUserDetails();
@@ -31,7 +34,7 @@
     <h1>My Account</h1>
 <!--        <img src="http://localhost/comp353-project/public/media/covoiturage.jpg" class="img-rounded img-centered" alt="Car and People" height="20%" width="20%" >-->
 
-        <div id="userInfo">Stuff</div>
+        <div id="userInfo"><p>Stuff</p></div>
         <div>Stuff2</div>
 
 <!--        <div class="text-centered">-->

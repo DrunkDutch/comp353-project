@@ -22,7 +22,7 @@ include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
 $status = Connected();
-if($status == 1) return;
+if($status != 1) return;
 
 try{
     $d = new dbMakeConnection;
