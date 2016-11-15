@@ -4,6 +4,19 @@
 	<title> Directory </title>
 	<!-- This section is for the Head -->
 	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Head.php');?>
+    <script>
+        function showUserList() {
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("users").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET","/comp353-project/app/getUserList.php",true);
+            xmlhttp.send();
+        }
+        showUserList();
+    </script>
 </head>
 <body>
 	<!-- Page Content -->
@@ -11,7 +24,8 @@
 	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php');?>
     <!-- INCLUDE CONTENT OF PAGE HERE -->
     <div id="page-content-wrapper">
-    <p> DIRECTORY page COMP353</p>
+    <h1>User Directory</h1>
+        <div id="users"><p>List of users</p></div>
     </div>
     <!-- END OF CONTENT --> 
 	<div><?php echo $this_page; ?></div>
