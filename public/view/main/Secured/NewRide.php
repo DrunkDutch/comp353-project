@@ -12,68 +12,94 @@
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
     <h1>Create Ride</h1>
-    <div class="container">
-        <!--Testing the Google API -->
-        <div id="map" style="Height:400px; width:500px"></div>
 
-    </div>
+    <div class="row"><div class="text-center"><i class="fa fa-car fa-5x" aria-hidden="true"></i>
+        </div></div>
+    <?php include "../app/createRide.php"?>
+    <form class="container-fluid col-md-4 col-md-offset-4" action="/comp353-project/app/createRide.php" method="POST">
+
+        <!-- TO DO: NEED TO UPDATE THESE FIELDS -->
+        <div class="form-group">
+            <label for="Date">Date</label>
+            <input type="date" name="date" class="form-control" aria-describedby="dateHelp" id="exampleInputdate" placeholder="2016-12-31">
+        </div>
+        <div class=form-group>
+            <label for="username">Departure Time</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Repeating</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Depature Street Number</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Depature Street</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Depature City</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Depature Province</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Depature Postal Code</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Destination Street Number</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Destination Street</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Destination City</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Destination Province</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Destination Postal Code</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
+        </div>
+        <div class=form-group>
+            <label for="username">Distance (Need better descriptor)</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="5 (in km)">
+        </div>
+        <div class=form-group>
+            <label for="username">Rider Capacity</label>
+            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="4">
+        </div>
+        <div class=form-group>
+            <label for="username">Are you driving or just riding?</label>
+            <input type="radio" name="riderType"
+                <?php if (isset($riderType) && $riderType=="driving") echo "checked";?>
+                   value="driving">Driving
+            <input type="radio" name="riderType"
+                <?php if (isset($riderType) && $riderType=="riding") echo "checked";?>
+                   value="riding">Riding
+        </div>
+
+        <button
+        <button type="reset" class="btn btn-danger">Reset</button>
+        <input type="submit" value="click" class="btn btn-primary">
+    </form>
+</div>
+
 </div>
 <!-- END OF CONTENT -->
 <div><?php echo $this_page; ?></div>
 <!-- This Section is for the footer -->
 <?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Footer.php');?>
-
-<script>
-    // Note: This example requires that you consent to location sharing when
-    // prompted by your browser. If you see the error "The Geolocation service
-    // failed.", it means you probably did not give permission for the browser to
-    // locate you.
-
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 6
-        });
-        var infoWindow = new google.maps.InfoWindow({map: map});
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
-                map.setCenter(pos);
-                console.log(pos.lat);
-                console.log(pos.lng);
-            }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
-            });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-    }
-
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-            'Error: The Geolocation service failed.' :
-            'Error: Your browser doesn\'t support geolocation.');
-    }
-</script>
-
-
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio&callback=initMap">
-</script>
-
-<!--  	AIzaSyCTrJWbLtv2VwyMhbgTUx0VCr_8r6I7VLo = this key is used for google MAP ROAD -->
-<!-- 	AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio  = this key is used for google MAP JS -->
-
 
 </body>
 </html>
