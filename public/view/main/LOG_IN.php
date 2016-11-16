@@ -14,7 +14,8 @@
     <div id="page-content-wrapper">
 	<div class="row"><div class="text-center"><i class="fa fa-car fa-5x" aria-hidden="true"></i>
 </div></div>
-<?php include "../app/login_function.php"?>	
+<?php include "../app/login_function.php"?>
+        <h1>Log In</h1>
     <form class="container-fluid col-md-4 col-md-offset-4" action="/comp353-project/app/login_function.php" method="POST">
 	
 	<div class="form-group">
@@ -34,7 +35,7 @@
     </div>
     <button 
     <button type="reset" class="btn btn-danger">Reset</button>
-    <input type="submit" value="click" class="btn btn-primary">
+    <input type="submit" value="Log in" class="btn btn-primary">
     </form>
     </div>
     <!-- END OF CONTENT --> 
