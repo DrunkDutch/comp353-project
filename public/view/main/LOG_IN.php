@@ -36,6 +36,17 @@
     <button type="reset" class="btn btn-danger">Reset</button>
     <input type="submit" value="click" class="btn btn-primary">
     </form>
+	<?php
+	if(isset($_SESSION['Authen'])){
+		if(!$_SESSION['Authen']){
+		 echo("<div class='row' style='margin-top:30px;height:70px; background-color:red; color:white;'><p style='padding-top:20px; font-size:20px;'>Wrong password/Username/Email</p></div>");	
+		}
+		if($_SESSION['Authen']){
+		 echo("<div class='row' style='margin-top:30px;height:70px; background-color:green; color:white;'><p style='padding-top:20px; font-size:20px;'>You are log in</p></div>");	
+		}	
+	
+	}
+	?>
     </div>
     <!-- END OF CONTENT --> 
 	<div><?php echo $this_page; ?></div>
