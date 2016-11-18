@@ -1,0 +1,7 @@
+$stmt = $d->conn->prepare("select SenderId, ReceiverId, Date, Content from Message join Member on Message.ReceiverId = Member.UserId where Member.UName like :u");
+    $stmt->bindParam(':u', $[USERNAME HERE]);
+    $stmt->execute();
+
+$stmt = $d->conn->prepare("select SenderId, ReceiverId, Date, Content from Message join Member on Message.ReceiverId = Member.Privilege where Member.UName like :u");
+    $stmt->bindParam(':u', $[USERNAME HERE]);
+    $stmt->execute();
