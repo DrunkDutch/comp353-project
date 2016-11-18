@@ -17,7 +17,7 @@ $stmt = $d->conn->prepare("INSERT INTO `comp353`.`Member`(`UName`,`Password`,`FN
 
 
 Insert user
-$stmt = $d->conn->prepare("INSERT INTO `comp353`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`,`Permit`,`Insurance`)VALUES(:u,:p,:f,:l,:e,:d,:r,-50,3,:phone)");
+$stmt = $d->conn->prepare("INSERT INTO `comp353`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`)VALUES(:u,:p,:f,:l,:e,:d,:r,-50,3,:phone)");
         	$stmt->bindParam(':u', $username);
         	$stmt->bindParam(':p', $password);
         	$stmt->bindParam(':f', $first);
