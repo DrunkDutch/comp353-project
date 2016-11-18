@@ -1,5 +1,5 @@
 
- <nav class="navbar navbar-default">
+ <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -9,14 +9,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://localhost">Hubert</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" style="float:none">
-        <li class="btn-primary btn pull-right"><button class="btn btn-primary"  id="menu-toggle" style="color:white; text-decoration:none">MENU</button></li>
+        <li class="btn-default btn pull-left"><button class="btn btn-default btn-menu"  id="menu-toggle" style="text-decoration:none">MENU</button></li>
+          <a class="navbar-brand pull-right" href="http://localhost/comp353-project/">EZ-RIDERZ</a>
       </ul>
+
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
@@ -25,11 +26,11 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="http://localhost">
-                        Home
-                    </a>
-                </li>
+<!--                <li class="sidebar-brand">-->
+<!--                    <a href="http://localhost">-->
+<!--                        Home-->
+<!--                    </a>-->
+<!--                </li>-->
                 <li>
                     <a href="http://localhost/comp353-project/public/view/main/LOG_IN.php">Sign In</a>
                 </li>
@@ -43,16 +44,16 @@
                     <a href="http://localhost/comp353-project/public/view/main/Secured/Drivers.php">Drivers Available</a>
                 </li>
                 <li>
-                    <a href="http://localhost/comp353-project/public/view/main/Secured/Rides.php">Rides Request/Create</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Rides.php">Rides</a>
                 </li>
                 <li>
                     <a href="http://localhost/comp353-project/public/view/main/Secured/Reviews.php">Reviews</a>
                 </li>
 				<li>
-                    <a href="http://localhost/comp353-project/public/view/main/Secured/Directory.php">Directory</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Directory.php">User Directory</a>
                 </li>
                 <li>
-                    <a href="http://localhost/comp353-project/public/view/main/Secured/Rides-Details.php">Ride Details</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Messages.php">Message Center</a>
                 </li>
             </ul>
         </div>

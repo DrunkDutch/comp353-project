@@ -34,8 +34,18 @@ CREATE TABLE `Comment` (
   KEY `Poster_idx` (`PosterId`),
   CONSTRAINT `Poster` FOREIGN KEY (`PosterId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `RideC` FOREIGN KEY (`RideId`) REFERENCES `Ride` (`RideId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Comment`
+--
+
+LOCK TABLES `Comment` WRITE;
+/*!40000 ALTER TABLE `Comment` DISABLE KEYS */;
+INSERT INTO `Comment` VALUES (1,1,4,'Looking for people to split gas with');
+/*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Driver`
@@ -55,6 +65,16 @@ CREATE TABLE `Driver` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Driver`
+--
+
+LOCK TABLES `Driver` WRITE;
+/*!40000 ALTER TABLE `Driver` DISABLE KEYS */;
+INSERT INTO `Driver` VALUES (1,4),(2,4);
+/*!40000 ALTER TABLE `Driver` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Location`
 --
 
@@ -72,8 +92,18 @@ CREATE TABLE `Location` (
   `Province` varchar(45) NOT NULL,
   PRIMARY KEY (`LocationId`,`Latitude`,`Longitude`),
   UNIQUE KEY `LocationId_UNIQUE` (`LocationId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Location`
+--
+
+LOCK TABLES `Location` WRITE;
+/*!40000 ALTER TABLE `Location` DISABLE KEYS */;
+INSERT INTO `Location` VALUES (1,46.763512,-71.274033,2619,'Vigneault','G1W1X4','Quebec','QC'),(2,45.458130,-73.637367,7141,'Sherbrooke Ouest','H4B2B9','Montreal','QC'),(3,45.497108,-73.578735,1455,'de Maisonneuve O','H3G1M8','Montreal','QC'),(4,45.502789,-73.572845,845,'de Maisonneuve O','H3A0G4','Montreal','QC'),(5,38.898811,-77.037636,1600,'Pennsylvania NW','20500','Washington','DC');
+/*!40000 ALTER TABLE `Location` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Member`
@@ -103,8 +133,18 @@ CREATE TABLE `Member` (
   UNIQUE KEY `Email_UNIQUE` (`Email`),
   UNIQUE KEY `Permit_UNIQUE` (`Permit`),
   UNIQUE KEY `Insurance_UNIQUE` (`Insurance`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Member`
+--
+
+LOCK TABLES `Member` WRITE;
+/*!40000 ALTER TABLE `Member` DISABLE KEYS */;
+INSERT INTO `Member` VALUES (1,'Root','Root','Root','Root','root@test.com','2016-11-01',1,0.00,1,1,'8005556832',NULL,NULL),(2,'Admin','Admin','Admin','Admin','test@test.com','2016-11-02',1,0.00,1,2,'8005557334',NULL,NULL),(3,'Member','Member','Member','Member','member@test.com','2016-11-03',1,0.00,1,3,'8005557201',NULL,NULL),(4,'Dmens','hardware','Devin','Mens','devin.mens@gmail.com','1991-04-14',1,0.00,1,1,'4388372958','M520314049109','022469361335'),(5,'Slee','test','Stella','Lee','st_lee@encs.concordia.ca','1991-01-01',1,0.00,1,1,'5143479880',NULL,NULL),(6,'Chardy','test','Charles-Antoine','Hardy','cha_hard@encs.concordia.ca','1991-01-01',1,0.00,1,1,'8005556833',NULL,NULL),(7,'Bcloutier','test','Bernard','Cloutier','b_clo@encs.concordia.ca','1991-01-01',4,0.00,0,3,'8005556834',NULL,NULL),(8,'Mverrucci','test','Matthew','Verrucci','m_verru@encs.concordia.ca','1991-01-01',1,0.00,1,2,'8005556835',NULL,NULL);
+/*!40000 ALTER TABLE `Member` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Message`
@@ -125,8 +165,18 @@ CREATE TABLE `Message` (
   KEY `Receiver_idx` (`ReceiverId`),
   CONSTRAINT `Receiver` FOREIGN KEY (`ReceiverId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Sender` FOREIGN KEY (`SenderId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Message`
+--
+
+LOCK TABLES `Message` WRITE;
+/*!40000 ALTER TABLE `Message` DISABLE KEYS */;
+INSERT INTO `Message` VALUES (1,'2016-11-17 14:00:00',5,4,'Your driving sucks');
+/*!40000 ALTER TABLE `Message` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Rating`
@@ -140,7 +190,7 @@ CREATE TABLE `Rating` (
   `RaterId` int(8) NOT NULL,
   `RateeId` int(8) NOT NULL,
   `Score` int(1) NOT NULL,
-  PRIMARY KEY (`RideId`),
+  PRIMARY KEY (`RideId`,`RaterId`,`RateeId`),
   KEY `Rater_idx` (`RaterId`),
   KEY `Ratee_idx` (`RateeId`),
   CONSTRAINT `fk_RateeID` FOREIGN KEY (`RateeId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -148,6 +198,16 @@ CREATE TABLE `Rating` (
   CONSTRAINT `fk_Ride` FOREIGN KEY (`RideId`) REFERENCES `Ride` (`RideId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Rating`
+--
+
+LOCK TABLES `Rating` WRITE;
+/*!40000 ALTER TABLE `Rating` DISABLE KEYS */;
+INSERT INTO `Rating` VALUES (1,4,5,5),(1,5,4,1);
+/*!40000 ALTER TABLE `Rating` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Ride`
@@ -160,7 +220,7 @@ CREATE TABLE `Ride` (
   `RideId` int(8) NOT NULL AUTO_INCREMENT,
   `Date` date NOT NULL,
   `DepartTime` time NOT NULL,
-  `Repeat` varchar(45) DEFAULT NULL,
+  `RepeatDay` varchar(45) DEFAULT NULL,
   `DepartureId` int(8) NOT NULL,
   `DestinationId` int(8) NOT NULL,
   `Distance` double NOT NULL,
@@ -171,8 +231,18 @@ CREATE TABLE `Ride` (
   KEY `Destination_idx` (`DestinationId`),
   CONSTRAINT `Departure` FOREIGN KEY (`DepartureId`) REFERENCES `Location` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Destination` FOREIGN KEY (`DestinationId`) REFERENCES `Location` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Ride`
+--
+
+LOCK TABLES `Ride` WRITE;
+/*!40000 ALTER TABLE `Ride` DISABLE KEYS */;
+INSERT INTO `Ride` VALUES (1,'2016-11-17','13:30:00',NULL,1,3,248,2),(2,'2016-11-18','09:00:00',NULL,3,1,248,0),(3,'2016-11-19','11:00:00','Mon',2,4,10.6,3);
+/*!40000 ALTER TABLE `Ride` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Rider`
@@ -192,6 +262,16 @@ CREATE TABLE `Rider` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Rider`
+--
+
+LOCK TABLES `Rider` WRITE;
+/*!40000 ALTER TABLE `Rider` DISABLE KEYS */;
+INSERT INTO `Rider` VALUES (3,4),(1,5),(1,6);
+/*!40000 ALTER TABLE `Rider` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Transaction`
 --
 
@@ -209,8 +289,18 @@ CREATE TABLE `Transaction` (
   KEY `Payee_idx` (`PayeeId`),
   CONSTRAINT `Payee` FOREIGN KEY (`PayeeId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Payer` FOREIGN KEY (`PayerId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Transaction`
+--
+
+LOCK TABLES `Transaction` WRITE;
+/*!40000 ALTER TABLE `Transaction` DISABLE KEYS */;
+INSERT INTO `Transaction` VALUES (1,5,4,50.00),(2,6,4,50.00);
+/*!40000 ALTER TABLE `Transaction` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping events for database 'comp353'
@@ -229,4 +319,4 @@ CREATE TABLE `Transaction` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-09 19:47:48
+-- Dump completed on 2016-11-15 17:48:18
