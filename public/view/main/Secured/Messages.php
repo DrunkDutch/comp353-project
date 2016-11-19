@@ -32,12 +32,18 @@
 
                 $u = $_SESSION['username'];
 
-                $stmt = $d->conn->prepare("select SenderId, ReceiverId, Date, Content from Message join Member on Message.ReceiverId = Member.UserId where Member.UName like :u");
+                $stmt = $d->conn->prepare(
+                    "select SenderId, ReceiverId, Date, Content 
+                    from Message join Member on Message.ReceiverId = Member.UserId 
+                    where Member.UName like :u"
+                );
                 $stmt->bindParam(':u', $u);
                 $stmt->execute();
                 $result = $stmt->fetchAll();
 
+                print_r($result);
                 foreach ($result as &$val) {
+
 
                     $r = $val["SenderId"];
                     $t = $val["ReceiverId"];
