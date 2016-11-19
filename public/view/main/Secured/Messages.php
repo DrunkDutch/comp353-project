@@ -33,7 +33,7 @@
                 $u = $_SESSION['username'];
 
                 $stmt = $d->conn->prepare(
-                    "select SenderId, ReceiverId, Date, Content 
+                    "select SenderId, `Date`, Content 
                     from Message join Member on Message.ReceiverId = Member.UserId 
                     where Member.UName like :u"
                 );
@@ -41,25 +41,28 @@
                 $stmt->execute();
                 $result = $stmt->fetchAll();
 
-                print_r($result);
                 foreach ($result as &$val) {
 
+                    $sender = $val['SenderId'];
+                    $date = $val['Date'];
+                    $content = $val['Content'];
 
-                    $r = $val["SenderId"];
-                    $t = $val["ReceiverId"];
-                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:&nbsp</p><p>Departure time:&nbsp' . $r . '&nbspat:&nbsp' . $t . '&nbsp</p><a href="#"><button class="btn btn-success">Get Details</button></a></div>';
+                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Sender: ' . $sender . '</p><p>Content: ' . $content . '</p><p>Date: ' . $date . '</p><a href="#"><button class="btn btn-success">Get Details</button></a></div>';
                 }
-
             }
         }
 
         GetMessages();
         ?>
 
-        <div class="row" style="height:150px;border-style:solid; border-width:3px;"><p>Destination:&nbsp</p>
-            <p>Departure time:&nbsp2016-11-18&nbspat:&nbsp09:00:00&nbsp</p><a href="#">
+        <div class="row" style="height:150px;border-style:solid; border-width:3px;">
+            <p>Sender: </p>
+            <p>Content: </p>
+            <p>Date: </p>
+            <a href="#">
                 <button class="btn btn-success">Get Details</button>
-            </a></div>
+            </a>
+        </div>
     </div>
 
 </div>
