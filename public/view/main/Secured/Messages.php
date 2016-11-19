@@ -18,7 +18,29 @@
         </div>
     </div>
     <div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="messages">
+
+
+
+
         <?php
+
+        function GetDetailedMessage($id){
+            $status = Connected();
+            if($status == 1){
+                try{
+                    $d = new dbMakeConnection;
+                }
+                catch(PDOException $e){ echo($e);}
+                $stmt = $d->conn->prepare("SELECT * FROM comp353.Location WHERE LocationId = :id");
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $AllAddress = ' '. $result['StreetNum'] . ' '. $result['Street'] .' '. $result['City'];
+                return $AllAddress;
+            }
+        }
+
+
         function GetMessages() {
             include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
@@ -33,7 +55,7 @@
                 $u = $_SESSION['username'];
 
                 $stmt = $d->conn->prepare(
-                    "select SenderId, `Date`, Content
+                    "select SenderId, ReceiverId, `Date`, Content
                     from Message join Member on Message.ReceiverId = Member.UserId
                     where Member.UName like :u"
                 );
@@ -41,13 +63,16 @@
                 $stmt->execute();
                 $result = $stmt->fetchAll();
 
-                foreach ($result as &$val) {
-
-                    $sender = $val['SenderId'];
-                    $date = $val['Date'];
-                    $content = $val['Content'];
-
-                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Sender: ' . $sender . '</p><p>Content: ' . $content . '</p><p>Date: ' . $date . '</p><a href="#"><button class="btn btn-success">Get Details</button></a></div>';
+                foreach($result as&$val){
+                    $Rid = $val["SenderId"];
+                    $Did = $val["ReceiverId"];
+                    $AllAdd = GetDetailedMessage($Did);
+                    $r = $val["Date"];
+                    $t = $val["Content"];
+                    // Build URL For each Button...
+                    $url = "http://" . $_SERVER['SERVER_NAME'] .   $_SERVER[''].substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Rides-Details.php?id=' .$Rid ;
+                    // Create HTML...
+                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:' .$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Get Details</button></a></div>';
                 }
             }
         }
@@ -55,14 +80,14 @@
         GetMessages();
         ?>
 
-        <div class="row" style="height:150px;border-style:solid; border-width:3px;">
-            <p>Sender: </p>
-            <p>Content: </p>
-            <p>Date: </p>
-            <a href="#">
-                <button class="btn btn-success">Get Details</button>
-            </a>
-        </div>
+<!--        <div class="row" style="height:150px;border-style:solid; border-width:3px;">-->
+<!--            <p>Sender: </p>-->
+<!--            <p>Content: </p>-->
+<!--            <p>Date: </p>-->
+<!--            <a href="#">-->
+<!--                <button class="btn btn-success">Get Details</button>-->
+<!--            </a>-->
+<!--        </div>-->
     </div>
 
 </div>
