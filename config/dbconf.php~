@@ -1,0 +1,33 @@
+<?php 
+
+// Variables Connection to the database 
+$host = "localhost";
+$username = "root";
+$password = "root";
+$db_name = "comp353";
+mysqli_report(MYSQLI_REPORT_STRICT); 
+$connection = new mysqli($host, $username, $password, $db_name);
+function ConnectionCheck(){
+	try{
+		if($connection -> connect_error){
+			die("C. failed: " . $connection -> connect_error);
+			return false;		
+		}
+		else{
+			$GLOBALS['host2'] = $host;
+			return true;	
+		}
+	}
+	catch(Exception $e){
+		// Do something	with the Exception...
+	}
+
+
+}
+
+
+	
+
+
+
+?>
