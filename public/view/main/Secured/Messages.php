@@ -33,8 +33,8 @@
                 $u = $_SESSION['username'];
 
                 $stmt = $d->conn->prepare(
-                    "select SenderId, `Date`, Content 
-                    from Message join Member on Message.ReceiverId = Member.UserId 
+                    "select SenderId, `Date`, Content
+                    from Message join Member on Message.ReceiverId = Member.UserId
                     where Member.UName like :u"
                 );
                 $stmt->bindParam(':u', $u);
