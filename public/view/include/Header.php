@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" style="float:none">
         <li class="btn-default btn pull-left"><button class="btn btn-default btn-menu"  id="menu-toggle" style="text-decoration:none">MENU</button></li>
-          <a class="navbar-brand pull-right" href="http://192.168.2.85/comp353-project/">EZ-RIDERZ</a>
+          <a class="navbar-brand pull-right" href="http://localhost/comp353-project/">EZ-RIDERZ</a>
       </ul>
 
     </div><!-- /.navbar-collapse -->
@@ -27,33 +27,33 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
 <!--                <li class="sidebar-brand">-->
-<!--                    <a href="http://192.168.2.85">-->
+<!--                    <a href="http://localhost">-->
 <!--                        Home-->
 <!--                    </a>-->
 <!--                </li>-->
                 <li>
-                    <a href="http://192.168.2.85/comp353-project/public/view/main/LOG_IN.php">Sign In</a>
+                    <a href="http://localhost/comp353-project/public/view/main/LOG_IN.php">Sign In</a>
                 </li>
                 <li>
-                    <a href="http://192.168.2.85/comp353-project/public/view/main/Sign_up.php">Sign Up</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Sign_up.php">Sign Up</a>
                 </li>
                 <li>
-                    <a href="http://192.168.2.85/comp353-project/public/view/main/Secured/Account.php">Account</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Account.php">Account</a>
                 </li>
                 <li>
-                    <a href="http://192.168.2.85/comp353-project/public/view/main/Secured/Drivers.php">Drivers Available</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Drivers.php">Drivers Available</a>
                 </li>
                 <li>
-                    <a href="http://192.168.2.85/comp353-project/public/view/main/Secured/Rides.php">Rides</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Rides.php">Rides</a>
                 </li>
                 <li>
-                    <a href="http://192.168.2.85/comp353-project/public/view/main/Secured/Reviews.php">Reviews</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Reviews.php">Reviews</a>
                 </li>
 				<li>
-                    <a href="http://192.168.2.85/comp353-project/public/view/main/Secured/Directory.php">User Directory</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Directory.php">User Directory</a>
                 </li>
                 <li>
-                    <a href="http://192.168.2.85/comp353-project/public/view/main/Secured/Messages.php">Message Center</a>
+                    <a href="http://localhost/comp353-project/public/view/main/Secured/Messages.php">Message Center</a>
                 </li>
             </ul>
         </div>
