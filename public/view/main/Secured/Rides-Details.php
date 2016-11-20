@@ -193,10 +193,10 @@
 
      ?>
 <div class="row" style="display:none">
-<input type="number" id="DetLat" value="<?php echo $GLOBALS['DestinationLat']?>">
-<p id="DetLon"><?php echo $GLOBALS['DestinationLon']; ?></p>
-<p id="DepLat"><?php echo $GLOBALS['DepartureLat']; ?></p>
-<p id="DepLon"><?php echo $GLOBALS['DepartureLon']; ?></p>
+<input type="text" id="DetLat" value="<?php echo $GLOBALS['DestinationLat']?>">
+<input type="text" id="DetLon"  value="<?php echo $GLOBALS['DestinationLon']; ?>">
+<input type="text" id="DepLat" value="<?php echo $GLOBALS['DepartureLat']; ?>">
+<input type="text" id="DepLon" value="<?php echo $GLOBALS['DepartureLon']; ?>">
 </div>
 <div class="container" id="ButtonPanel"></div>
 <div class="container" id="Maps">
@@ -209,19 +209,29 @@
       <option value="TRANSIT">Transit</option>
     </select>
     </div>
-    <div id="map" style="Height:500px; Width:90%;"></div>
+    <div id="map" style="Height:500px; Width:900px;"></div>
     <script>
-	var destLon = document.getElementById("DetLon").value;
-	var destLat = document.getElementById("DetLat").value;
-	var depLon = document.getElementById("DepLon").value;
-	var deptLat = document.getElementById("DepLat").value;
-	
+
       function initMap() {
-        var directionsDisplay = new google.maps.DirectionsRenderer;
+
+	var filterFloat = function (value) {
+    		if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+      		.test(value))
+      		return Number(value);
+  		return NaN;
+	}
+
+	var depLat = filterFloat(document.getElementById("DepLat").value);
+	var depLon = filterFloat(document.getElementById("DepLon").value);
+	var detLat = filterFloat(document.getElementById("DetLat").value);
+	var detLon = filterFloat(document.getElementById("DetLon").value);
+
+	var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
+	
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: {lat: destLat, lng: x}
+          zoom: 10,
+          center: { lat: depLat, lng: depLon },
         });
         directionsDisplay.setMap(map);
 
@@ -232,10 +242,28 @@
       }
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+		var filterFloat = function (value) {
+    		if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+      		.test(value))
+      		return Number(value);
+  		return NaN;
+	}
+
+
+	var depLat = filterFloat(document.getElementById("DepLat").value);
+	var depLon = filterFloat(document.getElementById("DepLon").value);
+	var detLat = filterFloat(document.getElementById("DetLat").value);
+	var detLon = filterFloat(document.getElementById("DetLon").value);
+
+	var start = {lat: depLat, lng:depLon};
+	var end ={lat:detLat, lng:detLon};
         var selectedMode = document.getElementById('mode').value;
+	
+	
         directionsService.route({
-          origin: {lat: 37.77, lng: -122.447},  // Haight.
-          destination: {lat: 37.768, lng: -122.511},  // Ocean Beach.
+          origin: start,
+          destination: end,  // Ocean Beach.
           // Note that Javascript allows us to access the constant
           // using square brackets and a string value as its
           // "property."
