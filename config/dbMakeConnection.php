@@ -5,7 +5,7 @@ class dbMakeConnection {
     public function __construct()
     {
         
-        $this->host = "localhost"; // Host name
+        $this->host = "192.168.2.85"; // Host name
         $this->username = "root";
         $this->password = "root"; // Mysql password
         $this->db_name = "comp353"; // Database name

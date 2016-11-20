@@ -45,7 +45,7 @@ function AuthentificationUser($u, $p){
 		}
 		else{
 		$_SESSION['Authen']= false;
-		header("Location: http://localhost/comp353-project/public/view/main/LOG_IN.php");
+		header("Location: http://192.168.2.85/comp353-project/public/view/main/LOG_IN.php");
 		}
 		
 	}
@@ -76,7 +76,7 @@ function AuthentificationEmail($em, $p){
 		}
 		else{
 		$_SESSION['Authen'] = false;
-		header("Location: http://localhost/comp353-project/public/view/main/LOG_IN.php");
+		header("Location: http://192.168.2.85/comp353-project/public/view/main/LOG_IN.php");
 		
 		}
 		
@@ -90,6 +90,6 @@ $_SESSION['username'] = $u;
 $_SESSION['email'] = $e;
 $_SESSION['p'] = $p;
 $_SESSION['Authen'] = true;
-header("Location: http://localhost/comp353-project/");
+header("Location: http://192.168.2.85/comp353-project/");
 }
 ?>
