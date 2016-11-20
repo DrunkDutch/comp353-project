@@ -47,7 +47,7 @@
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("SELECT UName, Date, Content FROM comp353.Message JOIN comp353.Member ON (SenderId=UserId) WHERE MessageId = :id");
+            $stmt = $d->conn->prepare("SELECT UName, UserId, Date, Content FROM comp353.Message JOIN comp353.Member ON (SenderId=UserId) WHERE MessageId = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 
@@ -67,9 +67,14 @@
         if (empty($messageDetails)) {
             echo 'Message not found';
         } else {
+            $url = "http://" . $_SERVER['SERVER_NAME'] .   $_SERVER[''].substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/NewMessage.php?id=' .$messageDetails['UserId'] ;
+
+
             echo '<div class="row">Date:&nbsp' . $messageDetails['Date'] . '</div>
 		        <div class="row">Sender:&nbsp' . $messageDetails['UName'] . '</div>
-		        <div class="row">Message:&nbsp' . $messageDetails['Content'] . '</div>';
+		        <div class="row">Message:&nbsp' . $messageDetails['Content'] . '</div>
+		        <br/>
+		        <a href="'.$url.'"><button class="btn btn-success">Reply</button></a>';
         }
         echo '</div>';
     }
