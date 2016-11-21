@@ -47,7 +47,6 @@
 
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
-
         }
     }
 
@@ -61,29 +60,17 @@
         if (empty($accountDetails)) {
             echo 'User not found';
         } else {
-            $url = "http://" . $_SERVER['SERVER_NAME'] .   $_SERVER[''].substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/NewMessage.php?id=' .$accountDetails['UserId'] ;
-
-
             echo '<div class="row">Username:&nbsp' . $accountDetails['UName'] . '</div>
             <div class="row">UserID:&nbsp' . $accountDetails['UserId'] . '</div>
                 <div class="row">Name:&nbsp' . $accountDetails['FName'] . ' ' . $accountDetails['LName'] . '</div>
 		        <div class="row">Email:&nbsp' . $accountDetails['Email'] . '</div>
 		        <div class="row">DOB:&nbsp' . $accountDetails['DOB'] . '</div>
-		        <div class="row">Phone:&nbsp' . $accountDetails['Phone'] . '</div>
-		        <br/>
-		        <a href="'.$url.'"><button class="btn btn-success">Send Message</button></a>';
+		        <div class="row">Phone:&nbsp' . $accountDetails['Phone'] . '</div>';
         }
         echo '</div>';
     }
-
     CollectResult();
-
-
     ?>
-
-    <!--    </div>-->
-
-
     <!-- END OF CONTENT -->
 
     <!-- This Section is for the footer -->
