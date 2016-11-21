@@ -103,7 +103,7 @@
                         $url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER[''] . substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Rate.php?id=' . $Rid;
                         // Create HTML...
                         echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:' .$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p>';
-                        echo '<button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $data . '"">Rate</button></div>';
+                        echo '<button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $data . '">Rate</button></div>';
                     }
                 }
             }
