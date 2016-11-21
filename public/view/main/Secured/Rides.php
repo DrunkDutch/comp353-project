@@ -369,12 +369,14 @@ GetDataForRide();
     		title:"Ride Starting",
 		url:ids[i].url,
 		});
-		marker.setMap(map2);
+		marker.setMap(map2),
+		google.maps.event.addListener(marker, 'click', function() {
+    		window.location.href = this.url
+		});
 		
 	}
-	google.maps.event.addListener(marker, 'click', function() {
-    		window.location.href = this.url;
-	});
+	
+
 	
 		var myCenter = new google.maps.LatLng(filterFloat(document.getElementById('LatLocation').value),filterFloat(document.getElementById('LonLocation').value))
 		var marker = new google.maps.Marker({
