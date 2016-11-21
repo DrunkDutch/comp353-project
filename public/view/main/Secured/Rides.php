@@ -26,7 +26,7 @@
 	</div>
   
 	</div>	
-	<div class="contianer" style="border-style:solid;margin-top:20px;">
+	<div class="container" style="border-style:solid;margin-top:20px;">
 		<h4>Search</h4>
 <div class="row" style="margin-top:20px; margin-bottom:20px;">
 		<h4 class="col-xs-6" for="LatLocation">Your location:&nbsp</h4>
@@ -37,11 +37,11 @@
 <div class="row" style="margin-top:20px; margin-bottom:20px;">
 <h4 class="col-xs-6">Use a radius to find your ride?</h4>
 <select style="width:20% !important; margin-right:10px" class="form-control col-xs-3" id="selectRadius">
-<option>1 KM</option>
-<option>5 KM</option>
-<option>10 KM</option>
+<option value="1">1 KM</option>
+<option value="5">5 KM</option>
+<option value="10">10 KM</option>
 </select>
-<button type="button" class="btn btn-info col-xs-3" data-toggle="collapse" data-target="#rides">Search with Radius</button>
+<button type="button" class="btn btn-info col-xs-3" data-toggle="collapse" data-target="#rides" onclick="LaunchRadius()">Search with Radius</button>
 
 </div>
 <div class="row" style="margin-top:20px; margin-bottom:20px;">
@@ -125,8 +125,14 @@ echo '<option>'.$val['City'].'</option>';
 	<div class="row" style="margin-top:20px; margin-bottom:20px;"><h4 class="col-xs-6">Do not want to search? </h4><button" type="button" class="btn btn-info col-xs-3" data-toggle="collapse" data-target="#rides">Show All Rides</button>
 	</div>
     	</div>
+
+<div class="container collapse" id="RadiusMap" style="text-align:center; margin-top:50px; margin-bottom:50px;">
+<div id="mapRadius" style="height:400px; width:90%; float:none; margin:auto;"></div>
+</div>
+
             <div class="container collapse"  style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll; margin-top:100px;" id="rides"> 
 <h1>All Rides</h1> 
+
 <?php 
 
 function GetDetailAddress($id){
@@ -154,6 +160,30 @@ function GetDetailAddress($id){
 
 
 }
+function GetDetailCoor($id){
+	$status = Connected();
+	if($status == 1){
+		try{
+			$d = new dbMakeConnection;
+
+
+	
+		}
+		
+		catch(PDOException $e){ echo($e);}
+
+		$stmt = $d->conn->prepare("SELECT * FROM comp353.Location WHERE LocationId = :id");
+        	$stmt->bindParam(':id', $id);
+        	$stmt->execute();
+
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $result;
+		
+		
+	}
+
+
+}
 
 function GetDataForRide(){
 	//include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
@@ -174,6 +204,7 @@ function GetDataForRide(){
 		$Rid = $val["RideId"];
 		$Did = $val["DestinationId"];
 		$AllAdd = GetDetailAddress($Did);
+		$DetailCoor = GetDetailCoor($Did);
 		$r = $val["Date"];
 		$t = $val["DepartTime"];
 		// Build URL For each Button...
@@ -181,7 +212,7 @@ function GetDataForRide(){
 		$url = "http://" . $_SERVER['SERVER_NAME'] .   $_SERVER[''].substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Rides-Details.php?id=' .$Rid ;
 
 		// Create HTML...
-		echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:' .$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Get Details</button></a></div>';
+		echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:' .$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Get Details</button></a><Input type="text" class="Latis" style="display:none;" value="'.$DetailCoor['Latitude'].'"><Input type="text" class="Longis" style="display:none;" value="'.$DetailCoor['Longitude'].'"><Input type="text" style="display:none;"  class="elementC" value="'.$Rid.'"></div>';
 		}
 
 		
@@ -192,6 +223,10 @@ GetDataForRide();
 
 
 ?>
+
+
+</div>
+
   <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
@@ -199,7 +234,22 @@ GetDataForRide();
       // locate you.
       var SuperLat;
       var SuperLon;
+      function LaunchRadius(){
+	if(!(document.getElementById('LonLocation').value =="") && !(document.getElementById('LatLocation').value == "")){
+		
+		
+		$(document).ready(function(){
+		$("#RadiusMap").collapse('show');		
+		});
+
+		initMap();	
+	}
+	else{
+		alert("Please give your location...");
+	}
+      }
       function initMap() {
+
 		var filterFloat = function (value) {
     		if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
       		.test(value))
@@ -210,6 +260,62 @@ GetDataForRide();
           center: {lat: -34.397, lng: 150.644},
           zoom: 14
         });
+	var map2 = new google.maps.Map(document.getElementById('mapRadius'), {
+          center: {lat: filterFloat(document.getElementById('LatLocation').value), lng: filterFloat(document.getElementById('LonLocation').value)},
+          zoom: 13
+        });
+	// Let's try to get all Coord. of all Ride into array
+
+	var elements = document.getElementsByClassName("elementC");
+	var lats = document.getElementsByClassName("Latis");
+	var lons = document.getElementsByClassName("Longis");
+	var ids = {};
+	for(var i=0; i< elements.length; i++){
+		ids[i] ={
+			'id': filterFloat(elements[i].value),
+			'lat': filterFloat(lats[i].value),
+			'lon': filterFloat(lons[i].value),
+			'url': 	document.URL.substr(0,document.URL.lastIndexOf('/'))+"/Rides-Details.php?id=" + (i+1)
+		};	
+		
+	}
+	
+	console.log(ids[0].url);
+	for(var i=0; i< elements.length; i++){
+		var myLatlng = new google.maps.LatLng(ids[i].lat,ids[i].lon)
+		var marker = new google.maps.Marker({
+    		position: myLatlng,
+    		title:"Ride Starting",
+		url:ids[i].url,
+		});
+		marker.setMap(map2);
+		
+	}
+	google.maps.event.addListener(marker, 'click', function() {
+    		window.location.href = this.url;
+	});
+	
+		var myCenter = new google.maps.LatLng(filterFloat(document.getElementById('LatLocation').value),filterFloat(document.getElementById('LonLocation').value))
+		var marker = new google.maps.Marker({
+    		position: myCenter,
+    		title:"You are Here!",
+		animation: google.maps.Animation.BOUNCE,
+		});
+		marker.setMap(map2); 
+		
+		var CircleRadius = new google.maps.Circle({
+		strokeColor: '#FF0000',
+            	strokeOpacity: 0.8,
+            	strokeWeight: 2,
+            	fillColor: '#FF0000',
+            	fillOpacity: 0.35,
+		map: map2,
+		center: myCenter,
+		radius: 1000*filterFloat(document.getElementById('selectRadius').value),
+		});
+		//CircleRadius.bindTo('center', myCenter, 'position');
+	
+
         var infoWindow = new google.maps.InfoWindow({map: map});
 
         // Try HTML5 geolocation.
@@ -288,9 +394,9 @@ GetDataForRide();
 	}); 
 
 	</script>
- <!--<script async defer
+<script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio&callback=initMap">
- </script> -->
+ </script>
 
     </div>
     <!-- END OF CONTENT -->
