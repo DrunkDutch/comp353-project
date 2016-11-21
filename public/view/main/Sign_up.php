@@ -65,6 +65,18 @@
     <button type="reset" class="btn btn-danger">Clear</button>
     <button type="submit" class="btn btn-success">Create Account</button>
     </form>
+
+        <?php
+        if(isset($_SESSION['Authen'])){
+            if(!$_SESSION['Authen']){
+                echo("<div class='row' style='margin-top:30px;height:70px; background-color:red; color:white;'><p style='padding-top:20px; font-size:20px;'>Not all fields filled or user already exists</p></div>");
+            }
+            if($_SESSION['Authen']){
+                echo("<div class='row' style='margin-top:30px;height:70px; background-color:green; color:white;'><p style='padding-top:20px; font-size:20px;'>Account successfully created</p></div>");
+            }
+        }
+        ?>
+
     </div>
     <!-- END OF CONTENT --> 
 	<div><?php echo $this_page; ?></div>
