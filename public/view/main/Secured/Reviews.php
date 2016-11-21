@@ -1,42 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> Review </title>
-	<!-- This section is for the Head -->
-	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Head.php');?>
-    <script>
-        function showRatings() {
-            xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("ratings").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("GET","/comp353-project/app/getRatings.php",true);
-            xmlhttp.send();
-        }
-        showRatings();
-    </script>
+    <title> Review </title>
+    <!-- This section is for the Head -->
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
 </head>
 <body>
-	<!-- Page Content -->
-	<!-- This Section is for the Navigation file -->
-	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php');?>
-    <!-- INCLUDE CONTENT OF PAGE HERE -->
-    <div id="page-content-wrapper">
-    <h1>My Rating</h1>
-        <div class="row">
-            <div class="text-center">
-                <i class="fa fa-trophy fa-5x" aria-hidden="true"></i>
-            </div>
-        </div>
-        <div id="ratings"><p>My ratings</p></div>
+<!-- Page Content -->
+<!-- This Section is for the Navigation file -->
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Header.php'); ?>
+<!-- INCLUDE CONTENT OF PAGE HERE -->
+<div id="page-content-wrapper">
+    <h1>My Past Rides</h1>
+
+    <div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="rides">
+
+        <?php
+
+        function GetDetailAddress($id){
+            $status = Connected();
+            if($status == 1){
+                try{
+                    $d = new dbMakeConnection;
+                }
+
+                catch(PDOException $e){ echo($e);}
+
+                $stmt = $d->conn->prepare("SELECT * FROM comp353.Location WHERE LocationId = :id");
+                $stmt->bindParam(':id', $id);
+                $stmt->execute();
+
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                $AllAddress = ' '. $result['StreetNum'] . ' '. $result['Street'] .' '. $result['City'];
+                return $AllAddress;
+            }
+        }
+
+        function GetPastRides() {
+            include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+
+            $status = Connected();
+            if ($status == 1) {
+                try {
+                    $d = new dbMakeConnection;
+                } catch (PDOException $e) {
+                    echo($e);
+                }
+
+                // GET USER MESSAGES
+                $stmt = $d->conn->prepare("SELECT * FROM comp353.Ride WHERE Date < CURDATE()");
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+
+                if (empty($result)) {
+                    echo "No past rides";
+                }
+                else {
+                    foreach ($result as &$val) {
+                        $Rid = $val["RideId"];
+                        $Did = $val["DestinationId"];
+                        $AllAdd = GetDetailAddress($Did);
+                        $r = $val["Date"];
+                        $t = $val["DepartTime"];
+                        // Build URL For each Button...
+                        $url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER[''] . substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Rate.php?id=' . $Rid;
+                        // Create HTML...
+                        echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:' .$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Rate</button></a></div>';
+                    }
+                }
+            }
+        }
+
+        GetPastRides();
+        ?>
+
     </div>
-    <!-- END OF CONTENT --> 
-	<div><?php echo $this_page; ?></div>
-	<!-- This Section is for the footer -->
-	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Footer.php');?>
-	
+
+</div>
+<!-- END OF CONTENT -->
+<div><?php echo $this_page; ?></div>
+<!-- This Section is for the footer -->
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Footer.php'); ?>
+
 </body>
 </html>
-
