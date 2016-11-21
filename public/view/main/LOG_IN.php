@@ -42,7 +42,7 @@
 		 echo("<div class='row' style='margin-top:30px;height:70px; background-color:red; color:white;'><p style='padding-top:20px; font-size:20px;'>Wrong password/Username/Email</p></div>");	
 		}
 		if($_SESSION['Authen']){
-		 echo("<div class='row' style='margin-top:30px;height:70px; background-color:green; color:white;'><p style='padding-top:20px; font-size:20px;'>You are log in</p></div>");	
+		 echo("<div class='row' style='margin-top:30px;height:70px; background-color:green; color:white;'><p style='padding-top:20px; font-size:20px;'>You are logged in</p></div>");
 		}	
 	
 	}
