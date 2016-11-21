@@ -47,7 +47,6 @@
 
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
-
         }
     }
 
@@ -55,11 +54,17 @@
     {
         $details = GetRatingsDetails($_GET["id"]);
 
+        echo '<div class="container">';
         if (empty($details)) {
-            echo 'User ratings not found';
+            echo 'User not found';
+        }
+        else if ($details['Avg'] == null) {
+            echo '<h2> ' . $details['FName'] . ' Rating </h2>';
+            echo '<div class="row">Username:&nbsp' . $details['UName'] . '</div>
+            <div class="row">UserID:&nbsp' . $details['UserId'] . '</div>';
+            echo 'User has not yet been rated';
         } else {
-            echo '<div class="container">
-		    <h2> ' . $details['FName'] . ' Rating </h2>';
+		    echo '<h2> ' . $details['FName'] . ' Rating </h2>';
             echo '<div class="row">Username:&nbsp' . $details['UName'] . '</div>
             <div class="row">UserID:&nbsp' . $details['UserId'] . '</div>
                 <div class="row">Highest Rating:&nbsp' . $details['High'] . '</div>
