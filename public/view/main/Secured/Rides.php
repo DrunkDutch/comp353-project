@@ -129,6 +129,8 @@ echo '<option>'.$val['City'].'</option>';
 <div class="container collapse" id="RadiusMap" style="text-align:center; margin-top:50px; margin-bottom:50px;">
 <div id="mapRadius" style="height:400px; width:90%; float:none; margin:auto;"></div>
 </div>
+<div class="container collapse" style="border-style:solid; border-width:3px; overflow-y:scroll; margin-top:100px;" id="CitMatch">
+</div>
 
             <div class="container collapse"  style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll; margin-top:100px;" id="rides"> 
 <h1>All Rides</h1> 
@@ -216,7 +218,7 @@ function GetDataForRide(){
 		// Create HTML...
 		echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:'.$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Get Details</button></a><Input type="text" class="Latis" style="display:none;" value="'.$DetailCoorDepa['Latitude'].'"><Input type="text" class="Longis" style="display:none;" value="'.$DetailCoorDepa['Longitude'].'"><Input type="text" style="display:none;"  class="elementC" value="'.$Rid.'">
 <Input type="text" style="display:none;" class="DestinaCity" value="'.$DetailCoorDesti['City'].'">
-<Input type"text" style="display:none;" class="DepartCity" value="'.$DetailCoorDepa['City'].'">
+<Input type"text" style="display:none;" class="DepartCity" value="'.$DetailCoorDepa['City'].'"><Input style="display:none;" class="DestinationAdd" type="text" value="'.$AllAdd.'"><Input style="display:none;" class="AllTime" type="text" value=" '.$r.' at: '.$t. '">
 </div>';
 		}
 
@@ -240,6 +242,9 @@ GetDataForRide();
       var SuperLat;
       var SuperLon;
       function SearchCity(){
+	
+	var NodeAlpha = document.getElementById('CitMatch');
+	NodeAlpha.innerHTML ='';
 		var filterFloat = function (value) {
     			if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
       			.test(value))
@@ -251,10 +256,14 @@ GetDataForRide();
 	var es = document.getElementsByClassName("elementC");
 	var DepartCity = document.getElementsByClassName("DepartCity");
 	var DestinaCity = document.getElementsByClassName("DestinaCity");
+	var FullDesti = document.getElementsByClassName("DestinationAdd");
+	var FullTime = document.getElementsByClassName("AllTime");
 	var Cit = {};
 	for(var i=0; i< es.length; i++){
 		Cit[i] ={
 			'id': filterFloat(es[i].value),
+			'FullT': String(FullTime[i].value),
+			'FullDes': String(FullDesti[i].value),
 			'Dep': String(DepartCity[i].value),
 			'Des': String(DestinaCity[i].value),
 			'url': 	document.URL.substr(0,document.URL.lastIndexOf('/'))+"/Rides-Details.php?id=" + (i+1)
@@ -265,19 +274,38 @@ GetDataForRide();
  	var TargetDepartureCity = document.getElementById("selectDepart").value;
 	var TargetDestinationCity = document.getElementById("selectDestination").value;
 	
-	//console.log(TargetDepartureCity, TargetDestinationCity);
+	
+	var counter = 0;
 	var Result = {}
 	for(var i=0; i< es.length; i++){
 		var compareDepart = (Cit[i].Dep.toUpperCase() == TargetDepartureCity.toUpperCase());
 		var compareDest = (Cit[i].Des.toUpperCase() == TargetDestinationCity.toUpperCase());
 
 		if(compareDepart && compareDest){
-			console.log("Match ride", Cit[i].url);	
+			counter++;
+			var row = document.createElement('div');
+			row.className ='row';
+			row.style.height = "150px";
+			row.style.border = "solid";
+			//row.style.border-width ="3px";
+			row.innerHTML = '<p style="margin-top:20px;">Destination:'+Cit[i].FullDes+'&nbsp</p><p>Departure time:&nbsp'+Cit[i].FullT+'</p><a style="margin-bottom:30px;" href="'+Cit[i].url+'"><button class="btn btn-success">Get Details</button></a>'
+			document.getElementById('CitMatch').appendChild(row);	
 		}
 	}
+
+		$(document).ready(function(){
+		$("#RadiusMap").collapse('hide');
+		$("#rides").collapse('hide');
+		$("#CitMatch").collapse('show');
+			
+		});
+		if(counter == 0){
+		alert("Sorry no result where found :(");
+		}
 	}
       function ShowAllRides(){
 			$(document).ready(function(){
+			$('#CitMatch').collapse('hide');
 			$("#RadiusMap").collapse('hide');
 			$("#rides").collapse('show');
 				
@@ -288,6 +316,7 @@ GetDataForRide();
 		
 		
 		$(document).ready(function(){
+		$('#CitMatch').collapse('hide');
 		$("#RadiusMap").collapse('show');
 		$("#rides").collapse('hide');		
 		});
