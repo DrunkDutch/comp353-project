@@ -60,12 +60,16 @@
         if (empty($accountDetails)) {
             echo 'User not found';
         } else {
+            $url = "http://" . $_SERVER['SERVER_NAME'] .   $_SERVER[''].substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Ratings-Details.php?id=' .$accountDetails['UserId'] ;
+
             echo '<div class="row">Username:&nbsp' . $accountDetails['UName'] . '</div>
             <div class="row">UserID:&nbsp' . $accountDetails['UserId'] . '</div>
                 <div class="row">Name:&nbsp' . $accountDetails['FName'] . ' ' . $accountDetails['LName'] . '</div>
 		        <div class="row">Email:&nbsp' . $accountDetails['Email'] . '</div>
 		        <div class="row">DOB:&nbsp' . $accountDetails['DOB'] . '</div>
-		        <div class="row">Phone:&nbsp' . $accountDetails['Phone'] . '</div>';
+		        <div class="row">Phone:&nbsp' . $accountDetails['Phone'] . '</div>
+		        <br/>
+		        <a href="'.$url.'"><button class="btn btn-success">See Rating</button></a>';
         }
         echo '</div>';
     }
