@@ -4,6 +4,7 @@
 	<title> Messages </title>
 	<!-- This section is for the Head -->
 	<?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
+<style></style>
 </head>
 <body>
 <!-- Page Content -->
@@ -13,7 +14,40 @@
 <div id="page-content-wrapper">
 	<h1>My Messages</h1>
 
-	<a href="/comp353-project/public/view/main/Secured/SentMessages.php"><button class="btn btn-success">View Sent Messages</button></a>
+	<a href="/comp353-project/public/view/main/Secured/SentMessages.php"><button class="btn btn-default">View Sent Messages</button></a>
+
+	<!-- Trigger the modal with a button -->
+	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">New Message</button>
+
+	<?php include "/comp353-project/app/sendMessage.php"?>
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">New Message</h4>
+				</div>
+				<div class="modal-body">
+					<form action="/comp353-project/app/sendMessage.php" method="POST">
+						<div class="form-group">
+							<label for="user">To:</label>
+							<input type="text" class="form-control" name="user" id="user" placeholder="Enter Username">
+						</div>
+						<div class="form-group">
+							<label for="message">Message:</label>
+							<textarea class="form-control" rows="5" name="message" id="message" placeholder="Enter message"></textarea>
+						</div>
+						<button class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-success">Submit</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 	<div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="messages">
 
@@ -89,10 +123,12 @@
 	</div>
 
 </div>
+
 <!-- END OF CONTENT -->
 <div><?php echo $this_page; ?></div>
 <!-- This Section is for the footer -->
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Footer.php'); ?>
+
 
 </body>
 </html>

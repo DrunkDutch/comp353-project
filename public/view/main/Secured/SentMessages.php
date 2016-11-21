@@ -13,7 +13,7 @@
 <div id="page-content-wrapper">
     <h1>My Sent Messages</h1>
 
-    <a href="/comp353-project/public/view/main/Secured/Messages.php"><button class="btn btn-success">View Received Messages</button></a>
+    <a href="/comp353-project/public/view/main/Secured/Messages.php"><button class="btn btn-default">View Received Messages</button></a>
 
     <div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="messages">
 
