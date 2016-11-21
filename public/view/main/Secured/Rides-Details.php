@@ -141,8 +141,8 @@
 		$DriverID = GetDriverID($Ride['RideId']);
 		$PassengerID = GetPassengerIDs($Ride['RideId']);
 		$DriverDetails = GetDetailsOfMember($DriverID['DriverId']);
-		$GLOBALS['FullDepartAddress'] = ' '. $Destination['StreetNum'] . ' '. $Destination['Street'] . ', ' . $Destination['City'];
-		$GLOBALS['FullDestinaAddress'] = ' '. $Departure['StreetNum'] . ' '. $Departure['Street'] . ', ' . $Departure['City'];
+		$GLOBALS['FullDestinaAddress'] = ' '. $Destination['StreetNum'] . ' '. $Destination['Street'] . ', ' . $Destination['City'];
+		$GLOBALS['FullDepartAddress'] = ' '. $Departure['StreetNum'] . ' '. $Departure['Street'] . ', ' . $Departure['City'];
 
 		$GLOBALS['DestinationLat'] = $Destination['Latitude'];
 		$GLOBALS['DestinationLon'] = $Destination['Longitude'];
