@@ -21,21 +21,114 @@
             <input style="" id="Reverse" type="checkbox" name="useAnotherLoc">
 	<input id="SpanItem" style="width:50%; display:none; text-align:center; margin:Auto;" type="text" name="location" placeholder="23 Domenic Street, Millville, MA, USA" class="form-control">
 		<div class="row" style="margin-top:20px;">
-		<button id="TakeLocation" class="btn btn-success" onclick="WriteLocation()">Use location</button>
+		<button id="TakeLocation" style="Float:none;" class="btn btn-success col-xs-3 centered" onclick="WriteLocation()">Use location</button>
 		</div>
 	</div>
   
 	</div>	
-	<div class="row" style="border-style:solid; height:200px;margin-top:20px;">
+	<div class="contianer" style="border-style:solid;margin-top:20px;">
 		<h4>Search</h4>
-		<label for="LatLocation">Your location:&nbsp</label>
-		<input style="width:100px; color:blue;" type="text" name="LatLocation" id="LatLocation" readonly>
-		<input style="width:100px; color:blue;"  type="text" name="LonLocation" id="LonLocation" readonly>
+<div class="row" style="margin-top:20px; margin-bottom:20px;">
+		<h4 class="col-xs-6" for="LatLocation">Your location:&nbsp</h4>
+		<div class=col-xs-4"><input style="width:100px; color:blue;" type="text" name="LatLocation" id="LatLocation" readonly>
+		<input style="width:100px; color:blue;"  type="text" name="LonLocation" id="LonLocation" readonly></div>
+</div>
+
+<div class="row" style="margin-top:20px; margin-bottom:20px;">
+<h4 class="col-xs-6">Use a radius to find your ride?</h4>
+<select style="width:20% !important; margin-right:10px" class="form-control col-xs-3" id="selectRadius">
+<option>1 KM</option>
+<option>5 KM</option>
+<option>10 KM</option>
+</select>
+<button type="button" class="btn btn-info col-xs-3" data-toggle="collapse" data-target="#rides">Search with Radius</button>
+
+</div>
+<div class="row" style="margin-top:20px; margin-bottom:20px;">
+<h4 class="col-xs-6">Use City to find your ride?</h4>
+
+</div>
+<div class="row" style="margin-top:20px; margin-left:10%; margin-bottom:20px;">
+<select style="width:36.666666% !important; margin-right:10px" class="form-control col-xs-5" id="selectDepart">
+<?php
+
+function GetAllCity(){
+
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+
+	$status = Connected();
+
+	if($status == 1){
+		try{
+			$d = new dbMakeConnection;
 	
+		}
+		
+		catch(PDOException $e){ echo($e);}
+
+		$stmt = $d->conn->prepare("SELECT DISTINCT City FROM comp353.Location");
+        	$stmt->execute();
+		$result = $stmt->fetchAll();
+		return $result;
+		
+		
+	}
+
+
+}
+
+$re = GetAllCity(); 
+foreach($re as&$val){
+echo '<option>'.$val['City'].'</option>';
+}
+?>
+
+</select>
+<p class=col-xs-2>to</p>
+<select style="width:36.666666% !important; margin-right:10px" class="form-control col-xs-5" id="selectDestination">
+<?php
+
+function GetAllCity2(){
+
+//include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+
+	$status = Connected();
+
+	if($status == 1){
+		try{
+			$d = new dbMakeConnection;
+	
+		}
+		
+		catch(PDOException $e){ echo($e);}
+
+		$stmt = $d->conn->prepare("SELECT DISTINCT City FROM comp353.Location");
+        	$stmt->execute();
+		$result = $stmt->fetchAll();
+		return $result;
+		
+		
+	}
+
+
+}
+
+$ree = GetAllCity2(); 
+foreach($ree as&$val){
+echo '<option>'.$val['City'].'</option>';
+}
+?>
+</select>
+</div>
+<div class="row" style="margin-top:20px; margin-bottom:40px;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#rides">Search with City</button></div>
+
+	<div class="row" style="margin-top:20px; margin-bottom:20px;"><h4 class="col-xs-6">Do not want to search? </h4><button" type="button" class="btn btn-info col-xs-3" data-toggle="collapse" data-target="#rides">Show All Rides</button>
 	</div>
-    <h1>Current Rides</h1>
-            <div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="rides">  
+    	</div>
+            <div class="container collapse"  style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll; margin-top:100px;" id="rides"> 
+<h1>All Rides</h1> 
 <?php 
+
 function GetDetailAddress($id){
 	$status = Connected();
 	if($status == 1){
@@ -61,8 +154,9 @@ function GetDetailAddress($id){
 
 
 }
+
 function GetDataForRide(){
-	include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+	//include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 	
 	$status = Connected();
 		if($status == 1){
@@ -75,9 +169,6 @@ function GetDataForRide(){
 		$stmt = $d->conn->prepare("SELECT * FROM comp353.Ride");
         	$stmt->execute();
 		$result = $stmt->fetchAll();
-		
-
-		
 		
 		foreach($result as&$val){
 		$Rid = $val["RideId"];
@@ -98,6 +189,7 @@ function GetDataForRide(){
 
 }
 GetDataForRide();
+
 
 ?>
   <script>
@@ -196,9 +288,9 @@ GetDataForRide();
 	}); 
 
 	</script>
- <script async defer
+ <!--<script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio&callback=initMap">
-    </script>
+ </script> -->
 
     </div>
     <!-- END OF CONTENT -->
