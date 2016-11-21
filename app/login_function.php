@@ -44,7 +44,8 @@ function AuthentificationUser($u, $p){
 		
 		if( strcmp($result['Password'], $p) == 0){
 		 $email = $result['Email'];
-		 LaunchSession($u, $email, $p);	
+		 $id = $result['UserId'];
+		 LaunchSession($user, $em, $p, $id);	
 		}
 		else{
 			Failure();
@@ -69,7 +70,8 @@ function AuthentificationEmail($em, $p){
 
 		if( strcmp($result['Password'], $p) == 0){
 			$user = $result['UName'];
-			LaunchSession($user, $em, $p);	
+			$id = $result['UserId'];
+			LaunchSession($user, $em, $p, $id);	
 		}
 		else{
 			Failure();
@@ -77,11 +79,12 @@ function AuthentificationEmail($em, $p){
 	}
 }
 
-function LaunchSession($u, $e, $p){
+function LaunchSession($u, $e, $p, $i){
 
 $_SESSION['username'] = $u;
 $_SESSION['email'] = $e;
 $_SESSION['p'] = $p;
+$_SESSION['UserId'] = $i;
 $_SESSION['Authen'] = true;
 	$url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/Secured/Rides.php';
 	header("Location:".$url." ");

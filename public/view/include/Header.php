@@ -38,7 +38,19 @@
                     <a href="<?php echo('http://' . $_SERVER['SERVER_NAME'].'/comp353-project/public/view/main/Sign_up.php')?>">Sign Up</a>
                 </li>
                 <li>
-                    <a href="<?php echo('http://' . $_SERVER['SERVER_NAME'].'/comp353-project/public/view/main/Secured/Account.php')?>">Account</a>
+                    
+<?php if($_SESSION['Authen']){
+	
+	$url = 'http://' . $_SERVER['SERVER_NAME'].'/comp353-project/public/view/main/Secured/Account.php?id='.$_SESSION['UserId'].'';
+	}
+	else{
+	$url = 'http://' . $_SERVER['SERVER_NAME'].'/comp353-project/public/view/main/Secured/Account.php';
+	}
+	echo("<a href='".$url."'>Account</a>");
+
+?>
+
+
                 </li>
                 <li>
                     <a href="<?php echo('http://' . $_SERVER['SERVER_NAME'].'/comp353-project/public/view/main/Secured/Drivers.php')?>">Drivers Available</a>
