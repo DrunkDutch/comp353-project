@@ -148,7 +148,9 @@
 		$GLOBALS['DestinationLon'] = $Destination['Longitude'];
 		$GLOBALS['DepartureLat'] = $Departure['Latitude'];
 		$GLOBALS['DepartureLon'] = $Departure['Longitude'];
-
+		
+		$GLOBALS['RideID'] = $Ride['RideId'];	
+	
 		$urlToDirectory = "http://" . $_SERVER['SERVER_NAME'] .   $_SERVER[''].substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Directory.php' ;
 		if(empty($DriverDetails)){
 			$GLOBALS['Driver'] = "No Driver";
@@ -166,15 +168,15 @@
 			
 		}
 		// Computer place remaining on rides
-		$StatusRide;
+		$GLOBALS['StatusRide'];
 		$numbPassenger = sizeof($PassengerID);
 		if($Ride['RiderCapacity'] == $numbPassenger){
-			$StatusRide = "This ride is Full";		
+			$GLOBALS['StatusRide'] = "This ride is Full";		
 		}
 		else {
 			echo($numbPassenger);
 			$a = $Ride['RiderCapacity'] - $numbPassenger;
-			$StatusRide = "There is " . $a . " place(s) left";
+			$GLOBALS['StatusRide'] = "There is " . $a . " place(s) left";
 		}
 
 		echo '<div class="container">
@@ -186,7 +188,7 @@
 		<div class="row">Driver:&nbsp<a href="'.$urlToDriver.'">' .$GLOBALS['Driver'].'</a></div>
 		<div class="row">Passengers:&nbsp<a href="'.$urlToDirectory.'">'.$GLOBALS['ALLPassenger'].'</a></div>
 		<div class="row">Capacity:&nbsp'.$Ride['RiderCapacity'].'</div>
-		<div class="row">Status:&nbsp'.$StatusRide.'</div>
+		<div class="row">Status:&nbsp'.$GLOBALS['StatusRide'].'</div>
 		</div>';
 	}
 	CollectResult();
@@ -209,7 +211,34 @@
       <option value="TRANSIT">Transit</option>
     </select>
     </div>
-    <div id="map" style="Height:500px; Width:900px;"></div>
+    <div class="row" style="background-color:darkgrey; margin-top:30px;margin-bottom:30px;">
+	<h4>No rides are filling your requirements?</h4>
+	<a href="<?php echo('http://' . $_SERVER['SERVER_NAME'].'/comp353-project/public/view/main/Secured/NewRide.php')?>"><button style="margin-bottom:40px;" class="btn btn-primary">Create your own</button></a>
+	</div>
+    <div id="ButtonPanel" class="container" style="background-color:black; margin-top:30px;margin-bottom:30px;">
+	<h4>Action Panel</h4>
+	<?php
+	session_start();
+	$isFull = (strcmp($GLOBALS['StatusRide'], "This ride is Full")==0);
+	$HaveADriver = !(strcmp($GLOBALS['Driver'], "No Driver") == 0);
+	//$AreYouRiderIn;
+$AreYouDriverIn = (strcmp($GLOBALS['Driver'], $_SESSION['username']) == 0);
+
+	
+ 	if(!$HaveADriver){
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsDriver.php" ><Input type="submit" class="btn btn-success" value="Join as Driver"></form></div>');
+	}
+	if(!($isFull)){
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsRider.php" ><Input type="submit" class="btn btn-success" value="Join as Rider"></form></div>');
+	}
+	
+	if($AreYouDriverIn){
+	echo('<button>Leave Driving</button>');	
+	}
+
+	?>
+     </div>
+    <div id="map" style="Height:500px; Width:100%; margin-top:40px;"></div>
     <script>
 
       function initMap() {

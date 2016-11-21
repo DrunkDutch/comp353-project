@@ -45,7 +45,7 @@ function AuthentificationUser($u, $p){
 		if( strcmp($result['Password'], $p) == 0){
 		 $email = $result['Email'];
 		 $id = $result['UserId'];
-		 LaunchSession($user, $em, $p, $id);	
+		 LaunchSession($u, $email, $p, $id);	
 		}
 		else{
 			Failure();
