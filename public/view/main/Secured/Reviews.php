@@ -15,6 +15,42 @@
 
     <div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="rides">
 
+        <?php include "/comp353-project/app/rate.php"?>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Rate</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/comp353-project/app/rate.php" method="POST">
+                            <div class="form-group">
+                                <label for="user">Ratee:</label>
+                                <input type="text" class="form-control" name="user" id="user" placeholder="Enter Username">
+                            </div>
+                            <div class="form-group">
+                                <label for="score">Score:</label>
+                                <select class="form-control" name="score" id="score">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <?php
 
         function GetDetailAddress($id){
@@ -62,10 +98,12 @@
                         $AllAdd = GetDetailAddress($Did);
                         $r = $val["Date"];
                         $t = $val["DepartTime"];
+                        $data = "STELLA"; // TODO: LOGIC TO GET RATEE'S NAME
                         // Build URL For each Button...
                         $url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER[''] . substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Rate.php?id=' . $Rid;
                         // Create HTML...
-                        echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:' .$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Rate</button></a></div>';
+                        echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:' .$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p>';
+                        echo '<button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $data . '"">Rate</button></div>';
                     }
                 }
             }
@@ -82,5 +120,11 @@
 <!-- This Section is for the footer -->
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Footer.php'); ?>
 
+<script>
+    $(document).on("click", ".add-ratee", function () {
+        var ratee = $(this).data('id');
+        $(".modal-body #user").val( ratee );
+    });
+</script>
 </body>
 </html>
