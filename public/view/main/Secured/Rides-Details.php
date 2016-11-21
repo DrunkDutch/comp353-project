@@ -228,18 +228,18 @@ $AreYouDriverIn = (strcmp($GLOBALS['Driver'], $_SESSION['username']) == 0);
 		
 	}
 	else{
-	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveRider.php" ><Input type="submit" class="btn btn-success" value="Leave as Rider"></form></div>');
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveRider.php" ><Input type="number" style="display:none;" name="RideId" value="'.$_GET['id'].'"><Input type="submit" class="btn btn-success" value="Leave as Rider"></form></div>');
 	}
 
  	if(!$HaveADriver){
-	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsDriver.php" ><Input type="submit" class="btn btn-success" value="Join as Driver"></form></div>');
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsDriver.php" ><Input type="number" style="display:none;" name="RideId" value="'.$_GET['id'].'"><Input type="submit" class="btn btn-success" value="Join as Driver"></form></div>');
 	}
 	if(!($isFull)){
-	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsRider.php" ><Input type="submit" class="btn btn-success" value="Join as Rider"></form></div>');
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsRider.php" ><Input type="number" style="display:none;" name="RideId" value="'.$_GET['id'].'"><Input type="submit" class="btn btn-success" value="Join as Rider"></form></div>');
 	}
 	
 	if($AreYouDriverIn){
-	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveDrive.php" ><Input type="submit" class="btn btn-success" value="Leave Driving"></form></div>');	
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveDrive.php" ><Input type="number" style="display:none;" name="RideId" value="'.$_GET['id'].'"><Input type="submit" class="btn btn-success" value="Leave Driving"></form></div>');	
 	}
 
 	?>
