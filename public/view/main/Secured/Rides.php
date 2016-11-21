@@ -41,7 +41,7 @@
 <option value="5">5 KM</option>
 <option value="10">10 KM</option>
 </select>
-<button type="button" class="btn btn-info col-xs-3" data-toggle="collapse" data-target="#rides" onclick="LaunchRadius()">Search with Radius</button>
+<button type="button" class="btn btn-info col-xs-3" onclick="LaunchRadius()">Search with Radius</button>
 
 </div>
 <div class="row" style="margin-top:20px; margin-bottom:20px;">
@@ -120,9 +120,9 @@ echo '<option>'.$val['City'].'</option>';
 ?>
 </select>
 </div>
-<div class="row" style="margin-top:20px; margin-bottom:40px;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#rides">Search with City</button></div>
+<div class="row" style="margin-top:20px; margin-bottom:40px;"><button type="button" onclick="SearchCity()" class="btn btn-info">Search with City</button></div>
 
-	<div class="row" style="margin-top:20px; margin-bottom:20px;"><h4 class="col-xs-6">Do not want to search? </h4><button" type="button" class="btn btn-info col-xs-3" data-toggle="collapse" data-target="#rides">Show All Rides</button>
+	<div class="row" style="margin-top:20px; margin-bottom:20px;"><h4 class="col-xs-6">Do not want to search? </h4><button" id="ridesButton" type="button" onclick="ShowAllRides()" class="btn btn-info col-xs-3">Show All Rides</button>
 	</div>
     	</div>
 
@@ -202,9 +202,11 @@ function GetDataForRide(){
 		
 		foreach($result as&$val){
 		$Rid = $val["RideId"];
-		$Did = $val["DestinationId"];
-		$AllAdd = GetDetailAddress($Did);
-		$DetailCoor = GetDetailCoor($Did);
+		$Destid = $val["DestinationId"];
+		$DepId = $val["DepartureId"];
+		$AllAdd = GetDetailAddress($Destid);
+		$DetailCoorDesti = GetDetailCoor($Destid);
+		$DetailCoorDepa = GetDetailCoor($DepId);
 		$r = $val["Date"];
 		$t = $val["DepartTime"];
 		// Build URL For each Button...
@@ -212,7 +214,10 @@ function GetDataForRide(){
 		$url = "http://" . $_SERVER['SERVER_NAME'] .   $_SERVER[''].substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Rides-Details.php?id=' .$Rid ;
 
 		// Create HTML...
-		echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:' .$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Get Details</button></a><Input type="text" class="Latis" style="display:none;" value="'.$DetailCoor['Latitude'].'"><Input type="text" class="Longis" style="display:none;" value="'.$DetailCoor['Longitude'].'"><Input type="text" style="display:none;"  class="elementC" value="'.$Rid.'"></div>';
+		echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Destination:'.$AllAdd. '&nbsp</p><p>Departure time:&nbsp'.$r.'&nbspat:&nbsp'.$t. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Get Details</button></a><Input type="text" class="Latis" style="display:none;" value="'.$DetailCoorDepa['Latitude'].'"><Input type="text" class="Longis" style="display:none;" value="'.$DetailCoorDepa['Longitude'].'"><Input type="text" style="display:none;"  class="elementC" value="'.$Rid.'">
+<Input type="text" style="display:none;" class="DestinaCity" value="'.$DetailCoorDesti['City'].'">
+<Input type"text" style="display:none;" class="DepartCity" value="'.$DetailCoorDepa['City'].'">
+</div>';
 		}
 
 		
@@ -234,12 +239,57 @@ GetDataForRide();
       // locate you.
       var SuperLat;
       var SuperLon;
+      function SearchCity(){
+		var filterFloat = function (value) {
+    			if(/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+      			.test(value))
+      			return Number(value);
+  			return NaN;
+	}
+    	// Let's try to get all City. of all Ride into array
+
+	var es = document.getElementsByClassName("elementC");
+	var DepartCity = document.getElementsByClassName("DepartCity");
+	var DestinaCity = document.getElementsByClassName("DestinaCity");
+	var Cit = {};
+	for(var i=0; i< es.length; i++){
+		Cit[i] ={
+			'id': filterFloat(es[i].value),
+			'Dep': String(DepartCity[i].value),
+			'Des': String(DestinaCity[i].value),
+			'url': 	document.URL.substr(0,document.URL.lastIndexOf('/'))+"/Rides-Details.php?id=" + (i+1)
+		};	
+		
+	}
+		
+ 	var TargetDepartureCity = document.getElementById("selectDepart").value;
+	var TargetDestinationCity = document.getElementById("selectDestination").value;
+	
+	//console.log(TargetDepartureCity, TargetDestinationCity);
+	var Result = {}
+	for(var i=0; i< es.length; i++){
+		var compareDepart = (Cit[i].Dep.toUpperCase() == TargetDepartureCity.toUpperCase());
+		var compareDest = (Cit[i].Des.toUpperCase() == TargetDestinationCity.toUpperCase());
+
+		if(compareDepart && compareDest){
+			console.log("Match ride", Cit[i].url);	
+		}
+	}
+	}
+      function ShowAllRides(){
+			$(document).ready(function(){
+			$("#RadiusMap").collapse('hide');
+			$("#rides").collapse('show');
+				
+			});
+	}
       function LaunchRadius(){
 	if(!(document.getElementById('LonLocation').value =="") && !(document.getElementById('LatLocation').value == "")){
 		
 		
 		$(document).ready(function(){
-		$("#RadiusMap").collapse('show');		
+		$("#RadiusMap").collapse('show');
+		$("#rides").collapse('hide');		
 		});
 
 		initMap();	
@@ -280,7 +330,9 @@ GetDataForRide();
 		
 	}
 	
-	console.log(ids[0].url);
+	
+	
+	
 	for(var i=0; i< elements.length; i++){
 		var myLatlng = new google.maps.LatLng(ids[i].lat,ids[i].lon)
 		var marker = new google.maps.Marker({
@@ -389,6 +441,7 @@ GetDataForRide();
 			$("#SpanItem").hide("slow");
 		}   	
 		});
+
 
 		
 	}); 
