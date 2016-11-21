@@ -1,7 +1,7 @@
 <?php 
 
 // Variables Connection to the database 
-$host = "localhost";
+$host = $_SERVER['SERVER_NAME'];
 $username = "root";
 $password = "root";
 $db_name = "comp353";

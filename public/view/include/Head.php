@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="/comp353-project/public/css/app.css" type="text/css">
 <!-- Load App JS -->
 <script src="/comp353-project/public/js/app.js"></script>
-<?php $rootVar = "http://localhost"; ?>
+
 
 <?php 
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');

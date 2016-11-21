@@ -21,7 +21,8 @@ else {
 
 function Failure() {
 	$_SESSION['Authen']= false;
-	header("Location: http://localhost/comp353-project/public/view/main/LOG_IN.php");
+	$url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/LOG_IN.php';
+	header("Location:".$url." ");
 }
 
 // Check Login with DB assuming variable passed in are cleaned and not all empty
@@ -82,6 +83,7 @@ $_SESSION['username'] = $u;
 $_SESSION['email'] = $e;
 $_SESSION['p'] = $p;
 $_SESSION['Authen'] = true;
-header("Location: http://localhost/comp353-project/public/view/main/Secured/Rides.php");
+	$url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/Secured/Rides.php';
+	header("Location:".$url." ");
 }
 ?>
