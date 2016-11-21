@@ -7,8 +7,6 @@ $username = $_POST['user'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-
-
 if( !((empty($email)) and (empty($username)))){
    
    if(!(empty($email))){AuthentificationEmail($email, $password);}
@@ -17,12 +15,16 @@ if( !((empty($email)) and (empty($username)))){
    if(!(empty($username))){AuthentificationUser($username, $password); }
    }
 }
+else {
+	Failure();
+}
 
-
-
+function Failure() {
+	$_SESSION['Authen']= false;
+	header("Location: http://localhost/comp353-project/public/view/main/LOG_IN.php");
+}
 
 // Check Login with DB assuming variable passed in are cleaned and not all empty
-
 function AuthentificationUser($u, $p){
 	$status = Connected();
 	if($status == 1){
@@ -44,21 +46,16 @@ function AuthentificationUser($u, $p){
 		 LaunchSession($u, $email, $p);	
 		}
 		else{
-		$_SESSION['Authen']= false;
-		header("Location: http://localhost/comp353-project/public/view/main/LOG_IN.php");
+			Failure();
 		}
-		
 	}
-
 }
+
 function AuthentificationEmail($em, $p){
 	$status = Connected();
 	if($status == 1){
 		try{
 			$d = new dbMakeConnection;
-
-
-	
 		}
 		
 		catch(PDOException $e){ echo($e);}
@@ -68,20 +65,15 @@ function AuthentificationEmail($em, $p){
         	$stmt->execute();
 
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
-		
-		
+
 		if( strcmp($result['Password'], $p) == 0){
 			$user = $result['UName'];
 			LaunchSession($user, $em, $p);	
 		}
 		else{
-		$_SESSION['Authen'] = false;
-		header("Location: http://localhost/comp353-project/public/view/main/LOG_IN.php");
-		
+			Failure();
 		}
-		
 	}
-
 }
 
 function LaunchSession($u, $e, $p){
