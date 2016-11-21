@@ -221,10 +221,16 @@
 	session_start();
 	$isFull = (strcmp($GLOBALS['StatusRide'], "This ride is Full")==0);
 	$HaveADriver = !(strcmp($GLOBALS['Driver'], "No Driver") == 0);
-	//$AreYouRiderIn;
+	$AreYouRiderIn = (strpos($GLOBALS['ALLPassenger'], $_SESSION['username'] ));
 $AreYouDriverIn = (strcmp($GLOBALS['Driver'], $_SESSION['username']) == 0);
 
-	
+	if($AreYouRiderIn == false){
+		
+	}
+	else{
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveRider.php" ><Input type="submit" class="btn btn-success" value="Leave as Rider"></form></div>');
+	}
+
  	if(!$HaveADriver){
 	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsDriver.php" ><Input type="submit" class="btn btn-success" value="Join as Driver"></form></div>');
 	}
@@ -233,7 +239,7 @@ $AreYouDriverIn = (strcmp($GLOBALS['Driver'], $_SESSION['username']) == 0);
 	}
 	
 	if($AreYouDriverIn){
-	echo('<button>Leave Driving</button>');	
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveDrive.php" ><Input type="submit" class="btn btn-success" value="Leave Driving"></form></div>');	
 	}
 
 	?>
