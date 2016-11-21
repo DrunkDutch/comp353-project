@@ -101,6 +101,6 @@ function LaunchSession($u, $e, $p){
     $_SESSION['email'] = $e;
     $_SESSION['p'] = $p;
 
-    header("Location: http://localhost/comp353-project/");
+    header("Location: http://localhost/comp353-project/public/view/main/Secured/Rides.php");
 }
 ?>
