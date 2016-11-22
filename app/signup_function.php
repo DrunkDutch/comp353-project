@@ -65,7 +65,7 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
         else {
 
             // Create user
-            $stmt = $d->conn->prepare("INSERT INTO `comp353`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`,`Permit`,`Insurance`)VALUES(:u,:p,:f,:l,:e,:d,:r,-50,3,:phone,:per,:i)");
+            $stmt = $d->conn->prepare("INSERT INTO `comp353`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`,`Permit`,`Insurance`)VALUES(:u,:p,:f,:l,:e,:d,:r,0,3,:phone,:per,:i)");
             $stmt->bindParam(':u', $username);
             $stmt->bindParam(':p', $password);
             $stmt->bindParam(':f', $first);
@@ -116,7 +116,7 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
         else {
 
             // Create user
-            $stmt = $d->conn->prepare("INSERT INTO `comp353`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`)VALUES(:u,:p,:f,:l,:e,:d,:r,-50,3,:phone)");
+            $stmt = $d->conn->prepare("INSERT INTO `comp353`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`)VALUES(:u,:p,:f,:l,:e,:d,:r,0,3,:phone)");
             $stmt->bindParam(':u', $username);
             $stmt->bindParam(':p', $password);
             $stmt->bindParam(':f', $first);

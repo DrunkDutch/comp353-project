@@ -121,12 +121,13 @@ CREATE TABLE `Member` (
   `Email` varchar(328) NOT NULL,
   `DOB` date NOT NULL,
   `ReferrerID` int(8) NOT NULL,
-  `Balance` decimal(10,2) NOT NULL,
-  `Active` tinyint(1) NOT NULL,
-  `Privilege` int(8) NOT NULL,
+  `Balance` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `Active` tinyint(1) NOT NULL DEFAULT '1',
+  `Privilege` int(8) NOT NULL DEFAULT '3',
   `Phone` varchar(15) NOT NULL,
   `Permit` varchar(45) DEFAULT NULL,
   `Insurance` varchar(45) DEFAULT NULL,
+  `Suspended` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`UserId`),
   UNIQUE KEY `UserId_UNIQUE` (`UserId`),
   UNIQUE KEY `UName_UNIQUE` (`UName`),
@@ -142,7 +143,7 @@ CREATE TABLE `Member` (
 
 LOCK TABLES `Member` WRITE;
 /*!40000 ALTER TABLE `Member` DISABLE KEYS */;
-INSERT INTO `Member` VALUES (1,'Root','Root','Root','Root','root@test.com','2016-11-01',1,0.00,1,1,'8005556832',NULL,NULL),(2,'Admin','Admin','Admin','Admin','test@test.com','2016-11-02',1,0.00,1,2,'8005557334',NULL,NULL),(3,'Member','Member','Member','Member','member@test.com','2016-11-03',1,0.00,1,3,'8005557201',NULL,NULL),(4,'Dmens','hardware','Devin','Mens','devin.mens@gmail.com','1991-04-14',1,0.00,1,1,'4388372958','M520314049109','022469361335'),(5,'Slee','test','Stella','Lee','st_lee@encs.concordia.ca','1991-01-01',1,0.00,1,1,'5143479880',NULL,NULL),(6,'Chardy','test','Charles-Antoine','Hardy','cha_hard@encs.concordia.ca','1991-01-01',1,0.00,1,1,'8005556833',NULL,NULL),(7,'Bcloutier','test','Bernard','Cloutier','b_clo@encs.concordia.ca','1991-01-01',4,0.00,0,3,'8005556834',NULL,NULL),(8,'Mverrucci','test','Matthew','Verrucci','m_verru@encs.concordia.ca','1991-01-01',1,0.00,1,2,'8005556835',NULL,NULL);
+INSERT INTO `Member` VALUES (1,'Root','Root','Root','Root','root@test.com','2016-11-01',1,0.00,1,1,'8005556832',NULL,NULL,0),(2,'Admin','Admin','Admin','Admin','test@test.com','2016-11-02',1,0.00,1,2,'8005557334',NULL,NULL,0),(3,'Member','Member','Member','Member','member@test.com','2016-11-03',1,0.00,1,3,'8005557201',NULL,NULL,0),(4,'Dmens','hardware','Devin','Mens','devin.mens@gmail.com','1991-04-14',1,0.00,1,1,'4388372958','M520314049109','022469361335',0),(5,'Slee','test','Stella','Lee','st_lee@encs.concordia.ca','1991-01-01',1,0.00,1,1,'5143479880',NULL,NULL,0),(6,'Chardy','test','Charles-Antoine','Hardy','cha_hard@encs.concordia.ca','1991-01-01',1,0.00,1,1,'8005556833',NULL,NULL,0),(7,'Bcloutier','test','Bernard','Cloutier','b_clo@encs.concordia.ca','1991-01-01',4,0.00,0,3,'8005556834',NULL,NULL,0),(8,'Mverrucci','test','Matthew','Verrucci','m_verru@encs.concordia.ca','1991-01-01',1,0.00,1,2,'8005556835',NULL,NULL,0);
 /*!40000 ALTER TABLE `Member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,7 +166,7 @@ CREATE TABLE `Message` (
   KEY `Receiver_idx` (`ReceiverId`),
   CONSTRAINT `Receiver` FOREIGN KEY (`ReceiverId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Sender` FOREIGN KEY (`SenderId`) REFERENCES `Member` (`UserId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +175,7 @@ CREATE TABLE `Message` (
 
 LOCK TABLES `Message` WRITE;
 /*!40000 ALTER TABLE `Message` DISABLE KEYS */;
-INSERT INTO `Message` VALUES (1,'2016-11-17 14:00:00',5,4,'Your driving sucks');
+INSERT INTO `Message` VALUES (1,'2016-11-17 14:00:00',5,4,'Your driving sucks'),(2,'2016-11-17 14:00:01',5,1,'TEST MESSAGE PLS IGNORE');
 /*!40000 ALTER TABLE `Message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,4 +320,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-15 17:48:18
+-- Dump completed on 2016-11-21 22:24:44
