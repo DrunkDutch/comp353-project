@@ -17,7 +17,7 @@
                     <button class="btn btn-default btn-menu" id="menu-toggle" style="text-decoration:none">MENU</button>
                 </li>
                 <a class="navbar-brand pull-right"
-                   href="<?php echo('http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/') ?>">EZ-RIDERZ</a>
+                   href="<?php echo('http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/') ?>">SUPER</a>
             </ul>
 
         </div><!-- /.navbar-collapse -->
