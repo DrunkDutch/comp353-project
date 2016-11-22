@@ -13,6 +13,7 @@ $dob = $_POST['dob'];
 $permit = $_POST['permit'];
 $insurance = $_POST['insurance'];
 $active = $_POST['active'];
+$suspended = $_POST['suspended'];
 $privilege = $_POST['privilege'];
 
 if (!empty($username)) {
@@ -45,10 +46,12 @@ if (!empty($insurance)) {
 if (!empty($active)) {
     UpdateField('Active', $active);
 }
+if (!empty($suspended)) {
+    UpdateField('Suspended', $suspended);
+}
 if (!empty($privilege)) {
     UpdateField('Privilege', $privilege);
 }
-
 
 Redirect();
 

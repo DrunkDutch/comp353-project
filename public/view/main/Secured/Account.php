@@ -103,7 +103,8 @@
                 echo '<div class="form-group"><label for="exampleInputInsurance">Insurance Policy Number</label><input type="text" name="insurance" class="form-control" aria-describedby="InsuranceHelp" id="exampleInputInsurance" placeholder="xxxx-xxxx"></div>';
 
                 if ($privilege <= 2) {
-                    echo '<div class="form-group"><label for="exampleInputActive">Active</label><input type="text" name="active" class="form-control" aria-describedby="ActiveHelp" id="exampleInputActive" placeholder="1"></div>';
+                    echo '<div class="form-group"><label for="exampleInputActive">Active</label><input type="text" name="active" class="form-control" aria-describedby="ActiveHelp" id="exampleInputActive" placeholder="0 = Active, 1 = Inactive"></div>';
+                    echo '<div class="form-group"><label for="exampleInputSuspended">Suspended</label><input type="text" name="suspended" class="form-control" aria-describedby="SuspendedHelp" id="exampleSuspendedActive" placeholder="0 = Not suspended, 1 = Suspended"></div>';
                     echo '<div class="form-group"><label for="exampleInputPrivilege">Privilege</label><input type="text" name="privilege" class="form-control" aria-describedby="PrivilegeHelp" id="exampleInputPrivilege" placeholder="1"></div>';
                 }
                 echo '<button class="btn btn-default" data-dismiss="modal">Close</button><button type="submit" class="btn btn-success">Submit</button></form></div></div></div>';
