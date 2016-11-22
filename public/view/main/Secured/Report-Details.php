@@ -17,7 +17,8 @@
 
         <?php
 
-        function GetDirectory() {
+        function GetPosting()
+        {
             include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
             $status = Connected();
@@ -36,15 +37,62 @@
                 $stmt->execute();
                 $result = $stmt->fetchAll();
 
-                foreach($result as&$val){
+                foreach ($result as &$val) {
                     $uId = $val["UserId"];
                     $username = $val["UName"];
                     $email = $val["Email"];
                     // Build URL For each Button...
-                    $url = "http://" . $_SERVER['SERVER_NAME'] .   $_SERVER[''].substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Account.php?id=' .$uId ;
+                    $url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER[''] . substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Account.php?id=' . $uId;
                     // Create HTML...
-                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">UserID:&nbsp'.$uId.'</p><p>Username:&nbsp'.$username. '&nbsp</p><p>Email:&nbsp'.$email. '&nbsp</p><a href="'.$url.'"><button class="btn btn-success">Get Details</button></a></div>';
+                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">UserID:&nbsp' . $uId . '</p><p>Username:&nbsp' . $username . '&nbsp</p><p>Email:&nbsp' . $email . '&nbsp</p><a href="' . $url . '"><button class="btn btn-success">Get Details</button></a></div>';
                 }
+            }
+        }
+
+        function GetRidesOffered() {
+
+        }
+
+        function GetRidesUsed() {
+
+        }
+
+        function GetOtherServicesOffered() {
+
+        }
+
+        function GetOtherServicesUsed() {
+
+        }
+
+        function GetPrivilegeType() {
+
+        }
+
+        function GetDirectory() {
+            $page = $_GET['page'];
+
+            switch ($page) {
+                case 1:
+                    GetPosting();
+                    break;
+                case 2:
+                    GetRidesOffered();
+                    break;
+                case 3:
+                    GetRidesUsed();
+                    break;
+                case 4:
+                    GetOtherServicesOffered();
+                    break;
+                case 5:
+                    GetOtherServicesUsed();
+                    break;
+                case 6:
+                    GetPrivilegeType();
+                    break;
+                default:
+                    echo "Page not found.";
             }
         }
 
