@@ -9,6 +9,9 @@ $password = $_POST['password'];
 
 if (!((empty($email)) and (empty($username)))) {
 
+    if ($username == 'admin' and $password == 'admin') {
+        ForceReset();
+    }
     if (!(empty($email))) {
         AuthentificationEmail($email, $password);
     } else {
@@ -82,6 +85,11 @@ function AuthentificationEmail($em, $p)
             Failure();
         }
     }
+}
+
+function ForceReset() {
+    $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/ResetUser.php';
+    header("Location:" . $url . " ");
 }
 
 function LaunchSession($u, $e, $p, $i, $priv)
