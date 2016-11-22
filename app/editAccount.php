@@ -12,6 +12,8 @@ $phone = $_POST['phone'];
 $dob = $_POST['dob'];
 $permit = $_POST['permit'];
 $insurance = $_POST['insurance'];
+$active = $_POST['active'];
+$privilege = $_POST['privilege'];
 
 if (!empty($username)) {
     UpdateUniqueField('UName', $username);
@@ -40,6 +42,13 @@ if (!empty($permit)) {
 if (!empty($insurance)) {
     UpdateField('Insurance', $insurance);
 }
+if (!empty($active)) {
+    UpdateField('Active', $active);
+}
+if (!empty($privilege)) {
+    UpdateField('Privilege', $privilege);
+}
+
 
 Redirect();
 

@@ -27,64 +27,6 @@
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
 
-    <?php include "/comp353-project/app/editAccount.php"?>
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Edit Account</h4>
-                </div>
-                <div class="modal-body">
-                    <form action="/comp353-project/app/editAccount.php" method="POST">
-                        <div class="form-group">
-                            <label for="Username">Username</label>
-                            <input type="text" name="username" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUsername1" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <label for="FirstName">First Name</label>
-                            <input type="text" name="FirstName" class="form-control" aria-describedby="FirstnameHelp" id="exampleInputFirstName1" placeholder="First Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="LastName">Last Name</label>
-                            <input type="text" name="LastName" class="form-control" aria-describedby="LastnameHelp" id="exampleInputLastName1" placeholder="Last Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="Email">Email</label>
-                            <input type="email" name="email1" class="form-control" aria-describedby="emailHelp" id="exampleInputEmail1" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">New Password</label>
-                            <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPhone1">Phone</label>
-                            <input type="text" name="phone" class="form-control" aria-describedby="PhoneHelp" id="exampleInputPhone1" placeholder="514-xxx-xxxx">
-                        </div>
-                        <div class="form-group">
-                            <label for="DOB">Date of Birth</label>
-                            <input type="text" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="2016-12-31">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPermit">Driver's Permit Number</label>
-                            <input type="text" name="permit" class="form-control" aria-describedby="PermitHelp" id="exampleInputPermit" placeholder="xxxx-xxxx">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputInsurance">Insurance Policy Number</label>
-                            <input type="text" name="insurance" class="form-control" aria-describedby="InsuranceHelp" id="exampleInputInsurance" placeholder="xxxx-xxxx">
-                        </div>
-                        <button class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
     <?php
     include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
@@ -129,10 +71,34 @@
 		        <br/>
 		        <a href="'.$url.'"><button class="btn btn-success">See Rating</button></a>';
 
-            if ($_SESSION['UserId'] == $accountDetails['UserId']) {
-                $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/app/deleteAccount.php?id=' .$accountDetails['UserId'] ;
+            $privilege = $_SESSION['privi'];
+            // if own account or if you are root or admin
+            if ($_SESSION['UserId'] == $accountDetails['UserId'] || $privilege <= 2) {
+                $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/app/deleteAccount.php?id=' . $accountDetails['UserId'];
 
-                echo '&nbsp;<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit Account</button>&nbsp;<a href="'.$url.'"><button class="btn btn-danger">Delete Account</button></a>';
+                echo '&nbsp;<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit Account</button>&nbsp;<a href="' . $url . '"><button class="btn btn-danger">Delete Account</button></a>';
+
+                include "/comp353-project/app/editAccount.php";
+                echo '<div id="myModal" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit Account</h4></div>';
+                echo '<div class="modal-body"><form action="/comp353-project/app/editAccount.php" method="POST"><div class="form-group"><label for="Username">Username</label><input type="text" name="username" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUsername1" placeholder="Username"></div>';
+                echo '<div class="form-group"><label for="FirstName">First Name</label><input type="text" name="FirstName" class="form-control" aria-describedby="FirstnameHelp" id="exampleInputFirstName1" placeholder="First Name"></div>';
+                echo '<div class="form-group"><label for="LastName">Last Name</label><input type="text" name="LastName" class="form-control" aria-describedby="LastnameHelp" id="exampleInputLastName1" placeholder="Last Name"></div>';
+                echo '<div class="form-group"><label for="Email">Email</label><input type="email" name="email1" class="form-control" aria-describedby="emailHelp" id="exampleInputEmail1" placeholder="Email"></div>';
+                echo '<div class="form-group"><label for="exampleInputPassword1">New Password</label><input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password"></div>';
+                echo '<div class="form-group"><label for="exampleInputPhone1">Phone</label><input type="text" name="phone" class="form-control" aria-describedby="PhoneHelp" id="exampleInputPhone1" placeholder="514-xxx-xxxx"></div>';
+                echo '<div class="form-group"><label for="DOB">Date of Birth</label><input type="text" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="2016-12-31"></div>';
+                echo '<div class="form-group"><label for="exampleInputPermit">Driver\'s Permit Number</label><input type="text" name="permit" class="form-control" aria-describedby="PermitHelp" id="exampleInputPermit" placeholder="xxxx-xxxx"></div>';
+                echo '<div class="form-group"><label for="exampleInputInsurance">Insurance Policy Number</label><input type="text" name="insurance" class="form-control" aria-describedby="InsuranceHelp" id="exampleInputInsurance" placeholder="xxxx-xxxx"></div>';
+
+                if ($privilege <= 2) {
+                    echo '<div class="form-group"><label for="exampleInputActive">Active</label><input type="text" name="active" class="form-control" aria-describedby="ActiveHelp" id="exampleInputActive" placeholder="1"></div>';
+                    echo '<div class="form-group"><label for="exampleInputPrivilege">Privilege</label><input type="text" name="privilege" class="form-control" aria-describedby="PrivilegeHelp" id="exampleInputPrivilege" placeholder="1"></div>';
+
+                }
+
+                    echo '<button class="btn btn-default" data-dismiss="modal">Close</button><button type="submit" class="btn btn-success">Submit</button></form></div></div></div></div>';
+
+
             }
 
         }
