@@ -1,5 +1,5 @@
-# EZ-RIDERZ
-### Final Group Project for COMP 353
+# Super -- Final Group Project for COMP 353
+### Group 12
 
 |Folder    | Description                   |
 |----------|:-----------------------------:|
@@ -15,3 +15,4 @@ on the index.php page.
 INSTALLATION: 
 1. `cd /var/www/html/`
 2. `git clone git@github.com:DrunkDutch/comp353-project.git`
+3. 
