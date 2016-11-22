@@ -13,11 +13,12 @@
 <div id="page-content-wrapper">
     <h1>Report</h1>
 
-    <a href="/comp353-project/public/view/main/Secured/Report-Page1.php"><button class="btn btn-secondary">Posting</button></a></div>$nbsp;
-    <a href="/comp353-project/public/view/main/Secured/Report-Page2.php"><button class="btn btn-secondary">Rides Offered</button></a></div>$nbsp;
-    <a href="/comp353-project/public/view/main/Secured/Report-Page3.php"><button class="btn btn-secondary">Rides Used</button></a></div>$nbsp;
-    <a href="/comp353-project/public/view/main/Secured/Report-Page4.php"><button class="btn btn-secondary">Other Services</button></a></div>
-    <a href="/comp353-project/public/view/main/Secured/Report-Page5.php"><button class="btn btn-secondary">Privilege Type</button></a></div>
+    <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=1"><button class="btn btn-secondary">Posting</button></a></div>$nbsp;
+    <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=2"><button class="btn btn-secondary">Rides Offered</button></a></div>$nbsp;
+    <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=3"><button class="btn btn-secondary">Rides Used</button></a></div>$nbsp;
+    <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=4"><button class="btn btn-secondary">Other Services Offered</button></a></div>
+    <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=5"><button class="btn btn-secondary">Other Services Used</button></a></div>
+    <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=6"><button class="btn btn-secondary">Privilege Type</button></a></div>
 
 </div>
 <!-- END OF CONTENT -->

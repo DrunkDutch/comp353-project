@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Directory </title>
+    <title> Report - Details </title>
     <!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
 </head>
@@ -11,7 +11,7 @@
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Header.php'); ?>
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
-    <h1>Directory</h1>
+    <h1>Report - Details</h1>
 
     <div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="directory">
 
