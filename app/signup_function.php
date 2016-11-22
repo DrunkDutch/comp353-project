@@ -78,7 +78,19 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
             $stmt->bindParam(':i', $insurance);
             $stmt->execute();
 
-            LaunchSession($username, $email, $password);
+            // Log in
+            $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UName = :u");
+            $stmt->bindParam(':u', $username);
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $em = $result['Email'];
+            $p = $result['Password'];
+            $id = $result['UserId'];
+            $priv = $result['Privilege'];
+
+            LaunchSession($username, $em, $p, $id, $priv);
         }
     }
 
@@ -115,18 +127,32 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
             $stmt->bindParam(':phone', $phone);
             $stmt->execute();
 
-            LaunchSession($username, $email, $password);
+            // Log in
+            $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UName = :u");
+            $stmt->bindParam(':u', $username);
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $em = $result['Email'];
+            $p = $result['Password'];
+            $id = $result['UserId'];
+            $priv = $result['Privilege'];
+
+            LaunchSession($username, $em, $p, $id, $priv);
         }
     }
 
 }
 
-function LaunchSession($u, $e, $p){
+function LaunchSession($u, $e, $p, $i, $priv)
+{
     $_SESSION['username'] = $u;
     $_SESSION['email'] = $e;
     $_SESSION['p'] = $p;
+    $_SESSION['privi'] = $priv;
+    $_SESSION['UserId'] = $i;
     $_SESSION['Authen'] = true;
-
-    header("Location: http://localhost/comp353-project/public/view/main/Secured/Rides.php");
+    $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Rides.php';
+    header("Location:" . $url . " ");
 }
-?>
