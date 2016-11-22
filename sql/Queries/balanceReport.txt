@@ -1,0 +1,2 @@
+$stmt = $d->conn->prepare("Select UName as `User Name`, FName as `First Name`, Balance, Active, Suspended  from Member order by Balance, Active desc, Suspended");
+    $stmt->execute();

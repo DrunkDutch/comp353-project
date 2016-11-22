@@ -1,0 +1,2 @@
+$stmt = $d->conn->prepare("Select UName as `UserName`, FName as `First Name`, count(RiderId) as `Rides as Passenger` from Member join Rider on UserId=RiderId group by UName order by count(RiderId) desc, Active desc, Suspended");
+    $stmt->execute();
