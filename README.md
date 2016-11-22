@@ -13,6 +13,6 @@ NB: The Layout Function is not ready yet and it is only working correctly
 on the index.php page.
 
 INSTALLATION: 
+
 1. `cd /var/www/html/`
 2. `git clone git@github.com:DrunkDutch/comp353-project.git`
-3. 
