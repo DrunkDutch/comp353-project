@@ -1,0 +1,5 @@
+$stmt = $d->conn->prepare("SELECT `UserId` FROM `comp353`.`Member` where Email like :e and DOB = date(:d) and FName like :f");
+    $stmt->bindParam(':e', $[EMAIL HERE]);
+    $stmt->bindParam(':d', $[DOB HERE]);
+    $stmt->bindParam(':f', $[FIRST NAME HERE]);
+    $stmt->execute();
