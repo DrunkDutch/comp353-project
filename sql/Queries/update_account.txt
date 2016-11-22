@@ -1,0 +1,8 @@
+$stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET :c = :v WHERE `UserId` = :i");
+    $stmt->bindParam(':c', $[COLUMN HERE]);
+    $stmt->bindParam(':v', $[NEW VALUE HERE]);
+    $stmt->bindParam(':i', $[USERID HERE]);
+    $stmt->execute();
+
+
+    Use this statement to update a parameter column to a passed value. Makes it variable and flexible enough to use for any update statement required

@@ -1,0 +1,5 @@
+$stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `UName` = :u, `Password` = :p WHERE `UserId` = :i");
+    $stmt->bindParam(':u', $[USERNAME HERE]);
+    $stmt->bindParam(':p', $[PASSWORD HERE]);
+    $stmt->bindParam(':i', $[USERID HERE]);
+    $stmt->execute();
