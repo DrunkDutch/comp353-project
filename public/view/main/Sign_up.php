@@ -51,8 +51,16 @@
     <input type="text" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="2016-12-31">
     </div>
     <div class="form-group">
-    <label for="exampleInputRUsername">Referrer's Username</label>
-    <input type="text" name="rusername" class="form-control" aria-describedby="RUsernameHelp" id="exampleInputRUsername" placeholder="Referrer's Username">
+    <label for="exampleInputRUsername">Referrer's First Name</label>
+    <input type="text" name="rfname" class="form-control" aria-describedby="RFnameHelp" id="exampleInputRFname" placeholder="Bob">
+    </div>
+    <div class="form-group">
+    <label for="exampleInputRUsername">Referrer's Email</label>
+    <input type="text" name="remail" class="form-control" aria-describedby="REmailHelp" id="exampleInputREmail" placeholder="Referrer@email.com">
+    </div>
+    <div class="form-group">
+    <label for="exampleInputRUsername">Referrer's Date of Birth</label>
+    <input type="text" name="rdob" class="form-control" aria-describedby="RDOBHelp" id="exampleInputRDOB" placeholder="2016-12-31">
     </div>
     <div class="form-group">
     <label for="exampleInputPermit">Driver's Permit Number (Optional)</label>
