@@ -45,7 +45,7 @@ function AuthentificationUser($u, $p)
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $passwordFromDB = $result['Password'];
 
-        if (strcmp($passwordFromDB, $p) == 0) {
+        if (($result['Suspended'] == 0) && (strcmp($passwordFromDB, $p) == 0)) {
             $em = $result['Email'];
             $id = $result['UserId'];
             $priv = $result['Privilege'];
@@ -71,8 +71,9 @@ function AuthentificationEmail($em, $p)
         $stmt->execute();
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $passwordFromDB = $result['Password'];
 
-        if (strcmp($result['Password'], $p) == 0) {
+        if (($result['Suspended'] == 0) && (strcmp($passwordFromDB, $p) == 0)) {
             $user = $result['UName'];
             $id = $result['UserId'];
             $priv = $result['Privilege'];
