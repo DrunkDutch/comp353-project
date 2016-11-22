@@ -91,6 +91,13 @@
                 }
                 ?>
             </li>
+            <li>
+                <?php if ($_SESSION['Authen'] && ($_SESSION['privi'] <=2)) {
+                    $url = 'http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Report.php';
+                    echo("<a href='" . $url . "'>Report</a>");
+                }
+                ?>
+            </li>
         </ul>
     </div>
 
