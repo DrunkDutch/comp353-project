@@ -1,0 +1,5 @@
+$stmt = $d->conn->prepare("INSERT INTO `comp353`.`Rating`(`RaterId`,`RateeId`, `Score`)VALUES(:r,:e,:s)");
+    $stmt->bindParam(':r', $[RATER HERE]);
+    $stmt->bindParam(':e', $[RATEE HERE]);
+    $stmt->bindParam(':s', $[SCORE HERE]);
+    $stmt->execute();
