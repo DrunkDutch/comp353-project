@@ -18,6 +18,7 @@
     <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=3"><button class="btn btn-default">Rides Used</button></a></div>
     <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=4"><button class="btn btn-default">Privilege Type</button></a></div>
     <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=5"><button class="btn btn-default">User Status</button></a></div>
+    <a href="/comp353-project/public/view/main/Secured/Report-Details.php?page=6"><button class="btn btn-default">Balance Status</button></a></div>
 
 </div>
 <!-- END OF CONTENT -->

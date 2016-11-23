@@ -192,7 +192,34 @@
                     }
                 }
             }
+        }
 
+        function GetBalanceStatus() {
+
+            echo "<h3>Rides Used</h3>";
+
+            include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+
+            $status = Connected();
+            if ($status == 1) {
+                try {
+                    $d = new dbMakeConnection;
+                } catch (PDOException $e) {
+                    echo($e);
+                }
+
+                $stmt = $d->conn->prepare("Select UName as `UserName`, FName as `First Name`, Balance from comp353.Member order by Balance desc");
+                $stmt->execute();
+                $result = $stmt->fetchAll();
+
+                foreach ($result as &$val) {
+                    $username = $val["UserName"];
+                    $first = $val["First Name"];
+                    $balance = $val["Balance"];
+                    // Create HTML...
+                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Username:&nbsp' . $username . '</p><p>Name:&nbsp' . $first . '&nbsp</p><p>Balance:&nbsp' . $balance . '</div>';
+                }
+            }
         }
 
         function GetDirectory() {
@@ -213,6 +240,9 @@
                     break;
                 case 5:
                     GetStatus();
+                    break;
+                case 6:
+                    GetBalanceStatus();
                     break;
                 default:
                     echo "Page not found.";
