@@ -1,3 +1,3 @@
-$stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `Active` = 0, `Suspended` = 1 WHERE `UserId` = :i");
-    $stmt->bindParam(':i', $[USERID HERE]);
+$stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `Active` = 0, `Suspended` = 1 WHERE `UName` = :u");
+    $stmt->bindParam(':i', $[USERNAME HERE]);
     $stmt->execute();
