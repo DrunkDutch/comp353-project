@@ -29,6 +29,7 @@ CREATE TABLE `Comment` (
   `RideId` int(8) NOT NULL,
   `PosterId` int(8) NOT NULL,
   `Comment` varchar(355) NOT NULL,
+  `PostStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`CommentId`),
   KEY `RideC_idx` (`RideId`),
   KEY `Poster_idx` (`PosterId`),
@@ -43,7 +44,7 @@ CREATE TABLE `Comment` (
 
 LOCK TABLES `Comment` WRITE;
 /*!40000 ALTER TABLE `Comment` DISABLE KEYS */;
-INSERT INTO `Comment` VALUES (1,1,4,'Looking for people to split gas with');
+INSERT INTO `Comment` VALUES (1,1,4,'Looking for people to split gas with','2016-11-13 23:31:28');
 /*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,6 +129,7 @@ CREATE TABLE `Member` (
   `Permit` varchar(45) DEFAULT NULL,
   `Insurance` varchar(45) DEFAULT NULL,
   `Suspended` tinyint(1) NOT NULL DEFAULT '0',
+  `RegisterDate` date DEFAULT NULL,
   PRIMARY KEY (`UserId`),
   UNIQUE KEY `UserId_UNIQUE` (`UserId`),
   UNIQUE KEY `UName_UNIQUE` (`UName`),
@@ -143,9 +145,25 @@ CREATE TABLE `Member` (
 
 LOCK TABLES `Member` WRITE;
 /*!40000 ALTER TABLE `Member` DISABLE KEYS */;
-INSERT INTO `Member` VALUES (1,'Root','Root','Root','Root','root@test.com','2016-11-01',1,0.00,1,1,'8005556832',NULL,NULL,0),(2,'admin','admin','admin','admin','test@test.com','2016-11-02',1,0.00,1,2,'8005557334',NULL,NULL,0),(3,'Member','Member','Member','Member','member@test.com','2016-11-03',1,0.00,1,3,'8005557201',NULL,NULL,0),(4,'Dmens','hardware','Devin','Mens','devin.mens@gmail.com','1991-04-14',1,0.00,1,1,'4388372958','M520314049109','022469361335',0),(5,'Slee','test','Stella','Lee','st_lee@encs.concordia.ca','1991-01-01',1,0.00,1,1,'5143479880',NULL,NULL,0),(6,'Chardy','test','Charles-Antoine','Hardy','cha_hard@encs.concordia.ca','1991-01-01',1,0.00,1,1,'8005556833',NULL,NULL,0),(7,'Bcloutier','test','Bernard','Cloutier','b_clo@encs.concordia.ca','1991-01-01',4,0.00,0,3,'8005556834',NULL,NULL,0),(8,'Mverrucci','test','Matthew','Verrucci','m_verru@encs.concordia.ca','1991-01-01',1,0.00,1,2,'8005556835',NULL,NULL,0);
+INSERT INTO `Member` VALUES (1,'Root','Root','Root','Root','root@test.com','2016-11-01',1,0.00,1,1,'8005556832',NULL,NULL,0,'1970-01-01'),(2,'Admin','Admin','Admin','Admin','test@test.com','2016-11-02',1,0.00,1,2,'8005557334',NULL,NULL,0,'1970-01-01'),(3,'Member','Member','Member','Member','member@test.com','2016-11-03',1,0.00,1,3,'8005557201',NULL,NULL,0,'1970-01-01'),(4,'Dmens','hardware','Devin','Mens','devin.mens@gmail.com','1991-04-14',1,0.00,1,1,'4388372958','M520314049109','022469361335',0,'2016-11-01'),(5,'Slee','test','Stella','Lee','st_lee@encs.concordia.ca','1991-01-01',1,0.00,1,1,'5143479880',NULL,NULL,0,'2016-11-02'),(6,'Chardy','test','Charles-Antoine','Hardy','cha_hard@encs.concordia.ca','1991-01-01',1,0.00,1,1,'8005556833',NULL,NULL,0,'2016-11-03'),(7,'Bcloutier','test','Bernard','Cloutier','b_clo@encs.concordia.ca','1991-01-01',4,0.00,0,3,'8005556834',NULL,NULL,0,'2016-11-04'),(8,'Mverrucci','test','Matthew','Verrucci','m_verru@encs.concordia.ca','1991-01-01',1,0.00,1,2,'8005556835',NULL,NULL,0,'2016-11-01');
 /*!40000 ALTER TABLE `Member` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`%`*/ /*!50003 TRIGGER `comp353`.`Member_BEFORE_INSERT` BEFORE INSERT ON `Member` FOR EACH ROW
+SET NEW.RegisterDate = NOW() */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `Message`
@@ -160,6 +178,7 @@ CREATE TABLE `Message` (
   `SenderId` int(8) NOT NULL,
   `ReceiverId` int(8) NOT NULL,
   `Content` varchar(355) NOT NULL,
+  `PostStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`MessageId`),
   UNIQUE KEY `MessageId_UNIQUE` (`MessageId`),
   KEY `Sender_idx` (`SenderId`),
@@ -175,7 +194,7 @@ CREATE TABLE `Message` (
 
 LOCK TABLES `Message` WRITE;
 /*!40000 ALTER TABLE `Message` DISABLE KEYS */;
-INSERT INTO `Message` VALUES (1,'2016-11-17 14:00:00',5,4,'Your driving sucks'),(2,'2016-11-17 14:00:01',5,1,'TEST MESSAGE PLS IGNORE');
+INSERT INTO `Message` VALUES (1,'2016-11-17 14:00:00',5,4,'Your driving sucks','2016-11-13 23:31:50'),(2,'2016-11-17 14:00:01',5,1,'TEST MESSAGE PLS IGNORE','2016-11-13 23:31:50');
 /*!40000 ALTER TABLE `Message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,6 +210,7 @@ CREATE TABLE `Rating` (
   `RaterId` int(8) NOT NULL,
   `RateeId` int(8) NOT NULL,
   `Score` int(1) NOT NULL,
+  `PostStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`RideId`,`RaterId`,`RateeId`),
   KEY `Rater_idx` (`RaterId`),
   KEY `Ratee_idx` (`RateeId`),
@@ -206,7 +226,7 @@ CREATE TABLE `Rating` (
 
 LOCK TABLES `Rating` WRITE;
 /*!40000 ALTER TABLE `Rating` DISABLE KEYS */;
-INSERT INTO `Rating` VALUES (1,4,5,5),(1,5,4,1);
+INSERT INTO `Rating` VALUES (1,4,5,5,'2016-11-13 23:32:12'),(1,5,4,1,'2016-11-13 23:32:12');
 /*!40000 ALTER TABLE `Rating` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,10 +246,13 @@ CREATE TABLE `Ride` (
   `DestinationId` int(8) NOT NULL,
   `Distance` double NOT NULL,
   `RiderCapacity` int(4) NOT NULL,
+  `PosterId` int(11) NOT NULL,
+  `PostStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`RideId`),
   UNIQUE KEY `RideId_UNIQUE` (`RideId`),
   KEY `Departure_idx` (`DepartureId`),
   KEY `Destination_idx` (`DestinationId`),
+  KEY `Poster_idx` (`PosterId`),
   CONSTRAINT `Departure` FOREIGN KEY (`DepartureId`) REFERENCES `Location` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `Destination` FOREIGN KEY (`DestinationId`) REFERENCES `Location` (`LocationId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
@@ -241,7 +264,7 @@ CREATE TABLE `Ride` (
 
 LOCK TABLES `Ride` WRITE;
 /*!40000 ALTER TABLE `Ride` DISABLE KEYS */;
-INSERT INTO `Ride` VALUES (1,'2016-11-17','13:30:00',NULL,1,3,248,2),(2,'2016-11-18','09:00:00',NULL,3,1,248,0),(3,'2016-11-19','11:00:00','Mon',2,4,10.6,3);
+INSERT INTO `Ride` VALUES (1,'2016-11-17','13:30:00',NULL,1,3,248,2,4,'2016-11-13 23:29:31'),(2,'2016-11-18','09:00:00',NULL,3,1,248,0,4,'2016-11-13 23:29:31'),(3,'2016-11-19','11:00:00','Mon',2,4,10.6,3,4,'2016-11-13 23:29:31');
 /*!40000 ALTER TABLE `Ride` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -284,6 +307,7 @@ CREATE TABLE `Transaction` (
   `PayerId` int(8) NOT NULL,
   `PayeeId` int(8) NOT NULL,
   `Amount` decimal(10,2) NOT NULL,
+  `PostStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`TransactionId`),
   UNIQUE KEY `TransactionId_UNIQUE` (`TransactionId`),
   KEY `Payer_idx` (`PayerId`),
@@ -299,7 +323,7 @@ CREATE TABLE `Transaction` (
 
 LOCK TABLES `Transaction` WRITE;
 /*!40000 ALTER TABLE `Transaction` DISABLE KEYS */;
-INSERT INTO `Transaction` VALUES (1,5,4,50.00),(2,6,4,50.00);
+INSERT INTO `Transaction` VALUES (1,5,4,50.00,'2016-11-13 23:32:31'),(2,6,4,50.00,'2016-11-13 23:32:31');
 /*!40000 ALTER TABLE `Transaction` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,4 +344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-11-21 22:24:44
+-- Dump completed on 2016-11-24 16:41:34
