@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px lightgrey;
+            padding: 5px;
+        }
+
+        th {text-align: left;}
+    </style>
+</head>
+<body>
+
+<?php
+include('../config/config.php');
+include('../config/dbMakeConnection.php');
+
+$status = Connected();
+if($status != 1) return;
+
+try{
+    $d = new dbMakeConnection;
+}
+
+catch(PDOException $e){ echo($e);}
+
+// get all users except yourself
+$stmt = $d->conn->prepare("SELECT RideId, Date, DepartTime, RepeatDay, l1.City as DepatureLocation, l2.City as DestinationLocation, RiderCapacity FROM comp353.Ride r JOIN comp353.Location l1 ON (r.DepartureId=l1.LocationId) JOIN comp353.Location l2 ON (r.DestinationId=l2.LocationId)");
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+echo "<table>
+<tr>
+<th>RideId</th>
+<th>Date</th>
+<th>Repeat</th>
+<th>Depart Time</th>
+<th>Departure Location</th>
+<th>Destination Location</th>
+<th>Rider Capacity</th>
+</tr>";
+foreach ($result as $row) {
+    echo "<tr>";
+    echo "<td>" . $row['RideId'] . "</td>";
+    echo "<td>" . $row['Date'] . "</td>";
+    echo "<td>" . $row['RepeatDay'] . "</td>";
+    echo "<td>" . $row['DepartTime'] . "</td>";
+    echo "<td>" . $row['DepatureLocation'] . "</td>";
+    echo "<td>" . $row['DestinationLocation'] . "</td>";
+    echo "<td>" . $row['RiderCapacity'] . "</td>"; // TODO: Show this as a ratio 3/5
+    echo "</tr>";
+}
+
+echo "</table>";
+?>
+</body>
+</html>

@@ -55,7 +55,8 @@ function AuthentificationUser($u, $p)
         } catch (PDOException $e) {
             echo($e);
         }
-        $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UName = :u");
+	
+        $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
         $stmt->bindParam(':u', $u);
         $stmt->execute();
 
@@ -84,7 +85,7 @@ function AuthentificationEmail($em, $p)
             echo($e);
         }
 
-        $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE Email = :e");
+        $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE Email = :e");
         $stmt->bindParam(':e', $em);
         $stmt->execute();
 

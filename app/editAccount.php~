@@ -81,7 +81,7 @@ function UpdateUniqueField($fieldName, $value) {
         }
 
         // Check if username already exists
-        $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
+        $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UName = :u");
         $stmt->bindParam(':u', $username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

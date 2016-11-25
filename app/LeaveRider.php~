@@ -1,0 +1,55 @@
+<?php
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+// This file is used to remove a Rider from a Ride...
+$RideID = $_POST['RideId'];
+session_start();
+$UserID = $_SESSION['UserId'];
+
+// Get Detail On Ride
+	function GetRideDetails($Rid){
+		$status = Connected();
+		//echo($status);
+		if($status == 1){
+		try{
+		$d = new dbMakeConnection;
+
+		}
+		
+		catch(PDOException $e){ echo($e);}
+
+		$stmt = $d->conn->prepare("SELECT * FROM comp353.Ride WHERE RideId = :id");
+        	$stmt->bindParam(':id', $Rid);
+        	$stmt->execute();
+		
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $result;
+				
+		}
+	}
+
+	function LeaveAsRider($RideID, $uid){
+		$status = Connected();		
+		if($status == 1){
+		try{
+		$d = new dbMakeConnection;
+
+		}
+		
+		catch(PDOException $e){ echo($e);}
+
+		$stmt = $d->conn->prepare("DELETE FROM comp353.Rider WHERE RideId = :id AND RiderId = :uid");
+        	$stmt->bindParam(':id', $RideID);
+		$stmt->bindParam(':uid', $uid);
+        	$stmt->execute();
+		
+				
+		}
+	}
+
+$RideDetails = GetRideDetails($RideID);
+LeaveAsRider($RideID,$UserID);
+echo("end");
+header("Location: http://' . $_SERVER['SERVER_NAME'].'/comp353-project/");
+
+?>

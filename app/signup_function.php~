@@ -152,7 +152,7 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
                 $stmt->execute();
 
                 // Log in
-                $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
+                $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UName = :u");
                 $stmt->bindParam(':u', $username);
                 $stmt->execute();
 

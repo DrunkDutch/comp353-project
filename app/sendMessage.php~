@@ -38,7 +38,7 @@ function SendEmail($t, $m)
             return;
         }
 
-        $stmt = $d->conn->prepare("INSERT INTO `".$GLOBALS['db_name']."`.`Message` (`Date`, `SenderId`, `ReceiverId`, `Content`) VALUES (CURRENT_DATE(), :s, :r, :c)");
+        $stmt = $d->conn->prepare("INSERT INTO `comp353`.`Message` (`Date`, `SenderId`, `ReceiverId`, `Content`) VALUES (CURRENT_DATE(), :s, :r, :c)");
         $stmt->bindParam(':s', $s['UserId']);
         $stmt->bindParam(':r', $r['UserId']);
         $stmt->bindParam(':c', $m);

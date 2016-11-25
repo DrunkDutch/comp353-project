@@ -32,7 +32,7 @@ catch(PDOException $e){ echo($e);}
 
 $u = $_SESSION['username'];
 // get all users except yourself
-$stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName <> :u");
+$stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UName <> :u");
 $stmt->bindParam(':u', $u);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);

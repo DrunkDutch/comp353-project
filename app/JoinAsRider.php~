@@ -1,0 +1,37 @@
+<?php
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+
+// This file is used to join ride as rider...
+$RideID = $_POST['RideId'];
+session_start();
+$UserID = $_SESSION['UserId'];
+
+// Get Detail On Ride
+	function GetRideDetails($Rid){
+		$status = Connected();
+		
+		if($status == 1){
+		try{
+		$d = new dbMakeConnection;
+
+		}
+		
+		catch(PDOException $e){ echo($e);}
+
+		$stmt = $d->conn->prepare("SELECT * FROM comp353.Ride WHERE RideId = :id");
+        	$stmt->bindParam(':id', $Rid);
+        	$stmt->execute();
+		
+		$result = $stmt->fetch(PDO::FETCH_ASSOC);
+		return $result;
+				
+		}
+	}
+
+
+
+$RideDetails = GetRideDetails($RideID);
+
+echo("end");
+?>

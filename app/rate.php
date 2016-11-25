@@ -22,13 +22,13 @@ function Rate($ratee, $score, $rideId)
 
         $u = $_SESSION['username'];
 
-        $stmt = $d->conn->prepare("select UserId from comp353.Member where UName like :u");
+        $stmt = $d->conn->prepare("select UserId from ".$GLOBALS['db_name'].".Member where UName like :u");
         $stmt->bindParam(':u', $u);
         $stmt->execute();
         $s = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // This statement would allow us to also check that the recipient user exists as well when it returns an empty row
-        $stmt = $d->conn->prepare("select UserId from comp353.Member where UName like :t");
+        $stmt = $d->conn->prepare("select UserId from ".$GLOBALS['db_name'].".Member where UName like :t");
         $stmt->bindParam(':t', $t);
         $stmt->execute();
         $r = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ function Rate($ratee, $score, $rideId)
             return;
         }
 
-        $stmt = $d->conn->prepare("select * from `comp353`.`Rating` where RideId = :id and RaterId = :r and RateeId = :e");
+        $stmt = $d->conn->prepare("select * from `".$GLOBALS['db_name']."`.`Rating` where RideId = :id and RaterId = :r and RateeId = :e");
         $stmt->bindParam(':id', $rideId);
         $stmt->bindParam(':r', $u);
         $stmt->bindParam(':e', $ratee);
@@ -47,7 +47,7 @@ function Rate($ratee, $score, $rideId)
 
         if (empty($result)) {
 
-            $stmt = $d->conn->prepare("INSERT INTO `comp353`.`Rating`(`RideId`,`RaterId`,`RateeId`, `Score`)VALUES(:id,:r,:e,:s)");
+            $stmt = $d->conn->prepare("INSERT INTO `".$GLOBALS['db_name']."`.`Rating`(`RideId`,`RaterId`,`RateeId`, `Score`)VALUES(:id,:r,:e,:s)");
             $stmt->bindParam(':id', $rideId);
             $stmt->bindParam(':r', $u);
             $stmt->bindParam(':e', $ratee);

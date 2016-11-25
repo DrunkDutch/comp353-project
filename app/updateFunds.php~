@@ -35,7 +35,7 @@ function UpdateFunds($funds)
             $stmt->execute();
         } else {
             // check if sufficient funds
-            $stmt = $d->conn->prepare("SELECT Balance FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
+            $stmt = $d->conn->prepare("SELECT Balance FROM comp353.Member WHERE UName = :u");
             $stmt->bindParam(':u', $u);
             $stmt->execute();
 
