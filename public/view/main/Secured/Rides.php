@@ -26,7 +26,12 @@
                 </button>
             </div>
         </div>
-
+        <div class="row" style="background-color:darkgrey; margin-top:30px;margin-bottom:30px;">
+            <h4>Can't find a ride?</h4>
+            <a href="<?php echo('http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/NewRide.php') ?>">
+                <button style="margin-bottom:40px;" class="btn btn-primary">Create your own</button>
+            </a>
+        </div>
     </div>
     <div class="container" style="border-style:solid;margin-top:20px;">
         <h3>Search</h3>
@@ -122,7 +127,6 @@
 
         <div class="row" style="margin-top:20px; margin-bottom:20px;"><h4 class="col-xs-6">Do not want to search? </h4>
             <button id="ridesButton" type="button" onclick="ShowAllRides()" class="btn btn-info">Show All Rides</button>&nbsp;
-            <a href="<?php echo('http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/NewRide.php') ?>"><button id="newRideButton" type="button" class="btn btn-info">Create New Ride</button></a>
         </div>
     </div>
 

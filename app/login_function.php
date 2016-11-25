@@ -14,11 +14,11 @@ $password = $_POST['password'];
 
 if (!((empty($email)) and (empty($username)))) {
 	
-    if ($username == 'admin' and $password == 'admin') {
+    if ((strcmp($username,'admin') == 0) and (strcmp($password,'admin') ==0)) 		{
 	        
 	ForceReset();
 	
-    }
+    	}
     if (!(empty($email))) {
 	
         AuthentificationEmail($email, $password);
@@ -104,9 +104,10 @@ function AuthentificationEmail($em, $p)
 }
 
 function ForceReset() {
-	
+// Please explain to me what is this function...	
     $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/ResetUser.php';
     header("Location:" . $url . " ");
+	
 }
 
 function LaunchSession($u, $e, $p, $i, $priv)

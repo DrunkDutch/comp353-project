@@ -145,13 +145,17 @@
         $GLOBALS['FullDestinaAddress'] = ' ' . $Destination['StreetNum'] . ' ' . $Destination['Street'] . ', ' . $Destination['City'];
         $GLOBALS['FullDepartAddress'] = ' ' . $Departure['StreetNum'] . ' ' . $Departure['Street'] . ', ' . $Departure['City'];
 
+	// Getting Repeat...
+	
+	$GLOBALS['RepeatingRide'] = $Ride['RepeatDay'];
+	
         $GLOBALS['DestinationLat'] = $Destination['Latitude'];
         $GLOBALS['DestinationLon'] = $Destination['Longitude'];
         $GLOBALS['DepartureLat'] = $Departure['Latitude'];
         $GLOBALS['DepartureLon'] = $Departure['Longitude'];
 
         $GLOBALS['RideID'] = $Ride['RideId'];
-
+	
         if ($Ride['DateDifference'] > 0) {
             $GLOBALS['PastRide'] = true;
         } else {
@@ -179,7 +183,7 @@
         if ($Ride['RiderCapacity'] == $numbPassenger) {
             $GLOBALS['StatusRide'] = "This ride is Full";
         } else {
-            echo($numbPassenger);
+            
             $a = $Ride['RiderCapacity'] - $numbPassenger;
             $GLOBALS['StatusRide'] = "There is " . $a . " place(s) left";
         }
@@ -188,8 +192,9 @@
 		<h2> Ride Details </h2>
 		<div class="row">Departure:<a href="#Maps">' . $GLOBALS['FullDepartAddress'] . '</a></div>
 		<div class="row">Destination:<a href="#Maps">' . $GLOBALS['FullDestinaAddress'] . '</a></div>
-		<div class="row">Date:&nbsp' . $Ride['Date'] . '</div>
-		<div class="row">Time:&nbsp' . $GLOBALS['DepartTime'] . '</div>
+		<div class="row">Date:&nbsp' .$Ride['Date']. '</div>
+		<div class="row">Time:&nbsp' .$Ride['DepartTime'] . '</div>
+		<div class="row">Repeating Every:&nbsp'.$GLOBALS['RepeatingRide'].'</div>
 		<div class="row">Driver:&nbsp<a href="' . $urlToDriver . '">' . $GLOBALS['Driver'] . '</a></div>
 		<div class="row">Passengers:&nbsp<a href="' . $urlToDirectory . '">' . $GLOBALS['ALLPassenger'] . '</a></div>
 		<div class="row">Capacity:&nbsp' . $Ride['RiderCapacity'] . '</div>
@@ -232,49 +237,47 @@
             $AreYouRiderIn = (strpos($GLOBALS['ALLPassenger'], $_SESSION['username']));
             $AreYouDriverIn = (strcmp($GLOBALS['Driver'], $_SESSION['username']) == 0);
             $afterDeparture = $GLOBALS['PastRide'];
+	    $Repeating = ($GLOBALS['RepeatingRide'] != '');
+	    $AllP = explode(',',substr($GLOBALS['ALLPassenger'], 0 , -2));
+	
 
-            if ($afterDeparture) {
-                // Rate passengers if you are driver
-                if ($AreYouDriverIn) {
-                    $passengers = explode(', ', $GLOBALS['ALLPassenger']);
-                    if ($passengers) {
-                        foreach ($passengers as $rider) {
-                            if ($rider != '') {
-                                echo '<button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $rider . '">Rate Rider ' . $rider . '</button> &nbsp;';
 
-                            }
-                        }
-                    }
-                } // Rate driver if you are passenger
-                else if ($AreYouRiderIn) {
-                    if ($GLOBALS['Driver']) {
-                    echo '<button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $GLOBALS['Driver'] . '">Rate Driver ' . $GLOBALS['Driver'] . '</button>';
-                    }
-                } else {
-                    echo 'You missed this ride.';
-                }
-            } else {
-                if ($AreYouRiderIn == false) {
+	    
+// For each passenger pass button...
+// Rate Rider Button
 
-                } else {
-                    if ($AreYouRiderIn == false) {
+if($AreYouDriverIn and ($Repeating or !$afterDeparture)){
+                            foreach($AllP as& $valueR){
+		                        echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $valueR . '">Rate Rider ' . $valueR . '</button> &nbsp;</div>';
+	}
+}		
 
-                    } else {
+
+// Rate Driver Button
+                            
+if($AreYouRiderIn and ($Repeating or !$afterDeparture)){
+                    echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $GLOBALS['Driver'] . '">Rate Driver ' . $GLOBALS['Driver'] . '</button></div>';
+}
+
+                    
+// Leave as Rider
+if($AreYouRiderIn and ($Repeating or !$afterDeparture)){
                         echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveRider.php" ><Input type="number" style="display:none;" name="RideId" value="' . $_GET['id'] . '"><Input type="submit" class="btn btn-success" value="Leave as Rider"></form></div>');
-                    }
+}
 
-                    if (!$HaveADriver) {
+                    
+// Join as Driver
+if(!$HaveADriver and !$AreYouRiderIn and !$AreYouDriverIn and ($Repeating or !$afterDeparture)){
                         echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsDriver.php" ><Input type="number" style="display:none;" name="RideId" value="' . $_GET['id'] . '"><Input type="submit" class="btn btn-success" value="Join as Driver"></form></div>');
-                    }
-                    if (!($isFull)) {
-                        echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsRider.php" ><Input type="number" style="display:none;" name="RideId" value="' . $_GET['id'] . '"><Input type="submit" class="btn btn-success" value="Join as Rider"></form></div>');
-                    }
+} 
 
-                    if ($AreYouDriverIn) {
-                        echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveDrive.php" ><Input type="number" style="display:none;" name="RideId" value="' . $_GET['id'] . '"><Input type="submit" class="btn btn-success" value="Leave Driving"></form></div>');
-                    }
-                }
-            }
+
+// Join as Rider
+ if(!$isFull and!$AreYouRiderIn and !$AreYouDriverIn and ($Repeating or !$afterDeparture)){
+                        echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsRider.php" ><Input type="number" style="display:none;" name="RideId" value="' . $_GET['id'] . '"><Input type="submit" class="btn btn-success" value="Join as Rider"></form></div>');
+}
+
+                              
 
             ?>
         </div>
