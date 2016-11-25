@@ -3,12 +3,12 @@
 <head>
 	<title> Home </title>
 	<!-- This section is for the Head -->
-	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Head.php');?>
+	<?php include('./public/view/include/Head.php');?>
 </head>
 <body>
 	<!-- Page Content -->
 	<!-- This Section is for the Navigation file -->
-	<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php');?>
+	<?php include('./public/view/include/Header.php');?>
     <!-- INCLUDE CONTENT OF PAGE HERE -->
 
     <div class="site-wrapper" id="page-content-wrapper">
@@ -32,7 +32,7 @@
     </div>
 
     <!-- END OF CONTENT --> 
-	<div><?php echo $this_page; ?></div>
+	
 	<!-- This Section is for the footer -->
 	<!-- ?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Footer.php');? -->
 	
