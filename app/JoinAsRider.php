@@ -7,7 +7,8 @@ $rideID = $_POST['RideId'];
 //$CostOperation = 0;
 $Rate = 0.78;
 $DetailRide = GetRideDetails($rideID);
-$CostPaul = $DetailRide['Distance'] * $Rate ;
+$num = $DetailRide['Distance'] * $Rate ;
+$CostPaul = money_format('%.2n', $num);
 $RideBalance = GetBalance($userID)['Balance'];
 $costV = ($RideBalance - $CostPaul);
 echo("START");
@@ -134,7 +135,7 @@ if(true){
 
 
 		ChargeM($userID, $costV);
-		WriteTransaction($userID, $userID, 20.00);
+		
 
 
 // If there is a Driver...
@@ -146,18 +147,20 @@ if(true){
 			$NewBalanceDriver = ($DriverBalance + $CostPaul);
 			ChargeM($DriverID, $NewBalanceDriver);
 			WriteTransaction($userID, $DriverID, $CostPaul);
+
 			
 		}
 		else{
 			$MinusCost = $CostPaul * -1;
 			WriteTransaction($userID, $userID, $MinusCost);
 		}
-
-		echo("DONE");
+		
+		// Redirect to home page...
+		
+	$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have joined the ride as rider the cost is ' .$CostPaul.'$ ';
+    header("Location:" .$urlAndAlert. " ");
+    exit;
 	    
-//$url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php';
-    //header("Location:" .$url . " ");
-	//exit;
 			
 		
 	}

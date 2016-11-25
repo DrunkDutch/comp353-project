@@ -260,7 +260,7 @@ if($AreYouDriverIn and ($Repeating or !$afterDeparture)){
 
 // Rate Driver Button
                             
-if($AreYouRiderIn and ($Repeating or !$afterDeparture)){
+if($HaveADriver and $AreYouRiderIn and ($Repeating or !$afterDeparture)){
                     echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $GLOBALS['Driver'] . '">Rate Driver ' . $GLOBALS['Driver'] . '</button></div>';
 }
 
@@ -282,7 +282,10 @@ if(!$HaveADriver and !$AreYouRiderIn and !$AreYouDriverIn and ($Repeating or !$a
                         echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/JoinAsRider.php" ><Input type="number" style="display:none;" name="RideId" value="' . $_GET['id'] . '"><Input type="submit" class="btn btn-success" value="Join as Rider"></form></div>');
 }
 
-                              
+ // Message if ride is finished...
+ if(!$Repeating and $afterDeparture){
+                        echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><h5>This ride as expired</h5></div>');
+}                          
 
             ?>
         </div>
