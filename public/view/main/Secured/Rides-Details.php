@@ -148,7 +148,11 @@
 	// Getting Repeat...
 	
 	$GLOBALS['RepeatingRide'] = $Ride['RepeatDay'];
-	
+	// Getting lenght of travel
+
+	$GLOBALS['TravelLenght'] = $Ride['Distance'];
+
+
         $GLOBALS['DestinationLat'] = $Destination['Latitude'];
         $GLOBALS['DestinationLon'] = $Destination['Longitude'];
         $GLOBALS['DepartureLat'] = $Departure['Latitude'];
@@ -192,6 +196,7 @@
 		<h2> Ride Details </h2>
 		<div class="row">Departure:<a href="#Maps">' . $GLOBALS['FullDepartAddress'] . '</a></div>
 		<div class="row">Destination:<a href="#Maps">' . $GLOBALS['FullDestinaAddress'] . '</a></div>
+		<div class="row">Distance:&nbsp'.$GLOBALS['TravelLenght'].' &nbspKM</div>
 		<div class="row">Date:&nbsp' .$Ride['Date']. '</div>
 		<div class="row">Time:&nbsp' .$Ride['DepartTime'] . '</div>
 		<div class="row">Repeating Every:&nbsp'.$GLOBALS['RepeatingRide'].'</div>

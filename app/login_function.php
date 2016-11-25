@@ -120,6 +120,7 @@ function LaunchSession($u, $e, $p, $i, $priv)
     $_SESSION['Authen'] = true;
     $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Rides.php';
     header("Location:" . $url . " ");
+    exit;
 }
 
 ?>
