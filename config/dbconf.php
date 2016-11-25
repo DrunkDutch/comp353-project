@@ -5,6 +5,7 @@ $host = $_SERVER['SERVER_NAME'];
 $username = "root";
 $password = "root";
 $db_name = "comp353";
+$GLOBALS['db_name'] = "comp353";
 mysqli_report(MYSQLI_REPORT_STRICT); 
 $connection = new mysqli($host, $username, $password, $db_name);
 function ConnectionCheck(){
