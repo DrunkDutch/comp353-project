@@ -31,7 +31,7 @@
                 $u = $_SESSION['username'];
 
                 $stmt = $d->conn->prepare(
-                    "select * FROM ".$GLOBALS['db_name']."Member where UName not like :u and UserId not in (1, 2, 3)");
+                    "select * FROM ".$GLOBALS['db_name'].".Member where UName not like :u and UserId not in (1, 2, 3)");
                 $stmt->bindParam(':u', $u);
                 $stmt->execute();
                 $result = $stmt->fetchAll();

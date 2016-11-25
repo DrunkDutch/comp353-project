@@ -52,7 +52,7 @@
 	<div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="messages">
 
 		<?php
-
+		GetMessages();
 		function GetMessages() {
 			include("../../../../config/dbMakeConnection.php");
 
@@ -117,7 +117,7 @@
 			}
 		}
 
-		GetMessages();
+		
 		?>
 
 	</div>
