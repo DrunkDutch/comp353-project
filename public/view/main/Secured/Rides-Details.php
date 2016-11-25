@@ -42,7 +42,7 @@
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("SELECT * FROM comp353.Location WHERE LocationId = :id");
+            $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Location WHERE LocationId = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 
@@ -63,7 +63,7 @@
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("SELECT RideId, Date, DepartTime, RepeatDay, DepartureId, DestinationId, Distance, RiderCapacity, CURRENT_DATE - Date as DateDifference FROM comp353.Ride WHERE RideId = :id");
+            $stmt = $d->conn->prepare("SELECT RideId, Date, DepartTime, RepeatDay, DepartureId, DestinationId, Distance, RiderCapacity, CURRENT_DATE - Date as DateDifference FROM ".$GLOBALS['db_name'].".Ride WHERE RideId = :id");
             $stmt->bindParam(':id', $Rid);
             $stmt->execute();
 
@@ -84,7 +84,7 @@
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("SELECT DriverId FROM comp353.Driver WHERE RideId = :id");
+            $stmt = $d->conn->prepare("SELECT DriverId FROM ".$GLOBALS['db_name'].".Driver WHERE RideId = :id");
             $stmt->bindParam(':id', $Rid);
             $stmt->execute();
 
@@ -105,7 +105,7 @@
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("SELECT RiderId FROM comp353.Rider WHERE RideId = :id");
+            $stmt = $d->conn->prepare("SELECT RiderId FROM ".$GLOBALS['db_name'].".Rider WHERE RideId = :id");
             $stmt->bindParam(':id', $Rid);
             $stmt->execute();
 
@@ -125,7 +125,7 @@
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("SELECT UName FROM comp353.Member WHERE UserId = :id");
+            $stmt = $d->conn->prepare("SELECT UName FROM ".$GLOBALS['db_name'].".Member WHERE UserId = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 

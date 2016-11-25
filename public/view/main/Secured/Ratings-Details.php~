@@ -41,7 +41,7 @@
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("SELECT UName, UserId, max(Score) as High, min(Score) as Low, avg(Score) as Avg FROM ".$GLOBALS['db_name'].".Rating JOIN ".$GLOBALS['db_name'].".Member ON (UserId=RateeId) WHERE RateeId = :id");
+            $stmt = $d->conn->prepare("SELECT UName, UserId, max(Score) as High, min(Score) as Low, avg(Score) as Avg FROM comp353.Rating JOIN comp353.Member ON (UserId=RateeId) WHERE RateeId = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 

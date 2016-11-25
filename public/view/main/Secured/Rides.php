@@ -70,7 +70,7 @@
                             echo($e);
                         }
 
-                        $stmt = $d->conn->prepare("SELECT DISTINCT City FROM comp353.Location");
+                        $stmt = $d->conn->prepare("SELECT DISTINCT City FROM ".$GLOBALS['db_name'].".Location");
                         $stmt->execute();
                         $result = $stmt->fetchAll();
                         return $result;
@@ -104,7 +104,7 @@
                             echo($e);
                         }
 
-                        $stmt = $d->conn->prepare("SELECT DISTINCT City FROM comp353.Location");
+                        $stmt = $d->conn->prepare("SELECT DISTINCT City FROM ".$GLOBALS['db_name'].".Location");
                         $stmt->execute();
                         $result = $stmt->fetchAll();
                         return $result;
@@ -149,7 +149,7 @@
                     echo($e);
                 }
 
-                $stmt = $d->conn->prepare("SELECT * FROM comp353.Location WHERE LocationId = :id");
+                $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Location WHERE LocationId = :id");
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
 
@@ -170,7 +170,7 @@
                     echo($e);
                 }
 
-                $stmt = $d->conn->prepare("SELECT * FROM comp353.Location WHERE LocationId = :id");
+                $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Location WHERE LocationId = :id");
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
 
@@ -191,7 +191,7 @@
                     echo($e);
                 }
 
-                $stmt = $d->conn->prepare("SELECT * FROM comp353.Ride");
+                $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Ride");
                 $stmt->execute();
                 $result = $stmt->fetchAll();
 

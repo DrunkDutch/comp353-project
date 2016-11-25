@@ -43,7 +43,7 @@ include("../../../../config/dbMakeConnection.php");
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UserId = :id");
+            $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UserId = :id");
             $stmt->bindParam(':id', $id);
             $stmt->execute();
 

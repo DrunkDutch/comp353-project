@@ -69,9 +69,9 @@
 				// GET USER MESSAGES
 				$stmt = $d->conn->prepare(
 					"select m.MessageId, mem2.UName, m.Date, m.Content 
-					from comp353.Message m join comp353.Member mem2 on comp353.m.SenderId = comp353.mem2.UserId 
-					join comp353.Member mem on comp353.m.ReceiverId = comp353.mem.UserId 
-					where comp353.mem.UName like :u");
+					from ".$GLOBALS['db_name'].".Message m join ".$GLOBALS['db_name'].".Member mem2 on ".$GLOBALS['db_name'].".m.SenderId = ".$GLOBALS['db_name']."3.mem2.UserId 
+					join ".$GLOBALS['db_name'].".Member mem on ".$GLOBALS['db_name'].".m.ReceiverId = ".$GLOBALS['db_name'].".mem.UserId 
+					where ".$GLOBALS['db_name'].".mem.UName like :u");
 				$stmt->bindParam(':u', $u);
 				$stmt->execute();
 				$result = $stmt->fetchAll();
@@ -95,9 +95,9 @@
 				// GET USER GROUP MESSAGES
 				$stmt = $d->conn->prepare(
 					"select m.MessageId, mem2.UName, m.Date, m.Content 
-					from comp353.Message m join comp353.Member mem2 on comp353.m.SenderId = comp353.mem2.UserId 
-					join comp353.Member mem on comp353.m.ReceiverId = comp353.Member.Privilege
-					where comp353.mem.UName like :u");
+					from ".$GLOBALS['db_name'].".Message m join ".$GLOBALS['db_name'].".Member mem2 on ".$GLOBALS['db_name'].".m.SenderId = ".$GLOBALS['db_name'].".mem2.UserId 
+					join ".$GLOBALS['db_name'].".Member mem on ".$GLOBALS['db_name'].".m.ReceiverId =".$GLOBALS['db_name'].".Member.Privilege
+					where ".$GLOBALS['db_name'].".mem.UName like :u");
 				$stmt->bindParam(':u', $u);
 				$stmt->execute();
 				$result = $stmt->fetchAll();

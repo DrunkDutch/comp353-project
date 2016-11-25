@@ -29,7 +29,7 @@
 
                 catch(PDOException $e){ echo($e);}
 
-                $stmt = $d->conn->prepare("SELECT * FROM comp353.Location WHERE LocationId = :id");
+                $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Location WHERE LocationId = :id");
                 $stmt->bindParam(':id', $id);
                 $stmt->execute();
 
@@ -51,7 +51,7 @@ include("../../../../config/dbMakeConnection.php");
                 }
 
                 // GET USER MESSAGES
-                $stmt = $d->conn->prepare("SELECT * FROM comp353.Ride WHERE Date < CURDATE()");
+                $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Ride WHERE Date < CURDATE()");
                 $stmt->execute();
                 $result = $stmt->fetchAll();
 
