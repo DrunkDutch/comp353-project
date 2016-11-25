@@ -3,12 +3,12 @@
 <head>
     <title> Sent Messages </title>
     <!-- This section is for the Head -->
-    <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
+     <?php include("../../include/Head.php"); ?>
 </head>
 <body>
 <!-- Page Content -->
 <!-- This Section is for the Navigation file -->
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Header.php'); ?>
+<?php include("../../include/Header.php"); ?>
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
     <h1>My Sent Messages</h1>
@@ -20,7 +20,7 @@
         <?php
 
         function GetMessages() {
-            include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+	include("../../../../config/dbMakeConnection.php");
 
             $status = Connected();
             if ($status == 1) {
@@ -69,7 +69,7 @@
 <!-- END OF CONTENT -->
 <div><?php echo $this_page; ?></div>
 <!-- This Section is for the footer -->
-<?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Footer.php'); ?>
+<?php include("../../include/Footer.php"); ?>
 
 </body>
 </html>

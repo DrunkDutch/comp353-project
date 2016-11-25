@@ -22,8 +22,9 @@
 
 
 <?php 
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/app/route.php');
+include('../../../../config/config.php');
+//include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/app/route.php');
+include("../../../../app/route.php");
 ?>
 
 <script src="https://use.fontawesome.com/14dbbb1c44.js"></script>

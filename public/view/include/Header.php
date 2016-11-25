@@ -44,7 +44,7 @@
             </li>
             <li>
                 <?php if ($_SESSION['Authen']) {
-                    $url = 'http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/logout.php';
+                    $url = 'http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/app/logout.php';
                     echo("<a href='" . $url . "'>Log Out</a>");
                 }
                 ?>
