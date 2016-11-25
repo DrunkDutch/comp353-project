@@ -1,22 +1,33 @@
 <?php
 include('../config/config.php');
 include('../config/dbMakeConnection.php');
+
+
+
 session_start();
+
 $_SESSION['Authen'] = false;
 $username = $_POST['user'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-if (!((empty($email)) and (empty($username)))) {
 
+if (!((empty($email)) and (empty($username)))) {
+	
     if ($username == 'admin' and $password == 'admin') {
-        ForceReset();
+	        
+	ForceReset();
+	
     }
     if (!(empty($email))) {
+	
         AuthentificationEmail($email, $password);
+	
     } else {
         if (!(empty($username))) {
+		
             AuthentificationUser($username, $password);
+		
         }
     }
 } else {
@@ -25,6 +36,7 @@ if (!((empty($email)) and (empty($username)))) {
 
 function Failure()
 {
+
     $_SESSION['Authen'] = false;
     $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/LOG_IN.php';
     header("Location:" . $url . " ");
@@ -33,14 +45,16 @@ function Failure()
 // Check Login with DB assuming variable passed in are cleaned and not all empty
 function AuthentificationUser($u, $p)
 {
+	
     $status = Connected();
+	
     if ($status == 1) {
         try {
             $d = new dbMakeConnection;
+		
         } catch (PDOException $e) {
             echo($e);
         }
-
         $stmt = $d->conn->prepare("SELECT * FROM comp353.Member WHERE UName = :u");
         $stmt->bindParam(':u', $u);
         $stmt->execute();
@@ -62,6 +76,7 @@ function AuthentificationUser($u, $p)
 function AuthentificationEmail($em, $p)
 {
     $status = Connected();
+	
     if ($status == 1) {
         try {
             $d = new dbMakeConnection;
@@ -88,6 +103,7 @@ function AuthentificationEmail($em, $p)
 }
 
 function ForceReset() {
+	
     $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/ResetUser.php';
     header("Location:" . $url . " ");
 }
