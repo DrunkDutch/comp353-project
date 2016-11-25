@@ -1,0 +1,5 @@
+$stmt = $d->conn->prepare("INSERT INTO Transaction(`PayerId`,`PayeeId`,`Amount`)VALUES(:pr,:pe,:a)")";
+        	$stmt->bindParam(':pr', $payer);
+        	$stmt->bindParam(':pe', $payerr);
+        	$stmt->bindParam(':a', $amount);
+        	$stmt->execute();
