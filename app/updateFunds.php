@@ -26,30 +26,22 @@ function UpdateFunds($funds)
             echo($e);
         }
 
-        $u = $_SESSION['username'];
+        $u = $_SESSION['UserId'];
 
-        // adding funds
-        if ($funds > 0) {
-            $stmt = $d->conn->prepare(/* UPDATE BALANCE */);
-            $stmt->bindParam(':u', $u);
-            $stmt->execute();
-        } else {
-            // check if sufficient funds
-            $stmt = $d->conn->prepare("SELECT Balance FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
-            $stmt->bindParam(':u', $u);
-            $stmt->execute();
+        // check if current funds
+        $stmt = $d->conn->prepare("SELECT Balance FROM " . $GLOBALS['db_name'] . ".Member WHERE UName = :u");
+        $stmt->bindParam(':u', $u);
+        $stmt->execute();
 
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            $balance = $result['Balance'];
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $balance = $result['Balance'];
 
-            $toRemove = abs($funds);
-            if ($balance = $toRemove < 0) {
-                $toRemove = $balance;
-            }
+        $newBalance = $balance + $funds;
 
-            $stmt = $d->conn->prepare(/* UPDATE BALANCE */);
-            $stmt->bindParam(':u', $u);
-            $stmt->execute();
-        }
+        $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `Balance` = :v WHERE `UserId` = :i");
+        $stmt->bindParam(':v', $newBalance);
+        $stmt->bindParam(':i', $u);
+        $stmt->execute();
+
     }
 }
