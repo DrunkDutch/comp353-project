@@ -73,6 +73,10 @@
     <button type="submit" class="btn btn-success">Create Account</button>
     </form>
 
+    <p>
+        <a href="/comp353-project/public/view/main/LOG_IN.php">Already have an account? Log in</a>
+    </p>
+
         <?php
         if(isset($_SESSION['Authen'])){
             if(!$_SESSION['Authen']){

@@ -41,6 +41,10 @@
         <button type="reset" class="btn btn-danger">Reset</button>
         <input type="submit" value="Log in" class="btn btn-primary">
     </form>
+
+    <p>
+        <a href="/comp353-project/public/view/main/Sign_up.php">Don't have an account? Register</a>
+    </p>
     <?php
     if (isset($_SESSION['Authen'])) {
         if (!$_SESSION['Authen']) {
