@@ -11,7 +11,8 @@ $num = $DetailRide['Distance'] * $Rate ;
 $CostPaul = money_format('%.2n', $num);
 $RideBalance = GetBalance($userID)['Balance'];
 $costV = ($RideBalance - $CostPaul);
-echo("START");
+$AdminBalance = GetBalance(2)['Balance'];
+
 if($costV < 0){
 
 	// Redirect to home page...
@@ -143,10 +144,11 @@ if(true){
 		$DriverID = GetDriver($rideID)['DriverId'];
 		if($DriverID > 0){
 		// Give Monney to Driver and add a Transaction...
-			$DriverBalance = GetBalance($DriverID)['Balance'];
-			$NewBalanceDriver = ($DriverBalance + $CostPaul);
-			ChargeM($DriverID, $NewBalanceDriver);
-			WriteTransaction($userID, $DriverID, $CostPaul);
+		$DriverBalance = GetBalance($DriverID)['Balance'];
+
+		$NewBalanceDriver = ($DriverBalance + ($CostPaul*0.95));
+		ChargeM($DriverID, $NewBalanceDriver);
+		WriteTransaction($userID, $DriverID, ($CostPaul*0.95));
 
 			
 		}
@@ -154,7 +156,14 @@ if(true){
 			$MinusCost = $CostPaul * -1;
 			WriteTransaction($userID, $userID, $MinusCost);
 		}
-		
+
+
+		// Give money to admin
+		$NewBalanceAdmin = ($AdminBalance + ($CostPaul*0.05));
+		ChargeM(2, $NewBalanceAdmin);
+		WriteTransaction($userID, 2, $CostPaul*0.05);
+
+
 		// Redirect to home page...
 		
 	$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have joined the ride as rider the cost is ' .$CostPaul.'$ ';
