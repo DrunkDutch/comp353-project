@@ -19,7 +19,7 @@
 	<!-- Trigger the modal with a button -->
 	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">New Message</button>
 
-	<?php include "/comp353-project/app/sendMessage.php"?>
+	<?php include "/comp353-project/app/sendMessage.php"; ?>
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -69,7 +69,7 @@
 				// GET USER MESSAGES
 				$stmt = $d->conn->prepare(
 					"select m.MessageId, mem2.UName, m.Date, m.Content 
-					from ".$GLOBALS['db_name'].".Message m join ".$GLOBALS['db_name'].".Member mem2 on ".$GLOBALS['db_name'].".m.SenderId = ".$GLOBALS['db_name']."3.mem2.UserId 
+					from ".$GLOBALS['db_name'].".Message m join ".$GLOBALS['db_name'].".Member mem2 on ".$GLOBALS['db_name'].".m.SenderId = ".$GLOBALS['db_name'].".mem2.UserId 
 					join ".$GLOBALS['db_name'].".Member mem on ".$GLOBALS['db_name'].".m.ReceiverId = ".$GLOBALS['db_name'].".mem.UserId 
 					where ".$GLOBALS['db_name'].".mem.UName like :u");
 				$stmt->bindParam(':u', $u);
@@ -117,7 +117,7 @@
 			}
 		}
 
-		
+
 		?>
 
 	</div>
