@@ -16,3 +16,5 @@ INSTALLATION:
 
 1. `cd /var/www/html/`
 2. `git clone git@github.com:DrunkDutch/comp353-project.git`
+3. `cd /var/www/html/sql/tables`
+4. `mysql -u root -proot < structure.sql`
