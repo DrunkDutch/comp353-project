@@ -1,0 +1,4 @@
+$stmt = $d->conn->prepare("Select LocationId from Location where Latitude = :la and Longitude = :lo");
+    $stmt->bindParam(':la', $[LATITUDE HERE]);
+    $stmt->bindParam(':lo', $[LONGITUDE HERE]);
+    $stmt->execute();

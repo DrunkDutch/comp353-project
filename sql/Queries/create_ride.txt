@@ -1,0 +1,10 @@
+$stmt = $d->conn->prepare("INSERT INTO Ride(`Date`,`DepartTime`,`RepeatDay`,`DepartureId`,`DestinationId`,`Distance`,`RiderCapacity`,`PosterId`)VALUES(:day,:depart,:repeat,:depID,:destId,:dist,:cap,:postId)");
+    $stmt->bindParam(':day', $[DATE HERE]);
+    $stmt->bindParam(':depart', $[DEPARTURE TIME HERE]);
+    $stmt->bindParam(':repeat', $[REPEAT HERE]);
+    $stmt->bindParam(':depID', $[DEPARTURE LOCATION ID HERE]);
+    $stmt->bindParam(':destId', $[DESTINATION ID HERE]);
+    $stmt->bindParam(':dist', $[DISTANCE HERE]);
+    $stmt->bindParam(':cap', $[CAPACITY HERE]);
+    $stmt->bindParam(':postId', $[POSTER ID HERE]);
+    $stmt->execute();

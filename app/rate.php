@@ -34,8 +34,9 @@ function Rate($ratee, $score, $rideId)
         $r = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (empty($r)) {
-            echo "User does not exist";
-            return;
+
+            $urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Reviews.php?alert= User does not exist ';
+            header("Location:" .$urlAndAlert. " ");
         }
 
         $stmt = $d->conn->prepare("select * from `".$GLOBALS['db_name']."`.`Rating` where RideId = :id and RaterId = :r and RateeId = :e");

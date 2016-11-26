@@ -1,0 +1,9 @@
+$stmt = $d->conn->prepare("INSERT INTO Location (`Latitude`,`Longitude`,`StreetNum`,`Street`,`PostalCode`,`City`,`Province`) VALUES(:la,:lo,:strnum,:str,:post,:cty,:pr)");
+    $stmt->bindParam(':la', $[LATITUDE HERE]);
+    $stmt->bindParam(':lo', $[LONGITUDE HERE]);
+    $stmt->bindParam(':strnum', $[STREET NUMBER HERE]);
+    $stmt->bindParam(':str', $[STREET HERE]);
+    $stmt->bindParam(':post', $[POSTAL CODE HERE]);
+    $stmt->bindParam(':cty', $[CITY HERE]);
+    $stmt->bindParam(':pr', $[PROVINCE HERE]);
+    $stmt->execute();

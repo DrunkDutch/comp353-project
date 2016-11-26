@@ -16,6 +16,14 @@
 <div id="page-content-wrapper">
     <h1>My Past Rides</h1>
 
+    <?php
+
+    if(!empty($_GET['alert'])){
+        echo '<div class="row" style="background-color:orange; height:100px;margin-top:50px;"><h4>'.$_GET['alert'].'</h4></div>';
+    }
+
+    ?>
+
     <div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="rides">
 
         <?php
