@@ -11,90 +11,58 @@
 <?php include("../../include/Header.php"); ?>
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
-    <h1>Create Ride</h1>
+<form method="POST" action="/comp353-project/app/createRide.php">
+<div class="container">
+  <h2>Create A ride</h2>
+  <ul class="nav nav-tabs" style="border-style:none; display:none;">
+    <li class="active"><a href="#home">Destination</a></li>
+    <li><a href="#menu1">Departure</a></li>
+    <li><a href="#menu2">Date</a></li>
+    <li><a href="#menu3">Driver/Rider</a></li>
+    <li><a href="#menu4">Post</a></li>
+  </ul>
 
-    <div class="row"><div class="text-center"><i class="fa fa-car fa-5x" aria-hidden="true"></i>
-        </div></div>
-    <?php include "../app/createRide.php"?>
-    <form class="container-fluid col-md-4 col-md-offset-4" action="/comp353-project/app/createRide.php" method="POST">
-
-        <!-- TO DO: NEED TO UPDATE THESE FIELDS -->
-        <div class="form-group">
-            <label for="Date">Date</label>
-            <input type="date" name="date" class="form-control" aria-describedby="dateHelp" id="exampleInputdate" placeholder="2016-12-31">
-        </div>
-        <div class=form-group>
-            <label for="username">Departure Time</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Repeating</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Depature Street Number</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Depature Street</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Depature City</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Depature Province</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Depature Postal Code</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Destination Street Number</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Destination Street</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Destination City</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Destination Province</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Destination Postal Code</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="Enter Username">
-        </div>
-        <div class=form-group>
-            <label for="username">Distance (Need better descriptor)</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="5 (in km)">
-        </div>
-        <div class=form-group>
-            <label for="username">Rider Capacity</label>
-            <input type="text" name="user" class="form-control" aria-describedby="UsernameHelp"  id="exampleInputEmail1" placeholder="4">
-        </div>
-        <div class=form-group>
-            <label for="username">Are you driving or just riding?</label>
-            <input type="radio" name="riderType"
-                <?php if (isset($riderType) && $riderType=="driving") echo "checked";?>
-                   value="driving">Driving
-            <input type="radio" name="riderType"
-                <?php if (isset($riderType) && $riderType=="riding") echo "checked";?>
-                   value="riding">Riding
-        </div>
-
-        <button
-        <button type="reset" class="btn btn-danger">Reset</button>
-        <input type="submit" value="click" class="btn btn-primary">
-    </form>
+  <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>Departure</h3>
+      <p>Departure field</p>
+	<a href="#menu1" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
+	
+    </div>
+    <div id="menu1" class="tab-pane fade">
+      <h3>Destination</h3>
+      <p>Destination Field</p>
+	<a href="#home" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
+	<a href="#menu2" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
+    </div>
+    <div id="menu2" class="tab-pane fade">
+      <h3>Date</h3>
+      <p>Date field</p>
+	<a href="#menu1" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
+	<a href="#menu3" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Driver or Rider ?</h3>
+      <p>Drier Rider field</p>
+	<a href="#menu2" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
+	<a href="#menu4" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
+    </div>
+    <div id="menu4" class="tab-pane fade">
+      <h3>Post</h3>
+      <p>Ride Posting...</p>
+	<a href="#menu3" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
+	<Input type="submit" class="btn btn-success" value="Post">
+    </div>
+  </div>
 </div>
-
+</form>
+<script>
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+});
+</script>
 </div>
 <!-- END OF CONTENT -->
 <div><?php echo $this_page; ?></div>
