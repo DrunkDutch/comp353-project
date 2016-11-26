@@ -15,59 +15,59 @@
     <form class="container-fluid col-md-4 col-md-offset-4" style="margin-bottom:300px;" action="/comp353-project/app/signup_function.php" method="post">
 	<div class="form-group">
     <label for="Username">Username</label>
-    <input type="text" name="username" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUsername1" placeholder="Username">
+    <input type="text" name="username" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUsername1" placeholder="Username" required="required">
     </div>
     <div class="form-group">
     <label for="FirstName">First Name</label>
-    <input type="text" name="FirstName" class="form-control" aria-describedby="FirstnameHelp" id="exampleInputFirstName1" placeholder="First Name">
+    <input type="text" name="FirstName" class="form-control" aria-describedby="FirstnameHelp" id="exampleInputFirstName1" placeholder="First Name" required="required">
     </div>
     <div class="form-group">
     <label for="LastName">Last Name</label>
-    <input type="text" name="LastName" class="form-control" aria-describedby="LastnameHelp" id="exampleInputLastName1" placeholder="Last Name">
+    <input type="text" name="LastName" class="form-control" aria-describedby="LastnameHelp" id="exampleInputLastName1" placeholder="Last Name" required="required">
     </div>
 	<div class="form-group">
     <label for="Email">Email</label>
-    <input type="email" name="email1" class="form-control" aria-describedby="emailHelp" id="exampleInputEmail1" placeholder="Email">
+    <input type="email" name="email1" class="form-control" aria-describedby="emailHelp" id="exampleInputEmail1" placeholder="Email" required="required">
     </div>
  	<div class="form-group">
     <label for="Confirm Email">Confirm Email</label>
-    <input type="email" name="email2" class="form-control" aria-describedby="emailHelp" id="exampleInputEmail1" placeholder="Confirm Email">
+    <input type="email" name="email2" class="form-control" aria-describedby="emailHelp" id="exampleInputEmail1" placeholder="Confirm Email" required="required">
     </div>   
     <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password" required="required">
     </div>
     <div class="form-group">
     <label for="exampleInputPassword1">Confirm Password</label>
-    <input type="password" name="password2" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+    <input type="password" name="password2" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password" required="required">
     </div>
     <div class="form-group">
     <label for="exampleInputPhone1">Phone</label>
-    <input type="text" name="phone" class="form-control" aria-describedby="PhoneHelp" id="exampleInputPhone1" placeholder="514-xxx-xxxx">
+    <input type="number" name="phone" class="form-control" aria-describedby="PhoneHelp" id="exampleInputPhone1" placeholder="5141234567" min="1000000000" max="9999999999" required="required">
     </div>
     <div class="form-group">
     <label for="DOB">Date of Birth</label>
-    <input type="text" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="2016-12-31">
+    <input type="date" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="YYYY-MM-DD" required="required">
     </div>
     <div class="form-group">
     <label for="exampleInputRUsername">Referrer's First Name</label>
-    <input type="text" name="rfname" class="form-control" aria-describedby="RFnameHelp" id="exampleInputRFname" placeholder="Bob">
+    <input type="text" name="rfname" class="form-control" aria-describedby="RFnameHelp" id="exampleInputRFname" placeholder="Bob" required="required">
     </div>
     <div class="form-group">
     <label for="exampleInputRUsername">Referrer's Email</label>
-    <input type="text" name="remail" class="form-control" aria-describedby="REmailHelp" id="exampleInputREmail" placeholder="Referrer@email.com">
+    <input type="email" name="remail" class="form-control" aria-describedby="REmailHelp" id="exampleInputREmail" placeholder="Referrer@email.com" required="required">
     </div>
     <div class="form-group">
     <label for="exampleInputRUsername">Referrer's Date of Birth</label>
-    <input type="text" name="rdob" class="form-control" aria-describedby="RDOBHelp" id="exampleInputRDOB" placeholder="2016-12-31">
+    <input type="date" name="rdob" class="form-control" aria-describedby="RDOBHelp" id="exampleInputRDOB" placeholder="YYYY-MM-DD" required="required">
     </div>
     <div class="form-group">
     <label for="exampleInputPermit">Driver's Permit Number (Optional)</label>
-    <input type="text" name="permit" class="form-control" aria-describedby="PermitHelp" id="exampleInputPermit" placeholder="xxxx-xxxx">
+    <input type="text" name="permit" class="form-control" aria-describedby="PermitHelp" id="exampleInputPermit" placeholder="Permit Number">
     </div>
     <div class="form-group">
     <label for="exampleInputInsurance">Insurance Policy Number (Optional)</label>
-    <input type="text" name="insurance" class="form-control" aria-describedby="InsuranceHelp" id="exampleInputInsurance" placeholder="xxxx-xxxx">
+    <input type="text" name="insurance" class="form-control" aria-describedby="InsuranceHelp" id="exampleInputInsurance" placeholder="Policy Number">
     </div>
     <button type="reset" class="btn btn-danger">Clear</button>
     <button type="submit" class="btn btn-success">Create Account</button>

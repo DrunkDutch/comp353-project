@@ -35,7 +35,7 @@
         <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
             <input type="password" name="password" class="form-control" id="exampleInputPassword1"
-                   placeholder="Password">
+                   placeholder="Password" required="required">
         </div>
         <button
         <button type="reset" class="btn btn-danger">Reset</button>
