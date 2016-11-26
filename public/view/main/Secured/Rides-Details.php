@@ -176,6 +176,7 @@
         }
 
         $GLOBALS['ALLPassenger'];
+	$GLOBALS['PCountHelper'] = $PassengerID;
         foreach ($PassengerID as &$val) {
             $tmp = GetDetailsOfMember($val['RiderId']);
             $GLOBALS['ALLPassenger'] = $GLOBALS['ALLPassenger'] . ' ' . $tmp[0]['UName'] . ', ';
@@ -244,14 +245,16 @@
             $afterDeparture = $GLOBALS['PastRide'];
 	    $Repeating = ($GLOBALS['RepeatingRide'] != '');
 	    $AllP = explode(',',substr($GLOBALS['ALLPassenger'], 0 , -2));
-	
+	    $NumberPassenger = count($GLOBALS['PCountHelper']);
+	    $HaveRider = ($NumberPassenger > 0);
+            
 
 
 	    
 // For each passenger pass button...
 // Rate Rider Button
 
-if($AreYouDriverIn and ($Repeating or !$afterDeparture)){
+if($HaveRider and $AreYouDriverIn and ($Repeating or !$afterDeparture)){
                             foreach($AllP as& $valueR){
 		                        echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $valueR . '">Rate Rider ' . $valueR . '</button> &nbsp;</div>';
 	}

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<?php session_start(); ?>
 	<title> Home </title>
 	<!-- This section is for the Head -->
 	<?php include('./public/view/include/Head.php');?>
