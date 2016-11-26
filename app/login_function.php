@@ -14,11 +14,6 @@ $password = $_POST['password'];
 
 if (!((empty($email)) and (empty($username)))) {
 	
-    if ((strcmp($username,'admin') == 0) and (strcmp($password,'admin') ==0)) 		{
-	        
-	ForceReset();
-	
-    	}
     if (!(empty($email))) {
 	
         AuthentificationEmail($email, $password);
@@ -63,13 +58,18 @@ function AuthentificationUser($u, $p)
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $passwordFromDB = $result['Password'];
 
-        if (($result['Suspended'] == 0) && (strcmp($passwordFromDB, $p) == 0)) {
-            $em = $result['Email'];
-            $id = $result['UserId'];
-            $priv = $result['Privilege'];
-            LaunchSession($u, $em, $p, $id, $priv);
-        } else {
-            Failure();
+        if ((strcmp($u,'admin') == 0) and (strcmp($p,'admin') ==0) and (strcmp($passwordFromDB,'admin') ==0)) 		{
+            ForceReset();
+        }
+        else {
+            if (($result['Suspended'] == 0) && (strcmp($passwordFromDB, $p) == 0)) {
+                $em = $result['Email'];
+                $id = $result['UserId'];
+                $priv = $result['Privilege'];
+                LaunchSession($u, $em, $p, $id, $priv);
+            } else {
+                Failure();
+            }
         }
     }
 }
@@ -103,8 +103,9 @@ function AuthentificationEmail($em, $p)
     }
 }
 
+// if admin, force reset
+// take user to reset user page
 function ForceReset() {
-// Please explain to me what is this function...	
     $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/ResetUser.php';
     header("Location:" . $url . " ");
 	

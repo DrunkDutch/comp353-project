@@ -2,8 +2,10 @@
 include('../config/config.php');
 include('../config/dbMakeConnection.php');
 
+session_start();
+
 // Field information
-$username = $_POST['username'];
+$username = $_POST['user'];
 $password = $_POST['password'];
 
 if (!empty($username) & !empty($password)) {
@@ -14,8 +16,6 @@ else {
     Redirect();
 }
 
-Redirect();
-
 function UpdateFields($username, $password) {
     $status = Connected();
     if($status == 1) {
@@ -25,12 +25,14 @@ function UpdateFields($username, $password) {
             echo($e);
         }
 
-        $stmt = $d->conn->prepare(/*Update statement*/);
+        $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `UName` = :u, `Password` = :p WHERE `UName` = 'admin'");
         $stmt->bindParam(':u', $username);
         $stmt->bindParam(':p', $password);
         $stmt->execute();
 
+        $_SESSION['Authen'] = null;
 
+        OnSuccessfulReset();
     }
 }
 
@@ -39,14 +41,7 @@ function Redirect() {
     header("Location:".$url." ");
 }
 
-function LaunchSession($u, $e, $p, $i, $priv)
-{
-    $_SESSION['username'] = $u;
-    $_SESSION['email'] = $e;
-    $_SESSION['p'] = $p;
-    $_SESSION['privi'] = $priv;
-    $_SESSION['UserId'] = $i;
-    $_SESSION['Authen'] = true;
-    $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Rides.php';
-    header("Location:" . $url . " ");
+function OnSuccessfulReset() {
+    $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/LOG_IN.php';
+    header("Location:".$url." ");
 }
