@@ -19,7 +19,16 @@
 	<!-- Trigger the modal with a button -->
 	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">New Message</button>
 
-	<?php include "/comp353-project/app/sendMessage.php"; ?>
+	<?php
+	include "../../../../app/sendMessage.php";
+
+	function Display()
+	{
+		echo '<div class="error">'.$_SESSION['MSG_ERROR'].'</div>';
+	}
+	Display();
+
+	?>
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -31,15 +40,16 @@
 					<h4 class="modal-title">New Message</h4>
 				</div>
 				<div class="modal-body">
-					<form action="/comp353-project/app/sendMessage.php" method="POST">
+					<form action="../../../../app/sendMessage.php" method="POST">
 						<div class="form-group">
 							<label for="user">To:</label>
-							<input type="text" class="form-control" name="user" id="user" placeholder="Enter Username">
+							<input type="text" class="form-control" name="user" id="user" placeholder="Enter Username" required="required">
 						</div>
 						<div class="form-group">
 							<label for="message">Message:</label>
-							<textarea class="form-control" rows="5" name="message" id="message" placeholder="Enter message"></textarea>
+							<textarea class="form-control" rows="5" name="message" id="message" placeholder="Enter message" required="required"></textarea>
 						</div>
+
 						<button class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-success">Submit</button>
 					</form>
@@ -128,7 +138,6 @@
 <div><?php echo $this_page; ?></div>
 <!-- This Section is for the footer -->
 <?php include("../../include/Footer.php"); ?>
-
-
 </body>
+
 </html>
