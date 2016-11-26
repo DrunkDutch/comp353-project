@@ -122,8 +122,11 @@
                 }
                 ?>
             </select>
-            <button type="button" onclick="SearchCity()" class="btn btn-info">Search with City</button>
-        </div>
+</div>
+            <div style="width:100%; height:80px;" ><button type="button" onclick="SearchCity()" class="btn btn-info">Search with City</button></div>
+
+
+        
 
         <div class="row" style="margin-top:20px; margin-bottom:20px;"><h4 class="col-xs-6">Do not want to search? </h4>
             <button id="ridesButton" type="button" onclick="ShowAllRides()" class="btn btn-info">Show All Rides</button>&nbsp;
