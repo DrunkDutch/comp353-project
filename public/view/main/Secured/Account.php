@@ -88,7 +88,7 @@ include("../../../../config/dbMakeConnection.php");
                 echo '<div id="myModal1" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Account Balance</h4></div>';
                 echo '<div class="modal-body"><form action="/comp353-project/app/updateFunds.php" method="POST">';
                 echo '<div class="form-group"><label for="Username">Current Balance: ' . $balance . '</label></div>';
-                echo '<div class="form-group"><label for="funds">Add Funds</label><input type="text" name="funds" class="form-control" aria-describedby="funds" id="funds" placeholder="100"></div>';
+                echo '<div class="form-group"><label for="funds">Add Funds</label><input type="number" name="funds" class="form-control" aria-describedby="funds" id="funds" placeholder="100" min="0" required="required"></div>';
                 echo '<button class="btn btn-default" data-dismiss="modal">Close</button>&nbsp;<button type="submit" class="btn btn-success">Submit</button></form></div></div></div></div>';
 
                 // able to edit and delete account

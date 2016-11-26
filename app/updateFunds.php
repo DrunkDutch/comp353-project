@@ -4,7 +4,7 @@ include('../config/dbMakeConnection.php');
 
 $funds = $_POST['funds'];
 
-if (!empty($funds)) {
+if (!empty($funds) && is_numeric($funds)) {
     UpdateFunds($funds);
 }
 Redirect();
