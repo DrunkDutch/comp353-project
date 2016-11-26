@@ -25,7 +25,6 @@ if ((!empty($username) and !empty($first) and !empty($last) and
     !empty($email) and !empty($password) and !empty($phone) and
     !empty($dob) and !empty($rfirst) and !empty($remail) and !empty($rdob))
 ) {
-
     if ((strcmp($password, $password2) != 0)) {
         Failure('Passwords do not match');
     }
@@ -33,8 +32,25 @@ if ((!empty($username) and !empty($first) and !empty($last) and
         Failure('Emails do not match');
     }
     else {
+        $dob_array = explode('-',$dob);
+        $rdob_array = explode('-',$rdob);
+
+        if (count($dob_array) != 3 || strlen($dob_array[0]) != 4 || strlen($dob_array[1]) != 2 || strlen($dob_array[2]) != 2)
+        {
+            Failure('Date of birth format is incorrect' . $dob_array[0] . ' '.$dob_array[1] . ' '. $dob_array[2]);
+        }
+        else if (!is_numeric($dob_array[0]) || !is_numeric($dob_array[1]) || !is_numeric($dob_array[2]) || !checkdate($dob_array[1], $dob_array[2], $dob_array[0])) {
+            Failure('Date of birth invalid');
+        }
+        else if (count($rdob_array) != 3 || strlen($rdob_array[0]) != 4 || strlen($rdob_array[1]) != 2 || strlen($rdob_array[2]) != 2)
+        {
+            Failure('Referrer date of birth format is incorrect' . $rdob_array[0] . ' '.$rdob_array[1] . ' '. $rdob_array[2]);
+        }
+        else if (!is_numeric($rdob_array[0]) || !is_numeric($rdob_array[1]) || !is_numeric($rdob_array[2]) || !checkdate($rdob_array[1], $rdob_array[2], $rdob_array[0])) {
+            Failure('Referrer date of birth invalid');
+        }
         // If permit and insurance info filled, create driver
-        if (!((empty($insurance)) and (empty($permit)))) {
+        else if (!((empty($insurance)) and (empty($permit)))) {
             CreateDriver($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $insurance, $permit);
         } // Create rider
         else {

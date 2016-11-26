@@ -33,7 +33,7 @@
  	<div class="form-group">
     <label for="Confirm Email">Confirm Email</label>
     <input type="email" name="email2" class="form-control" aria-describedby="emailHelp" id="exampleInputEmail1" placeholder="Confirm Email" required="required">
-    </div>   
+    </div>
     <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" name="password1" class="form-control" id="exampleInputPassword1" placeholder="Password" required="required">
@@ -79,10 +79,10 @@
     </p>
 
         <?php
+        if (isset($_GET['error'])) {
+            echo("<div class='row' style='margin-top:30px;height:70px; background-color:red; color:white;'><p style='padding-top:20px; font-size:20px;'>" . $_GET['error'] . "</p></div>");
+        }
         if(isset($_SESSION['Authen'])){
-            if(!$_SESSION['Authen']){
-                echo("<div class='row' style='margin-top:30px;height:70px; background-color:red; color:white;'><p style='padding-top:20px; font-size:20px;'>".$_GET['error']."</p></div>");
-            }
             if($_SESSION['Authen']){
                 echo("<div class='row' style='margin-top:30px;height:70px; background-color:green; color:white;'><p style='padding-top:20px; font-size:20px;'>Account successfully created</p></div>");
             }
