@@ -20,8 +20,7 @@
 <!-- Load App JS -->
 <script src="/comp353-project/public/js/app.js"></script>
 
-
-<?php 
+<?php
 include('../../../../config/config.php');
 //include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/app/route.php');
 include("../../../../app/route.php");

@@ -8,6 +8,7 @@
 <body>
 	<!-- Page Content -->
 <?php include("../include/Header.php"); ?>
+
     <!-- INCLUDE CONTENT OF PAGE HERE -->
     <div id="page-content-wrapper">
     <div class="row"><div class="text-center"><i class="fa fa-user-circle-o  fa-5x" aria-hidden="true"></i>
@@ -47,13 +48,7 @@
     </div>
     <div class="form-group">
     <label for="DOB">Date of Birth</label>
-        <div class='input-group date' id='datetimepicker1'>
-            <input type='text' class="form-control" />
-            <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-        </div>
-<!--    <input type="date" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="YYYY-MM-DD" required="required">-->
+    <input type="date" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="YYYY-MM-DD" required="required">
     </div>
     <div class="form-group">
     <label for="exampleInputRUsername">Referrer's First Name</label>
@@ -101,12 +96,6 @@
 <?php include("../include/Footer.php"); ?>
 	
 </body>
-
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker();
-    });
-</script>
 
 </html>
 
