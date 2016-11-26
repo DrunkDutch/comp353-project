@@ -44,7 +44,7 @@
             </li>
             <li>
                 <?php if ($_SESSION['Authen']) {
-			echo("<form style='margin-top:20px;' method='POST' action='/comp353-project/app/logout.php'><Input class='btn btn-alert' style='Background-color:transparent; border-style:none;' type='submit'value='Logout!'></form>");
+			echo("<form style='margin-top:20px;' method='POST' action='/comp353-project/app/logout.php'><Input class='btn btn-alert' style='Background-color:transparent; border-style:none;' type='submit'value='Log Out'></form>");
                 }
                 ?>
             </li>
