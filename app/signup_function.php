@@ -10,7 +10,7 @@ $first = $_POST['FirstName'];
 $last = $_POST['LastName'];
 $email = $_POST['email1'];
 $email2 = $_POST['email2'];
-$password = $_POST['password'];
+$password = $_POST['password1'];
 $password2 = $_POST['password2'];
 $phone = $_POST['phone'];
 $dob = $_POST['dob'];
@@ -26,23 +26,30 @@ if ((!empty($username) and !empty($first) and !empty($last) and
     !empty($dob) and !empty($rfirst) and !empty($remail) and !empty($rdob))
 ) {
 
-    if ($password !== $password2 or $email !== $email2) {
-        Failure();
-    } // If permit and insurance info filled, create driver
-    else if (!((empty($insurance)) and (empty($permit)))) {
-        CreateDriver($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $insurance, $permit);
-    } // Create rider
+    if ((strcmp($password, $password2) != 0)) {
+        Failure('Passwords do not match');
+    }
+    else if ((strcmp($email, $email2) != 0)) {
+        Failure('Emails do not match');
+    }
     else {
-        CreateRider($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob);
+        // If permit and insurance info filled, create driver
+        if (!((empty($insurance)) and (empty($permit)))) {
+            CreateDriver($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $insurance, $permit);
+        } // Create rider
+        else {
+            CreateRider($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob);
+        }
     }
 } else {
-    Failure();
+    Failure('Not all required fields are filled out');
 }
 
-function Failure()
+function Failure($msg)
 {
     $_SESSION['Authen'] = false;
-    header("Location: http://localhost/comp353-project/public/view/main/Sign_up.php");
+    $urlAndAlert = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Sign_up.php?error=' . $msg;
+    header("Location:" . $urlAndAlert . " ");
 }
 
 function CreateDriver($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $insurance, $permit)
@@ -56,12 +63,12 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
         }
 
         // Check if username already exists
-        $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
+        $stmt = $d->conn->prepare("SELECT * FROM " . $GLOBALS['db_name'] . ".Member WHERE UName = :u");
         $stmt->bindParam(':u', $username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            Failure();
+            Failure('User already exists');
         } else {
             $stmt = $d->conn->prepare("SELECT `UserId` FROM `comp353`.`Member` where Email like :e and DOB = date(:d) and FName like :f");
             $stmt->bindParam(':e', $remail);
@@ -75,7 +82,7 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
                 $ruserid = $result['UserId'];
 
                 // Create user
-                $stmt = $d->conn->prepare("INSERT INTO `".$GLOBALS['db_name']."`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`,`Permit`,`Insurance`)VALUES(:u,:p,:f,:l,:e,:d,:r,0,3,:phone,:per,:i)");
+                $stmt = $d->conn->prepare("INSERT INTO `" . $GLOBALS['db_name'] . "`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`,`Permit`,`Insurance`)VALUES(:u,:p,:f,:l,:e,:d,:r,0,3,:phone,:per,:i)");
                 $stmt->bindParam(':u', $username);
                 $stmt->bindParam(':p', $password);
                 $stmt->bindParam(':f', $first);
@@ -89,7 +96,7 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
                 $stmt->execute();
 
                 // Log in
-                $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
+                $stmt = $d->conn->prepare("SELECT * FROM " . $GLOBALS['db_name'] . ".Member WHERE UName = :u");
                 $stmt->bindParam(':u', $username);
                 $stmt->execute();
 
@@ -102,8 +109,7 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
 
                 LaunchSession($username, $em, $p, $id, $priv);
             } else {
-                echo "Referrer does not exist";
-                Failure();
+                Failure('Referrer does not exist');
             }
         }
     }
@@ -121,14 +127,14 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
         }
 
         // Check if username already exists
-        $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
+        $stmt = $d->conn->prepare("SELECT * FROM " . $GLOBALS['db_name'] . ".Member WHERE UName = :u");
         $stmt->bindParam(':u', $username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            Failure();
+            Failure('User already exists');
         } else {
-            $stmt = $d->conn->prepare("SELECT `UserId` FROM `".$GLOBALS['db_name']."`.`Member` where Email like :e and DOB = date(:d) and FName like :f");
+            $stmt = $d->conn->prepare("SELECT `UserId` FROM `" . $GLOBALS['db_name'] . "`.`Member` where Email like :e and DOB = date(:d) and FName like :f");
             $stmt->bindParam(':e', $remail);
             $stmt->bindParam(':d', $rdob);
             $stmt->bindParam(':f', $rfirst);
@@ -140,7 +146,7 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
                 $ruserid = $result['UserId'];
 
                 // Create user
-                $stmt = $d->conn->prepare("INSERT INTO `".$GLOBALS['db_name']."`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`)VALUES(:u,:p,:f,:l,:e,:d,:r,0,3,:phone)");
+                $stmt = $d->conn->prepare("INSERT INTO `" . $GLOBALS['db_name'] . "`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`)VALUES(:u,:p,:f,:l,:e,:d,:r,0,3,:phone)");
                 $stmt->bindParam(':u', $username);
                 $stmt->bindParam(':p', $password);
                 $stmt->bindParam(':f', $first);
@@ -152,7 +158,7 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
                 $stmt->execute();
 
                 // Log in
-                $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName = :u");
+                $stmt = $d->conn->prepare("SELECT * FROM " . $GLOBALS['db_name'] . ".Member WHERE UName = :u");
                 $stmt->bindParam(':u', $username);
                 $stmt->execute();
 
@@ -165,12 +171,10 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
 
                 LaunchSession($username, $em, $p, $id, $priv);
             } else {
-                echo "Referrer does not exist";
-                Failure();
+                Failure('Referrer does not exist');
             }
         }
     }
-
 }
 
 function LaunchSession($u, $e, $p, $i, $priv)

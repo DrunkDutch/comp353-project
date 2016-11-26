@@ -47,7 +47,13 @@
     </div>
     <div class="form-group">
     <label for="DOB">Date of Birth</label>
-    <input type="date" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="YYYY-MM-DD" required="required">
+        <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" />
+            <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+        </div>
+<!--    <input type="date" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="YYYY-MM-DD" required="required">-->
     </div>
     <div class="form-group">
     <label for="exampleInputRUsername">Referrer's First Name</label>
@@ -80,7 +86,7 @@
         <?php
         if(isset($_SESSION['Authen'])){
             if(!$_SESSION['Authen']){
-                echo("<div class='row' style='margin-top:30px;height:70px; background-color:red; color:white;'><p style='padding-top:20px; font-size:20px;'>Not all fields filled or user already exists</p></div>");
+                echo("<div class='row' style='margin-top:30px;height:70px; background-color:red; color:white;'><p style='padding-top:20px; font-size:20px;'>".$_GET['error']."</p></div>");
             }
             if($_SESSION['Authen']){
                 echo("<div class='row' style='margin-top:30px;height:70px; background-color:green; color:white;'><p style='padding-top:20px; font-size:20px;'>Account successfully created</p></div>");
@@ -95,5 +101,12 @@
 <?php include("../include/Footer.php"); ?>
 	
 </body>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker();
+    });
+</script>
+
 </html>
 
