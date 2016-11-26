@@ -28,7 +28,7 @@
 
             </div>
 	<?php
-		if(!(empty($_GET['alert']))){
+		if(!empty($_GET['alert'])){
 		echo '<div class="row" style="background-color:orange; height:100px;margin-top:50px;"><h4>Alert:&nbsp'.$_GET['alert'].'</h4></div>';
 		}
 

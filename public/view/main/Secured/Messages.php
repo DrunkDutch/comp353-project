@@ -19,14 +19,13 @@
 	<!-- Trigger the modal with a button -->
 	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">New Message</button>
 
+
 	<?php
 	include "../../../../app/sendMessage.php";
 
-	function Display()
-	{
-		echo '<div class="error">'.$_SESSION['MSG_ERROR'].'</div>';
+	if(!empty($_GET['alert'])){
+		echo '<div class="row" style="background-color:orange; height:100px;margin-top:50px;"><h4>'.$_GET['alert'].'</h4></div>';
 	}
-	Display();
 
 	?>
 	<!-- Modal -->

@@ -11,8 +11,8 @@ if (!((empty($username)) and (empty($message)))) {
 
 function Redirect()
 {
-    $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Messages.php';
-    header("Location:" . $url . " ");
+    $urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Messages.php?alert= User does not exist Message Was not sent. ';
+    header("Location:" .$urlAndAlert. " ");
 }
 
 function SendEmail($t, $m)
