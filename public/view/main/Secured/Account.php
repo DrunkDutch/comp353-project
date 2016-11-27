@@ -77,6 +77,10 @@ include("../../../../config/dbMakeConnection.php");
             // if own account or if you are root or admin
             if ($_SESSION['UserId'] == $accountDetails['UserId'] || $privilege <= 2) {
 
+                if ($privilege <= 2) {
+                    $_SESSION['editId'] = $_GET['id'];
+                }
+
                 // add buttons
                 echo '&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Account Balance</button>';
                 $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/app/deleteAccount.php?id=' . $accountDetails['UserId'];

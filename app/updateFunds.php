@@ -27,6 +27,12 @@ function UpdateFunds($funds)
         }
 
         $u = $_SESSION['UserId'];
+        $editId = $_SESSION['editId'];
+
+        // if admin or root
+        if ($editId) {
+            $u = $editId;
+        }
 
         // check if current funds
         $stmt = $d->conn->prepare("SELECT Balance FROM " . $GLOBALS['db_name'] . ".Member WHERE UName = :u");

@@ -35,7 +35,18 @@ if (!empty($phone)) {
     UpdateField('Phone', $phone);
 }
 if (!empty($dob)) {
-    UpdateField('FName', $dob);
+    $dob_array = explode('-',$dob);
+
+    if (count($dob_array) != 3 || strlen($dob_array[0]) != 4 || strlen($dob_array[1]) != 2 || strlen($dob_array[2]) != 2)
+    {
+        Failure('Date of birth format is incorrect' . $dob_array[0] . ' '.$dob_array[1] . ' '. $dob_array[2]);
+    }
+    else if (!is_numeric($dob_array[0]) || !is_numeric($dob_array[1]) || !is_numeric($dob_array[2]) || !checkdate($dob_array[1], $dob_array[2], $dob_array[0])) {
+        Failure('Date of birth invalid');
+    }
+    else {
+        UpdateField('DOB', $dob);
+    }
 }
 if (!empty($permit)) {
     UpdateField('Permit', $permit);
@@ -64,8 +75,18 @@ function UpdateField($fieldName, $value) {
             echo($e);
         }
 
-        $stmt = $d->conn->prepare(/*Update statement*/);
-        $stmt->bindParam(':u', $username);
+        $userId = $_SESSION['UserId'];
+        $editId = $_SESSION['editId'];
+
+        // if admin or root
+        if ($editId) {
+            $userId = $editId;
+        }
+
+        $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET :c = :v WHERE `UserId` = :i");
+        $stmt->bindParam(':c', $fieldName);
+        $stmt->bindParam(':v', $value);
+        $stmt->bindParam(':i', $userId);
         $stmt->execute();
 
     }
@@ -90,15 +111,28 @@ function UpdateUniqueField($fieldName, $value) {
             echo "Username already exists";
         }
         else {
-            $stmt = $d->conn->prepare(/* UPDATE STATEMENT */);
-            $stmt->bindParam(':u', $username);
-            $stmt->execute();
-        }
+            $userId = $_SESSION['UserId'];
+            $editId = $_SESSION['editId'];
 
+            $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET :c = :v WHERE `UserId` = :i");
+            $stmt->bindParam(':c', $fieldName);
+            $stmt->bindParam(':v', $value);
+            $stmt->bindParam(':i', $userId);
+            if ($editId) {
+                $stmt->bindParam(':i', $editId);
+            }
+            $stmt->execute();
+
+        }
     }
 }
 
 function Redirect() {
     $url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/Secured/Account.php?id=' . $_SESSION['UserId'];
     header("Location:".$url." ");
+}
+
+function Failure($msg) {
+    $urlAndAlert = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Account.php?id=' . $_SESSION['UserId'] . '&error=' . $msg;
+    header("Location:" . $urlAndAlert . " ");
 }
