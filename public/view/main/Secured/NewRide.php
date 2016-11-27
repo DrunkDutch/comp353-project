@@ -27,57 +27,57 @@
       <h3 style="margin-bottom:30px;">Departure</h3>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Depart_streetNumber">Street Number: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_streetNumber" type="text" value="">
+<Input id="Depart_streetNumber" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_streetNumber" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Depart_street">Street Name: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_street" type="text" value="">
+<Input id="Depart_street" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_street" type="text" value="">
 </div>
 
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Depart_City">City: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_City" type="text" value="">
+<Input id="Depart_City" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_City" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Depart_Prov">Province: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_Prov" type="text" value="">
+<Input id="Depart_Prov" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_Prov" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Depart_ZIP">Postal Code: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_ZIP" type="text" value="">
+<Input id="Depart_ZIP" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_ZIP" type="text" value="">
 </div>
-	<a href="#menu1" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
+	<a href="#menu1" data-toggle="tab"><button onclick="BuildAddressDep()" class="btn btn-primary">Next Step</button></a>
 	
     </div>
     <div id="menu1" class="tab-pane fade">
       <h3>Destination</h3>
       <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Des_streetNumber">Street Number: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_streetNumber" type="text" value="">
+<Input id="Des_streetNumber" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_streetNumber" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Des_street">Street Name: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_street" type="text" value="">
+<Input id="Des_street" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_street" type="text" value="">
 </div>
 
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Des_City">City: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_City" type="text" value="">
+<Input id="Des_City" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_City" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Des_Prov">Province: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_Prov" type="text" value="">
+<Input id="Des_Prov" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_Prov" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Des_ZIP">Postal Code: </label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_ZIP" type="text" value="">
+<Input id="Des_ZIP" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_ZIP" type="text" value="">
 </div>
 	<a href="#home" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
-	<a href="#menu2" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
+	<a href="#menu2" data-toggle="tab"><button onclick="BuildAddressDes()" class="btn btn-primary">Next Step</button></a>
     </div>
     <div id="menu2" class="tab-pane fade">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
+
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <h3>Choose the right time</h3>
 
@@ -86,10 +86,10 @@
 <Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="RDate" id="datepicker" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
-<label class="form-check-label" for="RTime">Time:</label>
-<Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="RTime"  type="text" value="">
+<label  class="form-check-label" for="RTime">Time:</label>
+<Input placeholder="21:32:02" id="TimeValue" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="RTime"  type="text" value="">
 </div>
-<div class="row form-group" style="margin-bottom:25px;">
+
 
 <h3 for="RRepeating">Repeating each:</h3>
 <div class="row">
@@ -121,12 +121,45 @@
 <Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RSat"  type="checkbox" value="Sat">
 </div>
 
-<div class="row" style="margin-bottom:25px;>
+<div class="row" style="margin-bottom:25px;">
 <label class="form-check-label" for="RSun">Sunday</label>
 <Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RSun"  type="checkbox" value="Sun">
 </div>
 
 </div>
+	<a href="#menu1" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
+	<a href="#menu3" data-toggle="tab"><button onclick="ResetValid()" class="btn btn-primary">Next Step</button></a>
+    </div>
+    <div id="menu3" class="tab-pane fade">
+      <h3>Driver or Rider ?</h3>
+<div class="form-check">
+<div class="row" style="margin-bottom:25px;">
+<label class="form-check-label" style="Padding:15px; font-size:22px;">Driver</label>
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="optionRadio"  type="radio" value="driver">
+</div>
+<div class="row" style="margin-bottom:25px;">
+<label class="form-check-label" style="Padding:15px; font-size:22px;">Rider</label>
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="optionRadio"  type="radio" value="rider">
+</div>
+</div>
+
+	<a href="#menu2" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
+
+	<a id="GoAway" href="#Roger" data-toggle="tab"><button onclick="ValidateData()" class="btn btn-warning">Validate Data</button></a>
+
+	<a href="#menu4" id="ValidIt" class="collapse" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
+    </div>
+
+
+    <div id="menu4" class="tab-pane fade">
+      <h3>Post</h3>
+      <p>Ride Posting...</p>
+	<a href="#menu3" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
+	<Input id="SurprisingButton" style="display:none;" type="submit" class="btn btn-success" value="Post">
+    </div>
+  </div>
+</div>
+</form>
   <script>
  $(function(){
         $("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' }).bind("change",function(){
@@ -136,32 +169,107 @@
             $("#to").datepicker( "option", "minDate", minValue );
         })
     });
+
   </script>
-	<a href="#menu1" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
-	<a href="#menu3" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
-    </div>
-    <div id="menu3" class="tab-pane fade">
-      <h3>Driver or Rider ?</h3>
-      <p>Drier Rider field</p>
-	<a href="#menu2" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
-	<a href="#menu4" data-toggle="tab"><button class="btn btn-primary">Next Step</button></a>
-    </div>
-    <div id="menu4" class="tab-pane fade">
-      <h3>Post</h3>
-      <p>Ride Posting...</p>
-	<a href="#menu3" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
-	<Input type="submit" class="btn btn-success" value="Post">
-    </div>
-  </div>
-</div>
-</form>
 <script>
+var addrDes;
+var addrDep;
+var CaddrDep;
+var CaddrDes;
 $(document).ready(function(){
     $(".nav-tabs a").click(function(){
         $(this).tab('show');
     });
 });
+
+function BuildAddressDes(){
+	$(document).ready(function () {
+	addrDes = {
+	'streetNum' : $("#Des_streetNumber").val(),
+	'street' : $("#Des_street").val(),
+	'city' : $("#Des_City").val(),
+	'prov' : $("#Des_Prov").val(),
+	'zip': ($("#Des_ZIP").val()).replace(/\s+/g, ''), }; 
+	});
+
+
+CaddrDes = addrDes.streetNum + ", " + addrDes.street + ",  " + addrDes.city + ", " + addrDes.prov;
+console.log(CaddrDes);
+}
+
+function BuildAddressDep(){
+
+	$(document).ready(function () {
+	addrDep = {
+	'streetNum' : $("#Depart_streetNumber").val(),
+	'street' : $("#Depart_street").val(),
+	'city' : $("#Depart_City").val(),
+	'prov' : $("#Depart_Prov").val(),
+	'zip': ($("#Depart_ZIP").val()).replace(/\s+/g, ''), }; 
+	});
+
+
+CaddrDep = addrDep.streetNum + ", " + addrDep.street + ",  " + addrDep.city + ", " + addrDep.prov;
+console.log(CaddrDep);
+
+
+}
+
+function ValidateData(){
+        $(document).ready(function () {
+		
+
+		// if all data are valid
+		$("#ValidIt").collapse("show");
+		
+
+		
+
+        });
+
+}
+
+
+
+function ResetValid(){
+        $(document).ready(function () {
+		$("#ValidIt").collapse("hide");		
+
+        });
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: {lat: -34.397, lng: 150.644}
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+        });
+      }
+
+      function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+
+}
 </script>
+<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio&callback=initMap">
+</script>
+
 </div>
 <!-- END OF CONTENT -->
 <div><?php echo $this_page; ?></div>
