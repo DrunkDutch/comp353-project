@@ -150,7 +150,10 @@
 <Input id="riderFoo" style="margin:Auto; float:none;" class="form-check-input text-muted" name="optionRadio"  type="radio" value="rider">
 </div>
 </div>
-
+<div class="row" style="margin-bottom:25px;">
+<label class="form-check-label" style="Padding:15px; font-size:22px;">Capacity of the ride</label>
+<Input id="Capacity" style="margin:Auto; float:none;" class=" text-muted" name="Capacity"  type="number" value="1">
+</div>
 	<a href="#menu2" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
 
 	<a id="GoAway" href="#Roger" data-toggle="tab"><button onclick="ValidateData()" class="btn btn-warning">Validate Data</button></a>
@@ -163,16 +166,16 @@
       <h3>Post</h3>
       <p>Ride Posting...</p>
 	<a href="#menu3" data-toggle="tab"><button class="btn btn-danger">Previous Step</button></a>
-	<Input id="SurprisingButton" style="display:none;" type="submit" class="btn btn-success" value="Post">
+	<Input id="SurprisingButton"  type="submit" class="btn btn-success" value="Post">
     </div>
   </div>
-<Input id="DestinaLon" style="" type="text" name="DestinationLon" value="">
-<Input id="DestinaLat" style="" type="text" name="DestinationLat" value="">
-<Input id="DepartLon" style="" type="text" name="DespartLon" value="">
-<Input id="DepartLat" style="" type="text" name="DespartLat" value="">
-<Input id="AllDay" style="" type="text" name="AllDay" value="">
-<Input id="DorR" style="" type="text" name="DorR" value="">
-<Input id="DistanceAB" style="" type="text" name="DistanceAB" value="">
+<Input id="DestinaLon" style="display:none;" type="text" name="DestinationLon" value="">
+<Input id="DestinaLat" style="display:none;" type="text" name="DestinationLat" value="">
+<Input id="DepartLon" style="display:none;" type="text" name="DepartLon" value="">
+<Input id="DepartLat" style="display:none;" type="text" name="DepartLat" value="">
+<Input id="AllDay" style="display:none;" type="text" name="AllDay" value="">
+<Input id="DorR" style="display:none;" type="text" name="DorR" value="">
+<Input id="DistanceAB" style="display:none;" type="text" name="DistanceAB" value="">
 </div>
 </form>
   <script>
@@ -474,37 +477,6 @@ function ResetValid(){
 	BuildDayString();
 }
 
-      //function initMap() {
-        //var map = new google.maps.Map(document.getElementById('map'), {
-       //   zoom: 8,
-      //    center: {lat: -34.397, lng: 150.644}
-    //    });
-     //   var geocoder = new google.maps.Geocoder();
-//
-     //   document.getElementById('submit').addEventListener('click', function() {
-     //     geocodeAddress(geocoder, map);
-      //  });
-     // }
-
-
-    function initMap() {
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 7,
-          center: {lat: 41.85, lng: -87.65}
-        });
-        directionsDisplay.setMap(map);
-
-        var onChangeHandler = function() {
-          calculateAndDisplayRoute(directionsService, directionsDisplay);
-        };
-        document.getElementById('start').addEventListener('change', onChangeHandler);
-        document.getElementById('end').addEventListener('change', onChangeHandler);
-      }
-
-
-
 
 
 </script>
@@ -512,7 +484,7 @@ function ResetValid(){
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio&callback=geocodeAddress">
 </script>
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTrJWbLtv2VwyMhbgTUx0VCr_8r6I7VLo&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTrJWbLtv2VwyMhbgTUx0VCr_8r6I7VLo">
 </script>
 
 

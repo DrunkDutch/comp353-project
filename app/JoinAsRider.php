@@ -54,7 +54,7 @@ function ChargeM($user, $cost){
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `Balance` = :c WHERE `UserId` = :u");
+            $stmt = $d->conn->prepare("UPDATE `".$GLOBALS['db_name']."`.`Member` SET `Balance` = :c WHERE `UserId` = :u");
             $stmt->bindParam(':c', $cost);
 	    $stmt->bindParam(':u',$user);
             $stmt->execute();
