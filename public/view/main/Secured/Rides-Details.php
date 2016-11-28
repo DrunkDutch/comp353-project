@@ -262,7 +262,11 @@
             if ($HaveADriver and $AreYouRiderIn and ($Repeating or $afterDeparture)) {
                 echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $GLOBALS['Driver'] . '">Rate Driver ' . $GLOBALS['Driver'] . '</button></div>';
             }
+// Leave Driver
 
+	if($AreYouDriverIn and $HaveADriver){
+	echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><h5>You are the driver and you can not leave</h5></div>');
+	}
             // Leave as Rider
             if ($AreYouRiderIn and ($Repeating or !$afterDeparture)) {
                 echo('<div class="row" style="margin-top:20px;margin-bottom:20px;"><form method="POST" action="/comp353-project/app/LeaveRider.php" ><Input type="number" style="display:none;" name="RideId" value="' . $_GET['id'] . '"><Input type="submit" class="btn btn-success" value="Leave as Rider"></form></div>');

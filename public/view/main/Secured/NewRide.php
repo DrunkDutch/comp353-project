@@ -47,6 +47,7 @@
 <Input id="Depart_Country" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_Country" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
+<div class="" style="margin:Auto; float:none; width:90%; background-color: darkorange; padding:20px; margin-bottom:30px;"><h5 style="font-weight: bold;">Please note that the Postal code is required but would not be used by our server. Please enter the right address</h5></div>
 <label class="form-check-label" for="Depart_ZIP">Postal Code: </label>
 <Input id="Depart_ZIP" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_ZIP" type="text" value="">
 </div>
@@ -77,6 +78,7 @@
 <Input id="Des_Country" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_Country" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
+<div class="" style="margin:Auto; float:none; width:90%; background-color: darkorange; padding:20px; margin-bottom:30px;"><h5 style="font-weight: bold;">Please note that the Postal code is required but would not be used by our server. Please enter the right address</h5></div>
 <label class="form-check-label" for="Des_ZIP">Postal Code: </label>
 <Input id="Des_ZIP" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_ZIP" type="text" value="">
 </div>
@@ -247,8 +249,7 @@ function BuildAddressDes(){
 
 
 CaddrDes = addrDes.streetNum + ", " + addrDes.street + ",  " + addrDes.city + ", " + addrDes.prov + ", " + addrDes.country;
-console.log(CaddrDes);
-console.log(addrDes.zip);
+
 
 // Now find GSP data for it...
       function geocodeAddress3(addre) {
@@ -291,8 +292,7 @@ function BuildAddressDep(){
 
 
 CaddrDep = addrDep.streetNum + ", " + addrDep.street + ",  " + addrDep.city + ", " + addrDep.prov + ", "+ addrDep.country;
-console.log(CaddrDep);
-console.log(addrDep.zip);
+
 
 // Now find GSP data for it...
       function geocodeAddress2(addre) {
@@ -354,8 +354,7 @@ function ValidateData(){
 		
 		var desZip = addrDes.zip;
 		var depZip = addrDep.zip;
-		console.log(desZip);
-		console.log(depZip);
+		
 		if( (desZip.length < 5) || (desZip.length > 6)){
 			AllDataOK = false;
 			alert("The Destination Postal code is not OK...");
@@ -410,11 +409,7 @@ function ValidateData(){
 		}
 		
 		// Computer distance between two points...
-		console.log(GpsDep.lat);
-		console.log(GpsDep.lon);
-
-		console.log(GpsDes.lat);
-		console.log(GpsDes.lon);
+	
 		      	function calculateAndDisplayRoute() {
 			var directionsService = new google.maps.DirectionsService;
         		var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -468,7 +463,7 @@ function ResetValid(){
 			if($('#RSun').is(':checked')){ DayRepeating = DayRepeating + "Sun"; }
 
 
-			console.log(DayRepeating);
+			
 
 		
 		});
