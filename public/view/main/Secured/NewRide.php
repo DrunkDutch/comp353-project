@@ -43,6 +43,10 @@
 <Input id="Depart_Prov" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_Prov" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
+<label class="form-check-label" for="Depart_Country">Country: </label>
+<Input id="Depart_Country" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_Country" type="text" value="">
+</div>
+<div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Depart_ZIP">Postal Code: </label>
 <Input id="Depart_ZIP" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Depart_ZIP" type="text" value="">
 </div>
@@ -67,6 +71,10 @@
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Des_Prov">Province: </label>
 <Input id="Des_Prov" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_Prov" type="text" value="">
+</div>
+<div class="row form-group" style="margin-bottom:25px;">
+<label class="form-check-label" for="Des_Country">Country: </label>
+<Input id="Des_Country" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="Des_Country" type="text" value="">
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="Des_ZIP">Postal Code: </label>
@@ -94,36 +102,36 @@
 <h3 for="RRepeating">Repeating each:</h3>
 <div class="row">
 <label class="form-check-label" for="Rmon">Monday</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RMon"  type="checkbox" value="Mon">
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" id="RMon" name="RMon"  type="checkbox" value="Mon">
 
 <div class="row">
 <label class="form-check-label" for="RTue">Tuesday</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RTue"  type="checkbox" value="Tue">
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" id="RTue" name="RTue"  type="checkbox" value="Tue">
 </div>
 
 <div class="row">
 <label class="form-check-label" for="RWes">Wednesday</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RWes"  type="checkbox" value="Wes">
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" id="RWes" name="RWes"  type="checkbox" value="Wes">
 </div>
 
 <div class="row">
 <label class="form-check-label" for="RThur">Thursday</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RThur"  type="checkbox" value="Thur">
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" id="RThur" name="RThur"  type="checkbox" value="Thur">
 </div>
 
 <div class="row">
 <label class="form-check-label" for="RFri">Friday</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RFri"  type="checkbox" value="Fri">
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" id="RFri" name="RFri"  type="checkbox" value="Fri">
 </div>
 
 <div class="row">
 <label class="form-check-label" for="RSat">Saterday</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RSat"  type="checkbox" value="Sat">
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" id="RSat" name="RSat"  type="checkbox" value="Sat">
 </div>
 
 <div class="row" style="margin-bottom:25px;">
 <label class="form-check-label" for="RSun">Sunday</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="RSun"  type="checkbox" value="Sun">
+<Input style="margin:Auto; float:none;" class="form-check-input text-muted" id="RSun" name="RSun"  type="checkbox" value="Sun">
 </div>
 
 </div>
@@ -135,11 +143,11 @@
 <div class="form-check">
 <div class="row" style="margin-bottom:25px;">
 <label class="form-check-label" style="Padding:15px; font-size:22px;">Driver</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="optionRadio"  type="radio" value="driver">
+<Input id="driverFoo" style="margin:Auto; float:none;" class="form-check-input text-muted" name="optionRadio"  type="radio" value="driver">
 </div>
 <div class="row" style="margin-bottom:25px;">
 <label class="form-check-label" style="Padding:15px; font-size:22px;">Rider</label>
-<Input style="margin:Auto; float:none;" class="form-check-input text-muted" name="optionRadio"  type="radio" value="rider">
+<Input id="riderFoo" style="margin:Auto; float:none;" class="form-check-input text-muted" name="optionRadio"  type="radio" value="rider">
 </div>
 </div>
 
@@ -158,6 +166,13 @@
 	<Input id="SurprisingButton" style="display:none;" type="submit" class="btn btn-success" value="Post">
     </div>
   </div>
+<Input id="DestinaLon" style="" type="text" name="DestinationLon" value="">
+<Input id="DestinaLat" style="" type="text" name="DestinationLat" value="">
+<Input id="DepartLon" style="" type="text" name="DespartLon" value="">
+<Input id="DepartLat" style="" type="text" name="DespartLat" value="">
+<Input id="AllDay" style="" type="text" name="AllDay" value="">
+<Input id="DorR" style="" type="text" name="DorR" value="">
+<Input id="DistanceAB" style="" type="text" name="DistanceAB" value="">
 </div>
 </form>
   <script>
@@ -176,6 +191,39 @@ var addrDes;
 var addrDep;
 var CaddrDep;
 var CaddrDes;
+var GpsDes;
+var GpsDep;
+var DayRepeating;
+var AllDataOK;
+
+
+ var filterFloat = function (value) {
+       if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+       .test(value))
+          return Number(value);
+       return NaN;
+ }
+
+
+      function geocodeAddress(addre) {
+	var geocoder = new google.maps.Geocoder();        
+	var address = addre;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {	
+            //resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              //map: resultsMap,
+              position: results[0].geometry.location
+            });
+		 var latx = marker.position.lat();
+		 var lonx = marker.position.lng();		
+		
+          }
+        });
+      }
+
+
+
 $(document).ready(function(){
     $(".nav-tabs a").click(function(){
         $(this).tab('show');
@@ -183,48 +231,164 @@ $(document).ready(function(){
 });
 
 function BuildAddressDes(){
+	addrDes ="";
 	$(document).ready(function () {
 	addrDes = {
 	'streetNum' : $("#Des_streetNumber").val(),
 	'street' : $("#Des_street").val(),
 	'city' : $("#Des_City").val(),
 	'prov' : $("#Des_Prov").val(),
-	'zip': ($("#Des_ZIP").val()).replace(/\s+/g, ''), }; 
+	'zip': ($("#Des_ZIP").val()).replace(/\s+/g, ''), 
+	'country': $("#Des_Country").val(), }; 
 	});
 
 
-CaddrDes = addrDes.streetNum + ", " + addrDes.street + ",  " + addrDes.city + ", " + addrDes.prov;
+CaddrDes = addrDes.streetNum + ", " + addrDes.street + ",  " + addrDes.city + ", " + addrDes.prov + ", " + addrDes.country;
 console.log(CaddrDes);
+console.log(addrDes.zip);
+
+// Now find GSP data for it...
+      function geocodeAddress3(addre) {
+	var geocoder = new google.maps.Geocoder();        
+	var address = addre;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {	
+            //resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              //map: resultsMap,
+              position: results[0].geometry.location
+            });
+		 var laty = marker.position.lat();
+		 var lony = marker.position.lng();
+
+		GpsDes = {
+		'lat': laty,
+		'lon': lony,
+		};
+          }
+	else{
+	alert("We were not able to find the location of your Destination, Please step back one step and change data ");	
+	}
+        });
+      }
+geocodeAddress3(CaddrDes);
 }
 
 function BuildAddressDep(){
-
+	addrDep = "";
 	$(document).ready(function () {
 	addrDep = {
 	'streetNum' : $("#Depart_streetNumber").val(),
 	'street' : $("#Depart_street").val(),
 	'city' : $("#Depart_City").val(),
 	'prov' : $("#Depart_Prov").val(),
-	'zip': ($("#Depart_ZIP").val()).replace(/\s+/g, ''), }; 
+	'zip': ($("#Depart_ZIP").val()).replace(/\s+/g, ''), 
+	'country': $("#Depart_Country").val(), }; 
 	});
 
 
-CaddrDep = addrDep.streetNum + ", " + addrDep.street + ",  " + addrDep.city + ", " + addrDep.prov;
+CaddrDep = addrDep.streetNum + ", " + addrDep.street + ",  " + addrDep.city + ", " + addrDep.prov + ", "+ addrDep.country;
 console.log(CaddrDep);
+console.log(addrDep.zip);
+
+// Now find GSP data for it...
+      function geocodeAddress2(addre) {
+	var geocoder = new google.maps.Geocoder();        
+	var address = addre;
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {	
+            //resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              //map: resultsMap,
+              position: results[0].geometry.location
+            });
+		 var latx = marker.position.lat();
+		 var lonx = marker.position.lng();
+
+		GpsDep = {
+		'lat': latx,
+		'lon': lonx,
+		};
+          }
+	else{
+	alert("We were not able to find the location of your Departure, Please step back one step and change data");	
+	}
+        });
+      }
+geocodeAddress2(CaddrDep);
 
 
 }
 
 function ValidateData(){
+	AllDataOK = false;
         $(document).ready(function () {
-		
-
 		// if all data are valid
+		AllDataOK = true;
+		if((!isNaN(GpsDep.lon)) && (!isNaN(GpsDep.lat))){
+			$("#DepartLon").val(GpsDep.lon);
+			$("#DepartLat").val(GpsDep.lat);
+			
+
+		}
+		else{
+			alert("The location of your Destination is still not defined... :(");
+			AllDataOK = false;
+		}
+		if((!isNaN(GpsDes.lon)) && (!isNaN(GpsDes.lat))){
+			$("#DestinaLon").val(GpsDes.lon);
+			$("#DestinaLat").val(GpsDes.lat);
+		}
+		else{
+			alert("The location of your Destination is still not defined... :(");
+			AllDataOK = false;
+		}
+		// Setting Repeating Date...
+		$("#AllDay").val(DayRepeating);
+
+		
+		var desZip = addrDes.zip;
+		var depZip = addrDep.zip;
+		console.log(desZip);
+		console.log(depZip);
+		if( (desZip.length < 5) || (desZip.length > 6)){
+			AllDateOK = false;
+			alert("The Destination Postal code is not OK...");
+		}
+
+		if((depZip.length < 5) || (depZip.length > 6)){
+			AllDateOK = false;
+			alert("The Departure Postal code is not OK...");
+		}
+		// Driver or Rider...?
+		var DorR = "";
+		if($("#DriverFoo").is(":checked")){
+			DorR = "Driver";		
+		}
+		else {
+			DorR = "Rider";		
+		}
+		
+		$("#DorR").val(DorR);
+		// Validation on date...
+		var date = $("#datepicker").val();
+
+		console.log(date);
+		console.log(date.lenght);
+
+		// Validation on Time
+
+		
+		var time = $("#TimeValue").val();
+
+		console.log(time);
+		// Computer distance between two points...
+		console.log(GpsDep.lat);
+		console.log(GpsDep.lon);
+
+		console.log(GpsDes.lat);
+		console.log(GpsDes.lon);
 		$("#ValidIt").collapse("show");
-		
-
-		
-
         });
 
 }
@@ -236,38 +400,46 @@ function ResetValid(){
 		$("#ValidIt").collapse("hide");		
 
         });
+	function BuildDayString(){
+		DayRepeating = "";
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          center: {lat: -34.397, lng: 150.644}
-        });
-        var geocoder = new google.maps.Geocoder();
+		$(document).ready(function () {
+			if($('#RMon').is(':checked')){ DayRepeating = "Mon"; }
+			if($('#RTue').is(':checked')){ DayRepeating = DayRepeating + "Tue"; }
+			if($('#RWes').is(':checked')){ DayRepeating = DayRepeating + "Wes"; }
+			if($('#RThur').is(':checked')){ DayRepeating= DayRepeating + "Thur"; }
+			if($('#RFri').is(':checked')){ DayRepeating = DayRepeating + "Fri"; }
+			if($('#RSat').is(':checked')){ DayRepeating = DayRepeating + "Sat"; }
+			if($('#RSun').is(':checked')){ DayRepeating = DayRepeating + "Sun"; }
 
-        document.getElementById('submit').addEventListener('click', function() {
-          geocodeAddress(geocoder, map);
-        });
-      }
 
-      function geocodeAddress(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: resultsMap,
-              position: results[0].geometry.location
-            });
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
+			console.log(DayRepeating);
 
+		
+		});
+
+	}
+	BuildDayString();
 }
+
+      //function initMap() {
+        //var map = new google.maps.Map(document.getElementById('map'), {
+       //   zoom: 8,
+      //    center: {lat: -34.397, lng: 150.644}
+    //    });
+     //   var geocoder = new google.maps.Geocoder();
+//
+     //   document.getElementById('submit').addEventListener('click', function() {
+     //     geocodeAddress(geocoder, map);
+      //  });
+     // }
+
+
+
+
 </script>
 <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio&callback=geocodeAddress">
 </script>
 
 </div>
