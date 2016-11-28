@@ -95,7 +95,7 @@
 </div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label  class="form-check-label" for="RTime">Time:</label>
-<Input placeholder="21:32:02" id="TimeValue" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="RTime"  type="text" value="">
+<Input placeholder="09:32:02 or 23:59:59" id="TimeValue" style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="RTime"  type="text" value="">
 </div>
 
 
@@ -318,6 +318,8 @@ console.log(addrDep.zip);
 geocodeAddress2(CaddrDep);
 
 
+
+
 }
 
 function ValidateData(){
@@ -352,43 +354,93 @@ function ValidateData(){
 		console.log(desZip);
 		console.log(depZip);
 		if( (desZip.length < 5) || (desZip.length > 6)){
-			AllDateOK = false;
+			AllDataOK = false;
 			alert("The Destination Postal code is not OK...");
 		}
 
 		if((depZip.length < 5) || (depZip.length > 6)){
-			AllDateOK = false;
+			AllDataOK = false;
 			alert("The Departure Postal code is not OK...");
 		}
 		// Driver or Rider...?
 		var DorR = "";
-		if($("#DriverFoo").is(":checked")){
+		if($("#driverFoo").is(":checked")){
 			DorR = "Driver";		
 		}
 		else {
-			DorR = "Rider";		
+			if($("#riderFoo").is(":checked")){DorR = "Rider";}
+			else{AllDataOK = false;
+			alert("Please choose Driver or Rider");		
+			}
+				
 		}
 		
 		$("#DorR").val(DorR);
 		// Validation on date...
 		var date = $("#datepicker").val();
-
-		console.log(date);
-		console.log(date.lenght);
-
+		if(date.length != 10){
+			AllDataOK = false;
+			alert("The date choosen is not in the right format");		
+		}
+		
 		// Validation on Time
 
 		
 		var time = $("#TimeValue").val();
+		var timeL = (time.length == 8);
+		var FCtime = ( parseInt(time.charAt(0)) <= 2 );
+		var Fotime = ( parseInt(time.charAt(3)) <= 6 );
+		var SCtime = ( parseInt(time.charAt(6)) <= 6 );
+    		var SecondCase = true;
+    		if(parseInt(time.charAt(0)) == 2){
+     
+     		if(parseInt(time.charAt(1)) < 4 ){
+         		SecondCase = true;
+        	}
+        	else{ SecondCase = false;}
+		}
 
-		console.log(time);
+     		else{ SecondCase = true;}
+		if(!(timeL && FCtime && Fotime && SCtime && SecondCase)){
+		AllDataOK = false;
+		alert("The time format is not ok");
+		}
+		
 		// Computer distance between two points...
 		console.log(GpsDep.lat);
 		console.log(GpsDep.lon);
 
 		console.log(GpsDes.lat);
 		console.log(GpsDes.lon);
+		      	function calculateAndDisplayRoute() {
+			var directionsService = new google.maps.DirectionsService;
+        		var directionsDisplay = new google.maps.DirectionsRenderer;
+        		directionsService.route({
+          			origin: {lat: GpsDep.lat , lng: GpsDep.lon  },
+         			destination: {lat: GpsDes.lat, lng: GpsDes.lon},
+          			travelMode: 'DRIVING'
+        			}, function(response, status) {
+          			if (status === 'OK') {
+					var distance= 0;
+					for(i = 0; i < response.routes[0].legs.length; i++){
+			distance += parseFloat(response.routes[0].legs[i].distance.value);
+					       
+					}   
+			document.getElementById('DistanceAB').value = parseInt(distance/1000);
+	    
+          			} else {
+           		 		window.alert('Directions request failed due to ' + status);
+          			}
+        		});
+      		}
+
+		calculateAndDisplayRoute();
+		
+		
+		if(AllDataOK){
 		$("#ValidIt").collapse("show");
+		}
+		
         });
 
 }
@@ -435,12 +487,34 @@ function ResetValid(){
      // }
 
 
+    function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 41.85, lng: -87.65}
+        });
+        directionsDisplay.setMap(map);
+
+        var onChangeHandler = function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
+        document.getElementById('start').addEventListener('change', onChangeHandler);
+        document.getElementById('end').addEventListener('change', onChangeHandler);
+      }
+
+
+
 
 
 </script>
 <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR2TULEBxvkVavNgSpCk6xXhwKnJT1Uio&callback=geocodeAddress">
 </script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTrJWbLtv2VwyMhbgTUx0VCr_8r6I7VLo&callback=initMap">
+</script>
+
 
 </div>
 <!-- END OF CONTENT -->
