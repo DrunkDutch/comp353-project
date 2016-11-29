@@ -8,7 +8,7 @@
 <body>
 <!-- Page Content -->
 <!-- This Section is for the Navigation file -->
-<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php"'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php'); ?>
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
     <div class="row">
