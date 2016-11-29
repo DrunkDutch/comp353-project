@@ -105,7 +105,7 @@
 				$stmt = $d->conn->prepare(
 					"select m.MessageId, mem2.UName, m.Date, m.Content 
 					from ".$GLOBALS['db_name'].".Message m join ".$GLOBALS['db_name'].".Member mem2 on ".$GLOBALS['db_name'].".m.SenderId = ".$GLOBALS['db_name'].".mem2.UserId 
-					join ".$GLOBALS['db_name'].".Member mem on ".$GLOBALS['db_name'].".m.ReceiverId =".$GLOBALS['db_name'].".Member.Privilege
+					join ".$GLOBALS['db_name'].".Member mem on ".$GLOBALS['db_name'].".m.ReceiverId =".$GLOBALS['db_name'].".mem.Privilege
 					where ".$GLOBALS['db_name'].".mem.UName like :u");
 				$stmt->bindParam(':u', $u);
 				$stmt->execute();
