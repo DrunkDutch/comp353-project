@@ -57,13 +57,6 @@
             </li>
             <li>
                 <?php if ($_SESSION['Authen']) {
-                    $url = 'http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Drivers.php';
-                    echo("<a href='" . $url . "'>Drivers Available</a>");
-                }
-                ?>
-            </li>
-            <li>
-                <?php if ($_SESSION['Authen']) {
                     $url = 'http://' . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Rides.php';
                     echo("<a href='" . $url . "'>Rides</a>");
                 }
