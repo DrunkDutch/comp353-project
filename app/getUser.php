@@ -18,8 +18,8 @@
 <body>
 
 <?php
-include('../config/config.php');
-include('../config/dbMakeConnection.php');
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
 $status = Connected();
 if($status != 1) return;

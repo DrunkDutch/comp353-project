@@ -1,6 +1,6 @@
 <?php
-include('../config/config.php');
-include('../config/dbMakeConnection.php');
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
 $username = $_POST['user'];
 $message = $_POST['message'];

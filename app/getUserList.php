@@ -12,27 +12,29 @@
             padding: 5px;
         }
 
-        th {text-align: left;}
+        th {
+            text-align: left;
+        }
     </style>
 </head>
 <body>
 
 <?php
-include('../config/config.php');
-include('../config/dbMakeConnection.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/config.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
 $status = Connected();
-if($status != 1) return;
+if ($status != 1) return;
 
-try{
+try {
     $d = new dbMakeConnection;
+} catch (PDOException $e) {
+    echo($e);
 }
-
-catch(PDOException $e){ echo($e);}
 
 $u = $_SESSION['username'];
 // get all users except yourself
-$stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName <> :u");
+$stmt = $d->conn->prepare("SELECT * FROM " . $GLOBALS['db_name'] . ".Member WHERE UName <> :u");
 $stmt->bindParam(':u', $u);
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);

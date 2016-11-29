@@ -3,11 +3,11 @@
 <head>
 	<title> Sign Up </title>
 	<!-- This section is for the Head -->
- <?php include("../include/Head.php"); ?>
+ <?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Head.php'); ?>
 </head>
 <body>
 	<!-- Page Content -->
-<?php include("../include/Header.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php'); ?>
 
     <!-- INCLUDE CONTENT OF PAGE HERE -->
     <div id="page-content-wrapper">
@@ -93,7 +93,7 @@
     <!-- END OF CONTENT --> 
 	<div><?php echo $this_page; ?></div>
 	<!-- This Section is for the footer -->
-<?php include("../include/Footer.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Footer.php'); ?>
 	
 </body>
 
