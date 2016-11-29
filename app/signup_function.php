@@ -14,6 +14,7 @@ $password = $_POST['password1'];
 $password2 = $_POST['password2'];
 $phone = $_POST['phone'];
 $dob = $_POST['dob'];
+$balance = $_POST['balance'];
 $rfirst = $_POST['rfname'];
 $remail = $_POST['remail'];
 $rdob = $_POST['rdob'];
@@ -23,7 +24,7 @@ $insurance = $_POST['insurance'];
 // Check if required fields are filled out
 if ((!empty($username) and !empty($first) and !empty($last) and
     !empty($email) and !empty($password) and !empty($phone) and
-    !empty($dob) and !empty($rfirst) and !empty($remail) and !empty($rdob))
+    !empty($dob) and !empty($rfirst) and !empty($remail) and !empty($rdob) and !empty($balance))
 ) {
     if ((strcmp($password, $password2) != 0)) {
         Failure('Passwords do not match');
@@ -51,10 +52,10 @@ if ((!empty($username) and !empty($first) and !empty($last) and
         }
         // If permit and insurance info filled, create driver
         else if (!((empty($insurance)) and (empty($permit)))) {
-            CreateDriver($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $insurance, $permit);
+            CreateDriver($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $insurance, $permit, $balance);
         } // Create rider
         else {
-            CreateRider($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob);
+            CreateRider($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $balance);
         }
     }
 } else {
@@ -68,7 +69,7 @@ function Failure($msg)
     header("Location:" . $urlAndAlert . " ");
 }
 
-function CreateDriver($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $insurance, $permit)
+function CreateDriver($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $insurance, $permit, $balance)
 {
     $status = Connected();
     if ($status == 1) {
@@ -98,7 +99,7 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
                 $ruserid = $result['UserId'];
 
                 // Create user
-                $stmt = $d->conn->prepare("INSERT INTO `" . $GLOBALS['db_name'] . "`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`,`Permit`,`Insurance`)VALUES(:u,:p,:f,:l,:e,:d,:r,0,3,:phone,:per,:i)");
+                $stmt = $d->conn->prepare("INSERT INTO `" . $GLOBALS['db_name'] . "`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`,`Permit`,`Insurance`)VALUES(:u,:p,:f,:l,:e,:d,:r,:b,3,:phone,:per,:i)");
                 $stmt->bindParam(':u', $username);
                 $stmt->bindParam(':p', $password);
                 $stmt->bindParam(':f', $first);
@@ -106,6 +107,7 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
                 $stmt->bindParam(':e', $email);
                 $stmt->bindParam(':d', $dob);
                 $stmt->bindParam(':r', $ruserid);
+                $stmt->bindParam(':b', $balance);
                 $stmt->bindParam(':phone', $phone);
                 $stmt->bindParam(':per', $permit);
                 $stmt->bindParam(':i', $insurance);
@@ -132,7 +134,7 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
 
 }
 
-function CreateRider($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob)
+function CreateRider($username, $first, $last, $email, $password, $phone, $dob, $rfirst, $remail, $rdob, $balance)
 {
     $status = Connected();
     if ($status == 1) {
@@ -162,7 +164,7 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
                 $ruserid = $result['UserId'];
 
                 // Create user
-                $stmt = $d->conn->prepare("INSERT INTO `" . $GLOBALS['db_name'] . "`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`)VALUES(:u,:p,:f,:l,:e,:d,:r,0,3,:phone)");
+                $stmt = $d->conn->prepare("INSERT INTO `" . $GLOBALS['db_name'] . "`.`Member`(`UName`,`Password`,`FName`,`LName`,`Email`,`DOB`,`ReferrerID`,`Balance`,`Privilege`,`Phone`)VALUES(:u,:p,:f,:l,:e,:d,:r,:b,3,:phone)");
                 $stmt->bindParam(':u', $username);
                 $stmt->bindParam(':p', $password);
                 $stmt->bindParam(':f', $first);
@@ -171,6 +173,7 @@ function CreateRider($username, $first, $last, $email, $password, $phone, $dob, 
                 $stmt->bindParam(':d', $dob);
                 $stmt->bindParam(':r', $ruserid);
                 $stmt->bindParam(':phone', $phone);
+                $stmt->bindParam(':b', $balance);
                 $stmt->execute();
 
                 // Log in

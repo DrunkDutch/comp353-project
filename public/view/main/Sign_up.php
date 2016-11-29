@@ -51,6 +51,10 @@
     <input type="date" name="dob" class="form-control" aria-describedby="DOBHelp" id="exampleInputDOB" placeholder="YYYY-MM-DD" required="required">
     </div>
     <div class="form-group">
+    <label for="balance">Starting Balance</label>
+    <input type="date" name="balance" class="form-control" aria-describedby="balanceHelp" id="exampleInputBalance" placeholder="50" min="50" required="required">
+    </div>
+    <div class="form-group">
     <label for="exampleInputRUsername">Referrer's First Name</label>
     <input type="text" name="rfname" class="form-control" aria-describedby="RFnameHelp" id="exampleInputRFname" placeholder="Bob" required="required">
     </div>
