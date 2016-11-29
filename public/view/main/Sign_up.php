@@ -52,7 +52,7 @@
     </div>
     <div class="form-group">
     <label for="balance">Starting Balance</label>
-    <input type="date" name="balance" class="form-control" aria-describedby="balanceHelp" id="exampleInputBalance" placeholder="50" min="50" required="required">
+    <input type="number" name="balance" class="form-control" aria-describedby="balanceHelp" id="exampleInputBalance" placeholder="50" min="50" required="required">
     </div>
     <div class="form-group">
     <label for="exampleInputRUsername">Referrer's First Name</label>
