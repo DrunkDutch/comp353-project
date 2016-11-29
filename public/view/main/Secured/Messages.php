@@ -21,7 +21,7 @@
 
 
 	<?php
-	include "../../../../app/sendMessage.php";
+	include $_SERVER['DOCUMENT_ROOT'] . '/app/sendMessage.php';
 
 	if(!empty($_GET['alert'])){
 		echo '<div class="row" style="background-color:orange; height:100px;margin-top:50px;"><h4>'.$_GET['alert'].'</h4></div>';
@@ -61,6 +61,9 @@
 	<div class="container" style="border-style:solid; border-width:3px; height:90%; overflow-y:scroll;" id="messages">
 
 		<?php
+
+        if (session_status() == PHP_SESSION_NONE) { session_start(); }
+
 		GetMessages();
 		function GetMessages() {
 			include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
@@ -86,7 +89,7 @@
 				$result = $stmt->fetchAll();
 
 				if (empty($result)) {
-					echo "No messages";
+					echo "No individual messages";
 				}
 				else {
 					foreach ($result as &$val) {
@@ -111,7 +114,10 @@
 				$stmt->execute();
 				$result = $stmt->fetchAll();
 
-				if (!empty($result)) {
+                if (empty($result)) {
+                    echo "No group messages";
+                }
+                else {
 					foreach ($result as &$val) {
 						$mId = $val["MessageId"];
 						$sId = $val["UName"];
