@@ -30,6 +30,8 @@
 <div id="page-content-wrapper">
 
     <?php
+    if (session_status() == PHP_SESSION_NONE) { session_start(); }
+
     //include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
     // Get Detail On Account
@@ -80,6 +82,9 @@ include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php
                 if ($privilege <= 2) {
                     $_SESSION['editId'] = $_GET['id'];
                 }
+                else {
+                    $_SESSION['editId'] = null;
+                }
 
                 // add buttons
                 echo '&nbsp;<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Account Balance</button>';
@@ -98,7 +103,7 @@ include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php
                 // able to edit and delete account
                 include "/comp353-project/app/editAccount.php";
                 echo '<div id="myModal2" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit Account</h4></div>';
-                echo '<div class="modal-body"><form action="/comp353-project/app/editAccount.php" method="POST"><div class="form-group"><label for="Username">Username</label><input type="text" name="username" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUsername1" placeholder="Username"></div>';
+                echo '<div class="modal-body"><form action="/comp353-project/app/editAccount.php" method="POST"><div class="form-group"><label for="username">Username</label><input type="text" name="username" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUsername1" placeholder="Username"></div>';
                 echo '<div class="form-group"><label for="FirstName">First Name</label><input type="text" name="FirstName" class="form-control" aria-describedby="FirstnameHelp" id="exampleInputFirstName1" placeholder="First Name"></div>';
                 echo '<div class="form-group"><label for="LastName">Last Name</label><input type="text" name="LastName" class="form-control" aria-describedby="LastnameHelp" id="exampleInputLastName1" placeholder="Last Name"></div>';
                 echo '<div class="form-group"><label for="Email">Email</label><input type="email" name="email1" class="form-control" aria-describedby="emailHelp" id="exampleInputEmail1" placeholder="Email"></div>';

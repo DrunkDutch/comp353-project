@@ -1,4 +1,6 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) { session_start(); }
+
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
@@ -64,6 +66,7 @@ if (!empty($privilege)) {
     UpdateField('Privilege', $privilege);
 }
 
+
 Redirect();
 
 function UpdateField($fieldName, $value) {
@@ -83,8 +86,9 @@ function UpdateField($fieldName, $value) {
             $userId = $editId;
         }
 
-        $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET :c = :v WHERE `UserId` = :i");
-        $stmt->bindParam(':c', $fieldName);
+        echo $userId;
+
+        $stmt = $d->conn->prepare("UPDATE ".$GLOBALS['db_name'].".`Member` SET ". $fieldName. " = :v WHERE `UserId` = :i");
         $stmt->bindParam(':v', $value);
         $stmt->bindParam(':i', $userId);
         $stmt->execute();
@@ -108,14 +112,13 @@ function UpdateUniqueField($fieldName, $value) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result) {
-            echo "Username already exists";
+            Failure($fieldName . " already exists");
         }
         else {
             $userId = $_SESSION['UserId'];
             $editId = $_SESSION['editId'];
 
-            $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET :c = :v WHERE `UserId` = :i");
-            $stmt->bindParam(':c', $fieldName);
+            $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET ". $fieldName. " = :v WHERE `UserId` = :i");
             $stmt->bindParam(':v', $value);
             $stmt->bindParam(':i', $userId);
             if ($editId) {
