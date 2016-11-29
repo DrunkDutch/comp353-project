@@ -2,7 +2,7 @@
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) { session_start(); }
 
 // Field information
 $username = $_POST['user'];

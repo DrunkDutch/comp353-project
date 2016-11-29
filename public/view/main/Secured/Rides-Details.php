@@ -238,7 +238,7 @@
         <div id="ButtonPanel" class="container" style="background-color:black; margin-top:30px;margin-bottom:30px;">
             <h4>Action Panel</h4>
             <?php
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) { session_start(); }
             $isFull = (strcmp($GLOBALS['StatusRide'], "This ride is Full") == 0);
             $HaveADriver = !(strcmp($GLOBALS['Driver'], "No Driver") == 0);
             $AreYouRiderIn = (strpos($GLOBALS['ALLPassenger'], $_SESSION['username']));

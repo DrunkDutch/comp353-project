@@ -4,7 +4,7 @@ include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php
 
 
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) { session_start(); }
 
 $_SESSION['Authen'] = false;
 $username = $_POST['user'];
