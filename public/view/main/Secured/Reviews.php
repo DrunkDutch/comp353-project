@@ -3,7 +3,7 @@
 <head>
     <title> Review </title>
     <!-- This section is for the Head -->
-    <?php include("../../include/Head.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
 
 
 
@@ -11,7 +11,7 @@
 <body>
 <!-- Page Content -->
 <!-- This Section is for the Navigation file -->
-<?php include("../../include/Header.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Header.php'); ?>
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
     <h1>My Past Rides</h1>
@@ -48,7 +48,7 @@
         }
 
         function GetPastRides() {
-include("../../../../config/dbMakeConnection.php");
+include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
             $status = Connected();
             if ($status == 1) {
@@ -91,7 +91,7 @@ include("../../../../config/dbMakeConnection.php");
 <!-- END OF CONTENT -->
 <div><?php echo $this_page; ?></div>
 <!-- This Section is for the footer -->
-<?php include("../../include/Footer.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Footer.php'); ?>
 
 <script>
     $(document).on("click", ".add-ratee", function () {

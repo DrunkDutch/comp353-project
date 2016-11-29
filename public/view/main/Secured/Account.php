@@ -4,7 +4,7 @@
     <title> Account </title>
     <!-- This section is for the Head -->
     
-    <?php include("../../include/Head.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Head.php'); ?>
 
     <style>
         /* Always set the map height explicitly to define the size of the div
@@ -25,13 +25,13 @@
 <body>
 <!-- Page Content -->
 <!-- This Section is for the Navigation file -->
-<?php include("../../include/Header.php"); ?>
+<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php'); ?>
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
 
     <?php
     //include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
-include("../../../../config/dbMakeConnection.php");
+include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
     // Get Detail On Account
     function GetAccountDetails($id)
     {
@@ -127,7 +127,7 @@ include("../../../../config/dbMakeConnection.php");
     <!-- END OF CONTENT -->
 
     <!-- This Section is for the footer -->
-    <?php include("../../include/Footer.php"); ?>
+    <?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Footer.php'); ?>
 
 </body>
 </html>
