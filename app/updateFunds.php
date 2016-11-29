@@ -35,7 +35,7 @@ function UpdateFunds($funds)
         }
 
         // check if current funds
-        $stmt = $d->conn->prepare("SELECT Balance FROM " . $GLOBALS['db_name'] . ".Member WHERE UName = :u");
+        $stmt = $d->conn->prepare("SELECT * FROM " . $GLOBALS['db_name'] . ".Member WHERE UserId = :u");
         $stmt->bindParam(':u', $u);
         $stmt->execute();
 
@@ -44,7 +44,7 @@ function UpdateFunds($funds)
 
         $newBalance = $balance + $funds;
 
-        $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `Balance` = :v WHERE `UserId` = :i");
+        $stmt = $d->conn->prepare("UPDATE " . $GLOBALS['db_name'] . ".`Member` SET `Balance` = :v WHERE `UserId` = :i");
         $stmt->bindParam(':v', $newBalance);
         $stmt->bindParam(':i', $u);
         $stmt->execute();
