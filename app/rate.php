@@ -29,7 +29,7 @@ function Rate($ratee, $score, $rideId)
 
         // This statement would allow us to also check that the recipient user exists as well when it returns an empty row
         $stmt = $d->conn->prepare("select UserId from ".$GLOBALS['db_name'].".Member where UName like :t");
-        $stmt->bindParam(':t', $t);
+        $stmt->bindParam(':t', $ratee);
         $stmt->execute();
         $r = $stmt->fetch(PDO::FETCH_ASSOC);
 
