@@ -254,13 +254,13 @@
             // Rate Rider Button
             if ($HaveRider and $AreYouDriverIn and ($Repeating or $afterDeparture)) {
                 foreach ($AllP as & $valueR) {
-                    echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $valueR . '">Rate Rider ' . $valueR . '</button> &nbsp;</div>';
+                    echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $valueR . '" data-id2="' . $_GET['id'] . '">Rate Rider ' . $valueR . '</button> &nbsp;</div>';
                 }
             }
 
             // Rate Driver Button
             if ($HaveADriver and $AreYouRiderIn and ($Repeating or $afterDeparture)) {
-                echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $GLOBALS['Driver'] . '">Rate Driver ' . $GLOBALS['Driver'] . '</button></div>';
+                echo '<div class="row" style="margin-top:20px;margin-bottom:20px;"><button type="button" class="btn btn-success add-ratee" data-toggle="modal" data-target="#myModal" data-id="' . $GLOBALS['Driver'] . '" data-id2="' . $_GET['id'] . '">Rate Driver ' . $GLOBALS['Driver'] . '</button></div>';
             }
 // Leave Driver
 
@@ -306,9 +306,12 @@
                     <div class="modal-body">
                         <form action="/comp353-project/app/rate.php?" method="POST">
                             <div class="form-group">
+                                <label for="rideId">Ride ID:</label>
+                                <input class="form-control" name="rideId" id="rideId" readonly>
+                            </div>
+                            <div class="form-group">
                                 <label for="user">Ratee:</label>
-                                <input type="text" class="form-control" name="user" id="user"
-                                       placeholder="Enter Username" required="required">
+                                <input class="form-control" name="user" id="user" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="score">Score:</label>
@@ -405,6 +408,8 @@
             $(document).on("click", ".add-ratee", function () {
                 var ratee = $(this).data('id');
                 $(".modal-body #user").val(ratee);
+                var rideId = $(this).data('id2');
+                $(".modal-body #rideId").val(rideId);
             });
         </script>
 
