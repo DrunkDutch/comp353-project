@@ -35,7 +35,7 @@ function DeleteUser(){
 }
 
 function Logout() {
-    $_SESSION['Authen']= false;
+    $_SESSION['Authen']= null;
     $url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/LOG_IN.php';
     header("Location:".$url." ");
 }
