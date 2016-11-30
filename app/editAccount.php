@@ -120,7 +120,7 @@ function UpdateUniqueField($fieldName, $value) {
             $userId = $_SESSION['UserId'];
             $editId = $_SESSION['editId'];
 
-            $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET ". $fieldName. " = :v WHERE `UserId` = :i");
+            $stmt = $d->conn->prepare("UPDATE ".$GLOBALS['db_name'].".`Member` SET ". $fieldName. " = :v WHERE `UserId` = :i");
             $stmt->bindParam(':v', $value);
             $stmt->bindParam(':i', $userId);
             if ($editId) {
