@@ -17,17 +17,21 @@ function DeleteUser(){
         $current = $_SESSION['UserId'];
 
         if ($_GET['id'] == $current) {
-            $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `Active` = 0, `Suspended` = 1 WHERE `UName` = :u");
+            $stmt = $d->conn->prepare("UPDATE ".$GLOBALS['db_name'].".`Member` SET `Active` = 0, `Suspended` = 1 WHERE `UserId` = :u");
             $stmt->bindParam(':u', $u);
             $stmt->execute();
 
-            $_SESSION['Authen']= false;
-            $url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/LOG_IN.php';
-            header("Location:".$url." ");
+            Logout();
         }
         else {
             $url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/Secured/Account.php?id=' . $current;
             header("Location:".$url." ");
         }
     }
+}
+
+function Logout() {
+    $_SESSION['Authen']= false;
+    $url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/LOG_IN.php';
+    header("Location:".$url." ");
 }
