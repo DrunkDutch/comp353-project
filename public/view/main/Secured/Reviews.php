@@ -62,7 +62,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.ph
                 $u = $_SESSION['UserId'];
 
                 // GET Rider rides
-                $stmt = $d->conn->prepare("SELECT * from ".$GLOBALS['db_name'].".Ride join ".$GLOBALS['db_name'].".Rider on Ride.RideId = RiderId where Rider.RiderId =:u GROUP BY Ride.RideId");
+                $stmt = $d->conn->prepare("SELECT * from ".$GLOBALS['db_name'].".Ride join ".$GLOBALS['db_name'].".Rider on Ride.RideId = Rider.RideId where Rider.RiderId =:u GROUP BY Ride.RideId");
                 $stmt->bindParam(':u', $u);
                 $stmt->execute();
                 $result = $stmt->fetchAll();
@@ -87,7 +87,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.ph
                 }
 
                 // GET Driver rides
-                $stmt = $d->conn->prepare("SELECT * from ".$GLOBALS['db_name'].".Ride join ".$GLOBALS['db_name'].".Driver on Ride.RideId=DriverId where DriverId =:u GROUP BY Ride.RideId");
+                $stmt = $d->conn->prepare("SELECT * from ".$GLOBALS['db_name'].".Ride join ".$GLOBALS['db_name'].".Driver on Ride.RideId=Driver.RideId where DriverId =:u GROUP BY Ride.RideId");
                 $stmt->bindParam(':u', $u);
                 $stmt->execute();
                 $result = $stmt->fetchAll();
