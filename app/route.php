@@ -1,4 +1,6 @@
 <?php
+//Authors: 26290515, 26795528, 27417888, 40039346
+
 $enable_root = true;
 if($enable_root){
 
