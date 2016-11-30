@@ -68,7 +68,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.ph
                 $result = $stmt->fetchAll();
 
                 if (empty($result)) {
-                    echo "No past rides as rider";
+                    echo "<div class='row'>No past rides as rider</div>";
                 }
                 else {
 
@@ -93,7 +93,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.ph
                 $result = $stmt->fetchAll();
 
                 if (empty($result)) {
-                    echo "No past rides as driver";
+                    echo "<div class='row'>No past rides as driver</div>";
                 }
                 else {
                     echo '<h3>Driver Rides</h3>';
