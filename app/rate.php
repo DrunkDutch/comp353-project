@@ -26,10 +26,10 @@ function Rate($ratee, $score, $rideId)
         $u = $_SESSION['UserId'];
 
         // This statement would allow us to also check that the recipient user exists as well when it returns an empty row
-        $stmt = $d->conn->prepare("select UserId from `".$GLOBALS['db_name']."`.`Member` where UName like :t");
+        $stmt = $d->conn->prepare("select * from `".$GLOBALS['db_name']."`.`Member` where UName like :t");
         $stmt->bindParam(':t', $ratee);
         $stmt->execute();
-        $r = $stmt->fetch(PDO::FETCH_ASSOC);
+        $r = $stmt->fetchAll();
 
         if (empty($r['UserId'])) {
             Failure('User does not exist');
@@ -40,8 +40,9 @@ function Rate($ratee, $score, $rideId)
         $stmt->bindParam(':r', $u);
         $stmt->bindParam(':e', $r['UserId']);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll();
 
+        // if this rating has not already happened
         if (empty($result)) {
 
             $stmt = $d->conn->prepare("INSERT INTO `".$GLOBALS['db_name']."`.`Rating`(`RideId`,`RaterId`,`RateeId`, `Score`)VALUES(:id,:r,:e,:s)");
