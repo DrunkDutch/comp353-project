@@ -27,7 +27,7 @@ function UpdateFields($username, $password) {
             echo($e);
         }
 
-        $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `UName` = :u, `Password` = :p WHERE `UName` = 'admin'");
+        $stmt = $d->conn->prepare("UPDATE `".$GLOBALS['db_name'].".`Member` SET `UName` = :u, `Password` = :p WHERE `UName` = 'admin'");
         $stmt->bindParam(':u', $username);
         $stmt->bindParam(':p', $password);
         $stmt->execute();

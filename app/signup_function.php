@@ -89,7 +89,7 @@ function CreateDriver($username, $first, $last, $email, $password, $phone, $dob,
         if ($result) {
             Failure('User already exists');
         } else {
-            $stmt = $d->conn->prepare("SELECT `UserId` FROM `comp353`.`Member` where Email like :e and DOB = date(:d) and FName like :f");
+            $stmt = $d->conn->prepare("SELECT `UserId` FROM `".$GLOBALS['db_name'].".`Member` where Email like :e and DOB = date(:d) and FName like :f");
             $stmt->bindParam(':e', $remail);
             $stmt->bindParam(':d', $rdob);
             $stmt->bindParam(':f', $rfirst);
