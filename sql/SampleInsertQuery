@@ -1,3 +1,4 @@
+-- Authors: 26290515, 26795528, 27417888, 40039346
 INSERT INTO `comp353`.`Member` (`UserId`, `UName`, `Password`, `FName`, `LName`, `Email`, `DOB`, `ReferrerID`, `Balance`, `Active`, `Privilege`, `Phone`, `Permit`, `Insurance`) VALUES ('1', 'testuser', '123456', 'Paul', 'Roger', 'PaulRoger@paul.com', '2016-11-01', '1', '0', '1', '1', '5147889898', 'permit123', 'assur123');
 
 
