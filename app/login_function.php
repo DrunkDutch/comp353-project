@@ -1,16 +1,19 @@
 <?php
+ob_start();
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
+//echo("hello");
 
-
-if (session_status() == PHP_SESSION_NONE) { session_start(); }
+//if (session_status() == PHP_SESSION_NONE) { session_start(); }
+session_start();
 
 $_SESSION['Authen'] = false;
 $username = $_POST['user'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+//echo($_SERVER['SERVER_NAME']);
 
 if (!((empty($email)) and (empty($username)))) {
 	
@@ -33,18 +36,19 @@ function Failure()
 {
 
     $_SESSION['Authen'] = false;
-    $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/LOG_IN.php';
+    $url = "https://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/LOG_IN.php';
     header("Location:" . $url . " ");
 }
 
 // Check Login with DB assuming variable passed in are cleaned and not all empty
 function AuthentificationUser($u, $p)
 {
-	
+    	
     $status = Connected();
-	
+    echo($status);		
     if ($status == 1) {
         try {
+	  //  echo("it's me");
             $d = new dbMakeConnection;
 		
         } catch (PDOException $e) {
@@ -106,8 +110,8 @@ function AuthentificationEmail($em, $p)
 // if admin, force reset
 // take user to reset user page
 function ForceReset() {
-    $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/ResetUser.php';
-    header("Location:" . $url . " ");
+    $url = 'https://' . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/ResetUser.php';
+    exit(header("Location:".$url." "));
 	
 }
 
@@ -119,9 +123,5 @@ function LaunchSession($u, $e, $p, $i, $priv)
     $_SESSION['privi'] = $priv;
     $_SESSION['UserId'] = $i;
     $_SESSION['Authen'] = true;
-    $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Rides.php';
-    header("Location:" . $url . " ");
-    exit;
-}
-
-?>
+    $url = "https://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Rides.php';
+    header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php ");}?>

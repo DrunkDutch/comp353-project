@@ -8,14 +8,14 @@
 <body>
 <!-- Page Content -->
 <!-- This Section is for the Navigation file -->
-<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php"'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php'); ?>
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
     <div class="row">
         <div class="text-center"><i class="fa fa-car fa-5x" aria-hidden="true"></i>
         </div>
     </div>
-    <?php include "../app/login_function.php" ?>
+    <?php //include("/app/login_function.php" ?>
     <form class="container-fluid col-md-4 col-md-offset-4" action="/comp353-project/app/login_function.php"
           method="POST">
 

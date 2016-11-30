@@ -1,6 +1,7 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+if (session_status() == PHP_SESSION_NONE) { session_start();}
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 if (session_status() == PHP_SESSION_NONE) { session_start(); }
 $userID = $_SESSION['UserId'];
 $rideID = $_POST['RideId'];
@@ -15,10 +16,10 @@ $AdminBalance = GetBalance(2)['Balance'];
 
 if($costV < 0){
 
-	// Redirect to home page...
-	$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You do not have enough money to join this ride';
-    header("Location:" . $urlAndAlert. " ");
-    exit;
+// Redirect to home page...
+	$urlAndAlert ="https://tpc353_2.encs.concordia.ca/comp353-project/index.php?alert=You do not have enough money to join this ride";
+    header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php?alert=You do not have enough money to join this ride");
+ 
 }
 
 
@@ -166,9 +167,9 @@ if(true){
 
 		// Redirect to home page...
 		
-	$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have joined the ride as rider the cost is ' .$CostPaul.'$ ';
-    header("Location:" .$urlAndAlert. " ");
-    exit;
+	//$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have joined the ride as rider the cost is ' .$CostPaul.'$ ';
+    header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php?alert=You have joined the ride as rider ");
+
 	    
 			
 		

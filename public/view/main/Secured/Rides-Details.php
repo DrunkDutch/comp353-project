@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }  ?>
     <title> Rides - Details </title>
     <!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
@@ -292,7 +296,7 @@
 
         <div id="map" style="Height:500px; Width:100%; margin-top:40px;"></div>
 
-        <?php include "/comp353-project/app/rate.php" ?>
+        <?php  include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/app/rate.php'); ?>
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -307,6 +311,7 @@
                         <form action="/comp353-project/app/rate.php?" method="POST">
                             <div class="form-group">
                                 <label for="user">Ratee:</label>
+				<input type="text" style="display:none;" name="RideIdY" value="<?php echo($_GET['id']); ?>">
                                 <input type="text" class="form-control" name="user" id="user"
                                        placeholder="Enter Username" required="required">
                             </div>
@@ -416,5 +421,6 @@
 
 </body>
 </html>
+
 
 

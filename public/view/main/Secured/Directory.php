@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }  ?>
     <title> Directory </title>
     <!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>

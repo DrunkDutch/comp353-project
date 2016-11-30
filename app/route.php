@@ -1,5 +1,5 @@
 <?php
-$enable_root = true;
+$enable_root = false;
 if($enable_root){
 
 

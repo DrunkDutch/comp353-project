@@ -1,11 +1,11 @@
 <?php 
 
 // Variables Connection to the database 
-$host = $_SERVER['SERVER_NAME'];
-$username = "root";
-$password = "root";
-$db_name = "comp353";
-$GLOBALS['db_name'] = "comp353";
+$host = "tpc353_2.encs.concordia.ca";
+$username = "tpc353_2";
+$password = "h3Y4JY";
+$db_name = "tpc353_2";
+$GLOBALS['db_name'] = "tpc353_2";
 mysqli_report(MYSQLI_REPORT_STRICT); 
 $connection = new mysqli($host, $username, $password, $db_name);
 function ConnectionCheck(){

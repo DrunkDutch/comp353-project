@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<?php if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }?>
     <title> Message - Details </title>
     <!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
@@ -33,7 +37,7 @@
         </div>
     </div>
 
-    <?php include "/comp353-project/app/sendMessage.php"?>
+    <?php include($_SERVER['DOCUMENT_ROOT'] ."/comp353-project/app/sendMessage.php");?>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -64,7 +68,7 @@
     </div>
 
     <?php
-	include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+	include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
     // Get Detail On Message
     function GetMessageDetails($id)

@@ -1,6 +1,7 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+if (session_status() == PHP_SESSION_NONE) { session_start();}
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 if (session_status() == PHP_SESSION_NONE) { session_start(); }
 $userID = $_SESSION['UserId'];
 $rideID = $_POST['RideId'];
@@ -101,7 +102,7 @@ function ChargeM($user, $cost){
                 echo($e);
             }
 
-            $stmt = $d->conn->prepare("UPDATE `comp353`.`Member` SET `Balance` = :c WHERE `UserId` = :u");
+            $stmt = $d->conn->prepare("UPDATE `".$GLOBALS['db_name']."`.`Member` SET `Balance` = :c WHERE `UserId` = :u");
             $stmt->bindParam(':c', $cost);
 	    $stmt->bindParam(':u',$user);
             $stmt->execute();
@@ -153,7 +154,7 @@ else{
 }
 
 	$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You are the driver of ride number '.$rideID.' this ride will pay you:  ' .$FinalBalance.'$ ';
-   header("Location:" .$urlAndAlert. " ");
+   header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php?alert=You are the driver of ride number ".$rideID." this ride will pay you:  " .$FinalBalance."$ ");
    exit;
 
 ?>

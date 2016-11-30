@@ -1,16 +1,20 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+if (session_status() == PHP_SESSION_NONE) { session_start();}
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
 
 
-$GLOBALS['Departure_Lon'] = bcdiv($_POST['DepartLon'], 1 ,6);
-$GLOBALS['Departure_Lat'] = bcdiv($_POST['DepartLat'], 1 ,6);
-$GLOBALS['Destination_Lat'] = bcdiv($_POST['DestinationLat'], 1 ,6);
-$GLOBALS['Destination_Lon'] = bcdiv($_POST['DestinationLon'], 1 ,6);
+//$GLOBALS['Departure_Lon'] = bcdiv($_POST['DepartLon'], 1 ,6);
+//$GLOBALS['Departure_Lat'] = bcdiv($_POST['DepartLat'], 1 ,6);
+//$GLOBALS['Destination_Lat'] = bcdiv($_POST['DestinationLat'], 1 ,6);
+//$GLOBALS['Destination_Lon'] = bcdiv($_POST['DestinationLon'], 1 ,6);
 
 
-
+$GLOBALS['Departure_Lon'] = substr($_POST['DepartLon'], 0 ,9);
+$GLOBALS['Departure_Lat'] = substr($_POST['DepartLat'], 0 ,9);
+$GLOBALS['Destination_Lat'] = substr($_POST['DestinationLat'], 0 ,9);
+$GLOBALS['Destination_Lon'] = substr($_POST['DestinationLon'], 0 ,9);
 
 function PostALocation($Lat, $Lon, $StrNum, $Str, $Zip, $City, $Prov){
 
@@ -134,7 +138,7 @@ function AddRide($Date, $Time, $Rep, $Dep, $Des, $Dis, $RiderCap, $PostID){
 }
 
 
-echo("		test2	");
+
 
 
 $AllMFLocation = LoadAllLocationExist();
@@ -170,11 +174,11 @@ $CompareDepLon = (abs(($GLOBALS['Departure_Lon']-$val['Longitude'])/$val['Longit
 if(!$AlreadyExistDes){
 	PostALocation($GLOBALS['Destination_Lat'], $GLOBALS['Destination_Lon'], $_POST['Des_streetNumber'], $_POST['Des_street'], $_POST['Des_ZIP'], $_POST['Des_City'], $_POST['Des_Prov']);
 	
-	echo("posting");
+	
 };
 if(!$AlreadyExistDep){
 		PostALocation($GLOBALS['Departure_Lat'], $GLOBALS['Departure_Lon'], $_POST['Depart_streetNumber'], $_POST['Depart_street'], $_POST['Depart_ZIP'], $_POST['Depart_City'], $_POST['Depart_Prov']);
-	echo("posting 2");
+	
 };
 
 // If location has been posted...
@@ -204,17 +208,17 @@ $CompareDepLon = (abs(($GLOBALS['Departure_Lon']-$val['Longitude'])/$val['Longit
 
 }
 
-echo("OK");
+
 // Now we are sure to have to IDs for Location...
 $RideID;
 $e = CheckIfRide($GrabNumberDep, $GrabNumberDes, $_POST['RDate'], $_POST['RTime']);
 $r = ($e['RideId'] > 1);
-echo($r);
+
 
 if($r == 1){
 	// A redirect to home page with message
 	$RideID = $e['RideId'];
-	echo("ride already created");
+	
 }
 else{
 	AddRide($_POST['RDate'], $_POST['RTime'], $_POST['AllDay'], $GrabNumberDep, $GrabNumberDes, $_POST['DistanceAB'], $_POST['Capacity'], $_SESSION['UserId']);
@@ -227,21 +231,19 @@ $IsDriver = (strcmp($_POST['DorR'], "Driver") == 0);
 $IsRider =  (strcmp($_POST['DorR'], "Rider") == 0);
 
 if($IsRider){
-	echo("	it's a rider	");
+	
 	AddRideInRide($_SESSION['UserId'], $RideID);
 }	
 else{
 	if($IsDriver){
-		echo("	it's a driver	");
+		
 	AddRideInDriver($_SESSION['UserId'], $RideID);
 	}
 }
 
-$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have created a ride, the number of the ride is:  ' .$RideID.' ';
-    header("Location:" .$urlAndAlert. " ");
-    exit;
-
-echo("DONE");
+   
+   header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php?alert=You have created a ride");
+   exit;
 
 
 

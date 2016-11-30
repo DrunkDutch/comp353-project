@@ -1,12 +1,47 @@
 <?php
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 $username = $_POST['user'];
 $score = $_POST['score'];
-$rideId = $_GET['id'];
+$rideId = $_POST['RideIdY'];
 
-if (!((empty($username)) and (empty($score)))) {
-    Rate($username, $score, $rideId);
+echo($rideId);
+echo($score);
+echo($username);
+
+function GrabIDUser($foo){
+
+
+$status = Connected();
+
+    if ($status == 1) {
+        try {
+            $d = new dbMakeConnection;
+        } catch (PDOException $e) {
+            echo($e);
+        }
+	
+	$stmt = $d->conn->prepare("select UserId from ".$GLOBALS['db_name'].".Member where UName like :u");
+        $stmt->bindParam(':u', $foo);
+        $stmt->execute();
+        $s = $stmt->fetch(PDO::FETCH_ASSOC);
+	return $s;
+	
+     }
+
+
+
+}
+if (!((empty($username)) and (empty($score)))) 
+{
+ echo($username);
+ $NameOf = GrabIDUser($username);
+	echo($NameOf['UserId']);
+  Rate($NameOf['UserId'], $score, $rideId);
 }
 
 function Rate($ratee, $score, $rideId)
@@ -20,24 +55,21 @@ function Rate($ratee, $score, $rideId)
             echo($e);
         }
 
-        $u = $_SESSION['username'];
+        $u = $_SESSION['UserId'];
 
         $stmt = $d->conn->prepare("select UserId from ".$GLOBALS['db_name'].".Member where UName like :u");
         $stmt->bindParam(':u', $u);
         $stmt->execute();
         $s = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // This statement would allow us to also check that the recipient user exists as well when it returns an empty row
+        //This statement would allow us to also check that the recipient user exists as well when it returns an empty row
         $stmt = $d->conn->prepare("select UserId from ".$GLOBALS['db_name'].".Member where UName like :t");
         $stmt->bindParam(':t', $t);
         $stmt->execute();
         $r = $stmt->fetch(PDO::FETCH_ASSOC);
-
         if (empty($r)) {
-
-            $urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Reviews.php?alert= User does not exist ';
-            header("Location:" .$urlAndAlert. " ");
-        }
+exit(header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php"));
+	}
 
         $stmt = $d->conn->prepare("select * from `".$GLOBALS['db_name']."`.`Rating` where RideId = :id and RaterId = :r and RateeId = :e");
         $stmt->bindParam(':id', $rideId);
@@ -56,9 +88,11 @@ function Rate($ratee, $score, $rideId)
             $stmt->execute();
         }
         else {
-            echo "Already rated for this ride.";
+header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php");
+		exit;
         }
 
-        header("Location: http://localhost/comp353-project/public/view/main/Secured/SentMessages.php");
+header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php");
+	exit;
     }
 }

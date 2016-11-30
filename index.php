@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php if (session_status() == PHP_SESSION_NONE) { session_start(); }  ?>
+    <?php  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }  ?>
     <title> Home </title>
     <!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
@@ -17,7 +20,6 @@
     <div class="site-wrapper-inner">
 
         <div class="cover-container">
-
             <div class="inner cover">
                 <h1 class="cover-heading">Welcome to SUPER!</h1>
                 <p class="lead">Your best option for ride-sharing.</p>

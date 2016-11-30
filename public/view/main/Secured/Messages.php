@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }  ?>
 	<title> Messages </title>
 	<!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
@@ -13,7 +17,6 @@
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
 	<h1>My Messages</h1>
-
 	<a href="/comp353-project/public/view/main/Secured/SentMessages.php"><button class="btn btn-default">View Sent Messages</button></a>
 
 	<!-- Trigger the modal with a button -->
@@ -21,7 +24,7 @@
 
 
 	<?php
-	include "../../../../app/sendMessage.php";
+	include ($_SERVER['DOCUMENT_ROOT'] ."/comp353-project/app/sendMessage.php");
 
 	if(!empty($_GET['alert'])){
 		echo '<div class="row" style="background-color:orange; height:100px;margin-top:50px;"><h4>'.$_GET['alert'].'</h4></div>';
@@ -95,18 +98,15 @@
 						$date = $val["Date"];
 						$content = $val["Content"];
 						// Build URL For each Button...
-						$url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER[''] . substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Message-Details.php?id=' . $mId;
+						$url = 'https://tpc353_2.encs.concordia.ca/comp353-project/public/view/main/Secured/Message-Details.php?id=' . $mId;
 						// Create HTML...
 						echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Sender:&nbsp' . $sId . '</p><p>Date:&nbsp' . $date . '&nbsp</p><p>Content:&nbsp' . $content . '&nbsp</p><a href="' . $url . '"><button class="btn btn-success">Get Details</button></a></div>';
 					}
 				}
 
 				// GET USER GROUP MESSAGES
-				$stmt = $d->conn->prepare(
-					"select m.MessageId, mem2.UName, m.Date, m.Content 
-					from ".$GLOBALS['db_name'].".Message m join ".$GLOBALS['db_name'].".Member mem2 on ".$GLOBALS['db_name'].".m.SenderId = ".$GLOBALS['db_name'].".mem2.UserId 
-					join ".$GLOBALS['db_name'].".Member mem on ".$GLOBALS['db_name'].".m.ReceiverId =".$GLOBALS['db_name'].".Member.Privilege
-					where ".$GLOBALS['db_name'].".mem.UName like :u");
+				$stmt = $d->conn->prepare("select m.MessageId, mem2.UName, m.Date, m.Content from ".$GLOBALS['db_name'].".Message m join ".$GLOBALS['db_name'].".Member mem2 on ".$GLOBALS['db_name'].".m.SenderId = ".$GLOBALS['db_name'].".mem2.UserId join ".$GLOBALS['db_name'].".Member mem on ".$GLOBALS['db_name'].".m.ReceiverId =".$GLOBALS['db_name'].".mem.Privilege
+where ".$GLOBALS['db_name'].".mem.UName like :u");
 				$stmt->bindParam(':u', $u);
 				$stmt->execute();
 				$result = $stmt->fetchAll();
@@ -118,7 +118,7 @@
 						$date = $val["Date"];
 						$content = $val["Content"];
 						// Build URL For each Button...
-						$url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER[''] . substr($_SERVER['PHP_SELF'], 0, strrpos($_SERVER['PHP_SELF'], '/')) . '/Message-Details.php?id=' . $mId;
+						$url = 'https://tpc353_2.encs.concordia.ca/comp353-project/public/view/main/Secured/Message-Details.php?id=' . $mId;
 						// Create HTML...
 						echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Sender:&nbsp' . $sId . '</p><p>Date:&nbsp' . $date . '&nbsp</p><p>Content:&nbsp' . $content . '&nbsp</p><a href="' . $url . '"><button class="btn btn-success">Get Details</button></a></div>';
 					}
