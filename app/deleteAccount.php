@@ -1,8 +1,12 @@
 <?php
 //Authors: 26290515, 26795528, 27417888, 40039346
 
+if (session_status() == PHP_SESSION_NONE) { session_start(); }
+
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+
+DeleteUser();
 
 // Check Login with DB assuming variable passed in are cleaned and not all empty
 function DeleteUser(){
