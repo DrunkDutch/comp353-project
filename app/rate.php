@@ -7,10 +7,10 @@ $R = $_POST['user'];
 $username = trim($R, " ");
 $score = $_POST['score'];
 $rideId = $_POST['rideId'];
-echo(strlen($username));
-echo(strlen($score));
-echo(strlen($rideId));
 
+if (!empty($username) and !empty($score) and !empty($rideId)) {
+    Rate($username, $score, $rideId);
+}
 
 function Rate($ratee, $score, $rideId)
 {
@@ -26,9 +26,8 @@ function Rate($ratee, $score, $rideId)
         $u = $_SESSION['UserId'];
 
         // This statement would allow us to also check that the recipient user exists as well when it returns an empty row
-	
-        $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName like :t");
-        $stmt->bindParam(':t', $ratee);
+        $stmt = $d->conn->prepare("SELECT * FROM ".$GLOBALS['db_name'].".Member WHERE UName = :r");
+        $stmt->bindParam(':r', $ratee);
         $stmt->execute();
         $r = $stmt->fetch(PDO::FETCH_ASSOC);
 	
@@ -74,15 +73,3 @@ function Redirect() {
     header("Location:" .$url. " ");
 //	echo("sucess");
 }
-
-
-if ((!empty($username) and !empty($score) and !empty($rideId))) {
-
-    Rate($username, $score, $rideId);
-}
-
-
-
-
-
-
