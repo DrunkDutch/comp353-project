@@ -21,8 +21,8 @@ function DeleteUser(){
         $current = $_SESSION['UserId'];
 
         if ($_GET['id'] == $current) {
-            $stmt = $d->conn->prepare("UPDATE ".$GLOBALS['db_name'].".`Member` SET `Active` = 0, `Suspended` = 1 WHERE `UserId` = :u");
-            $stmt->bindParam(':u', $u);
+            $stmt = $d->conn->prepare("UPDATE ".$GLOBALS['db_name'].".Member SET `Active` = 0, `Suspended` = 1 WHERE `UserId` = :u");
+            $stmt->bindParam(':u', $current);
             $stmt->execute();
 
             Logout();
