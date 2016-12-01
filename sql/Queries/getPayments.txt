@@ -1,0 +1,3 @@
+$stmt = $d->conn->prepare("SELECT PayerId, sum(Amount), PostStamp FROM Transaction where PayeeId = :p group by PostStamp");
+    $stmt->bindParam(':p', $[UserId HERE]);
+    $stmt->execute();
