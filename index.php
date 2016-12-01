@@ -23,7 +23,7 @@
                 <h1 class="cover-heading">Welcome to SUPER!</h1>
                 <p class="lead">Your best option for ride-sharing.</p>
                 <p class="lead">
-                    <a href="#" class="btn btn-lg btn-default">Get started</a>
+                    <a href="/comp353-project/public/view/main/Sign_up.php" class="btn btn-lg btn-default">Get started</a>
                 </p>
             </div>
 
