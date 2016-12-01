@@ -12,7 +12,6 @@
 <?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Header.php'); ?>
 <!-- INCLUDE CONTENT OF PAGE HERE -->
 <div id="page-content-wrapper">
-    <?php include "../../../app/resetAccount.php" ?>
     <h1>Reset Username and Password</h1>
     <form class="container-fluid col-md-4 col-md-offset-4" action="/comp353-project/app/resetAccount.php"
           method="POST">
@@ -27,7 +26,7 @@
             <input type="password" name="password" class="form-control" id="exampleInputPassword1"
                    placeholder="Enter New Password" required="required">
         </div>
-        <input type="submit" value="Reset" class="btn btn-primary">
+        <input type="submit" value="Reset Credentials" class="btn btn-primary">
     </form>
 
 </div>
