@@ -1,0 +1,3 @@
+$stmt = $d->conn->prepare("select RideId, UName as 'User Name', Comment.Comment from Comment join Member on PosterId=UserId where RideId = :r");
+    $stmt->bindParam(':r', $[RideId HERE]);
+    $stmt->execute();

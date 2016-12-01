@@ -1,0 +1,5 @@
+$stmt = $d->conn->prepare("insert into Comment(`RideId`, `PosterId`, `Comment`)Values(:r,:u, :c)");
+    $stmt->bindParam(':r', $[RideId HERE]);
+    $stmt->bindParam(':u', $[UserId HERE]);
+    $stmt->bindParam(':c', $[Comment HERE]);
+    $stmt->execute();
