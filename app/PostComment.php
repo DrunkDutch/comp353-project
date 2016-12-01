@@ -29,6 +29,7 @@ exit;
 }
 
 
+
 // Write Comment
 function WriteComment($u, $r, $c){
 		$status = Connected();	

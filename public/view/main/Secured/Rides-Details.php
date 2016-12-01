@@ -324,8 +324,10 @@
 
 	$nameOfTheGuy = GetDetailsOfMember($valeri['PosterId']);
 
-	echo('<div class="row" style="border-style:solid; width:90%; margin:auto; color:black; background-color:white; margin-top:30px; margin-bottom:30px;"><h5 class="text-left" style="padding-left: 10px; padding-top: 10px;
-padding-bottom: 10px; border-bottom: solid; margin-top:0;">From: '.$nameOfTheGuy[0]['UName'].' </h5><p class="text-left" style="margin:30px;">Comment: '.$valeri['Comment'].'</p></div>');	
+	echo('<div class="row" style="border-style:solid; width:90%; margin:auto; color:black; background-color:white; margin-top:30px; margin-bottom:30px;"><h5 class="text-left" style="padding-left: 10px; padding-top: 15px;
+padding-bottom: 15px; border-bottom: solid; margin-top:0;">From: '.$nameOfTheGuy[0]['UName'].' </h5><p class="text-left" style="margin:30px; max-width:70%;">Comment: '.$valeri['Comment'].'</p>
+<h6 class="text-left" style="padding-left: 10px; padding-top: 5px;
+padding-bottom: 0; border-top: solid; margin-top:0;">Time Posted: '.$valeri['PostStamp'].' </h6></div>');	
 	
 	}	
 
