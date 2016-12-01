@@ -292,7 +292,63 @@
         </div>
 
         <div id="map" style="Height:500px; Width:100%; margin-top:40px;"></div>
+	<div class="container" style="width:100%; margin-top:70px; margin-bottom:70px; background-color:gray">
+	<h4>Comment Section</h4>	
+	<?php 
+	 //$theName = $_SESSION['username'];
+	function GetAllCommentForRide($r){
+	
+	$status = Connected();
+        if ($status == 1) {
+            try {
+                $d = new dbMakeConnection;
 
+            } catch (PDOException $e) {
+                echo($e);
+            }
+
+            $stmt = $d->conn->prepare("SELECT * FROM " . $GLOBALS['db_name'] . ".Comment WHERE RideId = :r");
+            $stmt->bindParam(':r', $r);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll();
+            return $result;
+
+	}
+
+}
+	$DataFrom = GetAllCommentForRide($_GET['id']);
+	echo("<h5> Previous Comment </h5>");
+
+	foreach ($DataFrom as& $valeri){
+
+	$nameOfTheGuy = GetDetailsOfMember($valeri['PosterId']);
+
+	echo('<div class="row" style="border-style:solid; width:90%; margin:auto; color:black; background-color:white; margin-top:30px; margin-bottom:30px;"><h5 class="text-left" style="padding-left: 10px; padding-top: 10px;
+padding-bottom: 10px; border-bottom: solid; margin-top:0;">From: '.$nameOfTheGuy[0]['UName'].' </h5><p class="text-left" style="margin:30px;">Comment: '.$valeri['Comment'].'</p></div>');	
+	
+	}	
+
+ 	//
+	echo("<h4 style='margin-top:60px;'> Write A new Comment</h4>");	
+	?>
+	<form class="form-group" method="POST" action="/comp353-project/app/PostComment.php">
+	<div class="row form-group" style="margin-bottom:25px;">
+		<label  for="FromWho">From: </label>
+		<Input readonly style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="FromWho" type="text" value="<?php echo($_SESSION['username']);?>">
+	</div>
+	<div class="row form-group" style="margin-bottom:25px;">
+		<label for="comment">Comment: </label>
+		<textarea required maxlength="350" style="margin:Auto; height:150px; float:none; width:90%;" class="form-control text-muted" name="comment"></textarea>
+	</div>
+	<p>Not more than 350 characters</p>
+	<div class="row form-group" style="margin-bottom:25px;">
+	<Input name="RideIdJ" type="text" style="display:none;" value="<?php echo($_GET['id']); ?>">
+	<Input  type="submit" class="btn btn-success" value="Post">
+	</div>
+	</div>
+	</form>
+	</div>
         <?php include "/comp353-project/app/rate.php" ?>
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
