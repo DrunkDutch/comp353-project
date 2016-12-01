@@ -199,7 +199,7 @@
     function GetBalanceStatus()
     {
 
-        echo "<h3>Rides Used</h3>";
+        echo "<h3>Balance Status</h3>";
 
         include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
