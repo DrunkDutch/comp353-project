@@ -112,7 +112,6 @@ function ChargeM($user, $cost){
 // Join as Driver
 function JoinAsDriv($user, $ride){
 $status = Connected();
-	echo($status);
 	if ($status == 1) {
 		try {
 			$d = new dbMakeConnection;

@@ -15,7 +15,7 @@ $password = $_POST['password'];
 if (!empty($username) & !empty($password)) {
     UpdateFields($username, $password);
 } else {
-    echo "Must enter new username and password";
+//    echo "Must enter new username and password";
     Redirect();
 }
 

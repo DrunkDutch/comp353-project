@@ -145,7 +145,7 @@ function AddRide($Date, $Time, $Rep, $Dep, $Des, $Dis, $RiderCap, $PostID)
 }
 
 
-echo("		test2	");
+//echo("		test2	");
 
 
 $AllMFLocation = LoadAllLocationExist();
@@ -181,11 +181,11 @@ foreach ($AllMFLocation as & $val) {
 if (!$AlreadyExistDes) {
     PostALocation($GLOBALS['Destination_Lat'], $GLOBALS['Destination_Lon'], $_POST['Des_streetNumber'], $_POST['Des_street'], $_POST['Des_ZIP'], $_POST['Des_City'], $_POST['Des_Prov']);
 
-    echo("posting");
+//    echo("posting");
 };
 if (!$AlreadyExistDep) {
     PostALocation($GLOBALS['Departure_Lat'], $GLOBALS['Departure_Lon'], $_POST['Depart_streetNumber'], $_POST['Depart_street'], $_POST['Depart_ZIP'], $_POST['Depart_City'], $_POST['Depart_Prov']);
-    echo("posting 2");
+//    echo("posting 2");
 };
 
 // If location has been posted...
@@ -215,7 +215,7 @@ if (!$AlreadyExistDep or !$AlreadyExistDep) {
 
 }
 
-echo("OK");
+//echo("OK");
 // Now we are sure to have to IDs for Location...
 $RideID;
 $e = CheckIfRide($GrabNumberDep, $GrabNumberDes, $_POST['RDate'], $_POST['RTime']);
@@ -225,7 +225,7 @@ echo($r);
 if ($r == 1) {
     // A redirect to home page with message
     $RideID = $e['RideId'];
-    echo("ride already created");
+//    echo("ride already created");
 } else {
     AddRide($_POST['RDate'], $_POST['RTime'], $_POST['AllDay'], $GrabNumberDep, $GrabNumberDes, $_POST['DistanceAB'], $_POST['Capacity'], $_SESSION['UserId']);
     $s = CheckIfRide($GrabNumberDep, $GrabNumberDes, $_POST['RDate'], $_POST['RTime']);
@@ -237,11 +237,11 @@ $IsDriver = (strcmp($_POST['DorR'], "Driver") == 0);
 $IsRider = (strcmp($_POST['DorR'], "Rider") == 0);
 
 if ($IsRider) {
-    echo("	it's a rider	");
+//    echo("	it's a rider	");
     AddRideInRide($_SESSION['UserId'], $RideID);
 } else {
     if ($IsDriver) {
-        echo("	it's a driver	");
+//        echo("	it's a driver	");
         AddRideInDriver($_SESSION['UserId'], $RideID);
     }
 }
@@ -249,8 +249,6 @@ if ($IsRider) {
 $urlAndAlert = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have created a ride, the number of the ride is:  ' . $RideID . ' ';
 header("Location:" . $urlAndAlert . " ");
 exit;
-
-echo("DONE");
 
 
 ?>

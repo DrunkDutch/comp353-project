@@ -88,8 +88,6 @@ function UpdateField($fieldName, $value) {
             $userId = $editId;
         }
 
-        echo $userId;
-
         $stmt = $d->conn->prepare("UPDATE ".$GLOBALS['db_name'].".`Member` SET ". $fieldName. " = :v WHERE `UserId` = :i");
         $stmt->bindParam(':v', $value);
         $stmt->bindParam(':i', $userId);

@@ -122,7 +122,6 @@ function WriteTransaction($from, $to, $amount){
 
 if(true){
 	$status = Connected();
-	echo($status);
 	if ($status == 1) {
 		try {
 			$d = new dbMakeConnection;
