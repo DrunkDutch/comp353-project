@@ -10,7 +10,6 @@ $GLOBALS['Departure_Lat'] = bcdiv($_POST['DepartLat'], 1, 6);
 $GLOBALS['Destination_Lat'] = bcdiv($_POST['DestinationLat'], 1, 6);
 $GLOBALS['Destination_Lon'] = bcdiv($_POST['DestinationLon'], 1, 6);
 
-
 function PostALocation($Lat, $Lon, $StrNum, $Str, $Zip, $City, $Prov)
 {
 
@@ -121,6 +120,9 @@ function CheckIfRide($dep, $des, $date, $t)
 
 function AddRide($Date, $Time, $Rep, $Dep, $Des, $Dis, $RiderCap, $PostID)
 {
+
+    $compare = (strcmp($Rep, "no") == 0);
+	//if($compare){echo("hello");}
     $status = Connected();
     if ($status == 1) {
         try {
@@ -134,7 +136,8 @@ function AddRide($Date, $Time, $Rep, $Dep, $Des, $Dis, $RiderCap, $PostID)
 
         $stmt->bindParam(':Da', $Date);
         $stmt->bindParam(':T', $Time);
-        $stmt->bindParam(':RD', $Rep);
+        if($compare){$stmt->bindValue(':RD', null, PDO::PARAM_NULL);}
+	else{$stmt->bindParam(':RD', $Rep);}
         $stmt->bindParam(':Dep', $Dep);
         $stmt->bindParam(':Des', $Des);
         $stmt->bindParam(':Dis', $Dis);
@@ -144,8 +147,16 @@ function AddRide($Date, $Time, $Rep, $Dep, $Des, $Dis, $RiderCap, $PostID)
     }
 }
 
+if(strlen($_POST['AllDay']) == 0){
+	$RepeatingDay = "no";
+}
+else{
+$RepeatingDay = $_POST['AllDay'];
+}
 
-//echo("		test2	");
+
+
+
 
 
 $AllMFLocation = LoadAllLocationExist();
@@ -181,11 +192,11 @@ foreach ($AllMFLocation as & $val) {
 if (!$AlreadyExistDes) {
     PostALocation($GLOBALS['Destination_Lat'], $GLOBALS['Destination_Lon'], $_POST['Des_streetNumber'], $_POST['Des_street'], $_POST['Des_ZIP'], $_POST['Des_City'], $_POST['Des_Prov']);
 
-//    echo("posting");
+
 };
 if (!$AlreadyExistDep) {
     PostALocation($GLOBALS['Departure_Lat'], $GLOBALS['Departure_Lon'], $_POST['Depart_streetNumber'], $_POST['Depart_street'], $_POST['Depart_ZIP'], $_POST['Depart_City'], $_POST['Depart_Prov']);
-//    echo("posting 2");
+
 };
 
 // If location has been posted...
@@ -215,19 +226,19 @@ if (!$AlreadyExistDep or !$AlreadyExistDep) {
 
 }
 
-//echo("OK");
+
+
 // Now we are sure to have to IDs for Location...
 $RideID;
 $e = CheckIfRide($GrabNumberDep, $GrabNumberDes, $_POST['RDate'], $_POST['RTime']);
 $r = ($e['RideId'] > 1);
-echo($r);
 
 if ($r == 1) {
     // A redirect to home page with message
     $RideID = $e['RideId'];
-//    echo("ride already created");
+
 } else {
-    AddRide($_POST['RDate'], $_POST['RTime'], $_POST['AllDay'], $GrabNumberDep, $GrabNumberDes, $_POST['DistanceAB'], $_POST['Capacity'], $_SESSION['UserId']);
+    AddRide($_POST['RDate'], $_POST['RTime'], $RepeatingDay, $GrabNumberDep, $GrabNumberDes, $_POST['DistanceAB'], $_POST['Capacity'], $_SESSION['UserId']);
     $s = CheckIfRide($GrabNumberDep, $GrabNumberDes, $_POST['RDate'], $_POST['RTime']);
     $RideID = $s['RideId'];
 }
@@ -237,11 +248,11 @@ $IsDriver = (strcmp($_POST['DorR'], "Driver") == 0);
 $IsRider = (strcmp($_POST['DorR'], "Rider") == 0);
 
 if ($IsRider) {
-//    echo("	it's a rider	");
+
     AddRideInRide($_SESSION['UserId'], $RideID);
 } else {
     if ($IsDriver) {
-//        echo("	it's a driver	");
+
         AddRideInDriver($_SESSION['UserId'], $RideID);
     }
 }
@@ -249,6 +260,7 @@ if ($IsRider) {
 $urlAndAlert = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have created a ride, the number of the ride is:  ' . $RideID . ' ';
 header("Location:" . $urlAndAlert . " ");
 exit;
+
 
 
 ?>

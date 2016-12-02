@@ -91,7 +91,7 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <h3>Choose the right time</h3>
-
+<div style="margin:Auto; float:none; width:90%; background-color: darkorange; padding:20px; margin-bottom:30px;" ><h5>Super is not responsible for any ride planned at the same time... You have to make sure you are not on another ride...</h5></div>
 <div class="row form-group" style="margin-bottom:25px;">
 <label class="form-check-label" for="RDate">Date:</label>
 <Input style="margin:Auto; float:none; width:90%;" class="form-control text-muted" name="RDate" id="datepicker" type="text" value="">
