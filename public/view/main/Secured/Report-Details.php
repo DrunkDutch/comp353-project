@@ -352,13 +352,16 @@
 
                 $result = $stmt->fetchAll();
 
-
-                foreach ($result as &$val) {
-                    $username = $username;
-                    $purchases = $val["Purchases"];
-                    $poststamp = $val["PostStamp"];
-                    // Create HTML...
-                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Username:&nbsp' . $username . '</p><p>Amount:&nbsp' . $purchases . '</p><p>Post Stamp:&nbsp' . $poststamp . '&nbsp</p></div>';
+                if (empty($result)) {
+                    echo "No purchases";
+                } else {
+                    foreach ($result as &$val) {
+                        $username = $username;
+                        $purchases = $val["Purchases"];
+                        $poststamp = $val["PostStamp"];
+                        // Create HTML...
+                        echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Username:&nbsp' . $username . '</p><p>Amount:&nbsp' . $purchases . '</p><p>Post Stamp:&nbsp' . $poststamp . '&nbsp</p></div>';
+                    }
                 }
 
                 echo '<h4>Payments</h4>';
@@ -369,13 +372,16 @@
 
                 $result = $stmt->fetchAll();
 
-
-                foreach ($result as &$val) {
-                    $username = $username;
-                    $purchases = $val["Purchases"];
-                    $poststamp = $val["PostStamp"];
-                    // Create HTML...
-                    echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Username:&nbsp' . $username . '</p><p>Amount:&nbsp' . $purchases . '</p><p>Post Stamp:&nbsp' . $poststamp . '&nbsp</p></div>';
+                if (empty($result)) {
+                    echo "No payments";
+                } else {
+                    foreach ($result as &$val) {
+                        $username = $username;
+                        $purchases = $val["Purchases"];
+                        $poststamp = $val["PostStamp"];
+                        // Create HTML...
+                        echo '<div class="row" style="height:150px;border-style:solid; border-width:3px;"><p style="margin-top:20px;">Username:&nbsp' . $username . '</p><p>Amount:&nbsp' . $purchases . '</p><p>Post Stamp:&nbsp' . $poststamp . '&nbsp</p></div>';
+                    }
                 }
             }
         }
