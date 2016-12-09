@@ -17,7 +17,7 @@
         <div class="text-center"><i class="fa fa-car fa-5x" aria-hidden="true"></i>
         </div>
     </div>
-    <?php include "../app/login_function.php" ?>
+    <?php //include "../app/login_function.php" ?>
     <form class="container-fluid col-md-4 col-md-offset-4" action="/comp353-project/app/login_function.php"
           method="POST">
 

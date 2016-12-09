@@ -7,7 +7,8 @@ include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php
 
 
 
-if (session_status() == PHP_SESSION_NONE) { session_start(); }
+//if (session_status() == PHP_SESSION_NONE) { session_start(); }
+session_start();
 
 $_SESSION['Authen'] = false;
 $username = $_POST['user'];
@@ -110,7 +111,7 @@ function AuthentificationEmail($em, $p)
 // take user to reset user page
 function ForceReset() {
     $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/ResetUser.php';
-    header("Location:" . $url . " ");
+    exit(header("Location:".$url." "));
 	
 }
 
@@ -123,8 +124,4 @@ function LaunchSession($u, $e, $p, $i, $priv)
     $_SESSION['UserId'] = $i;
     $_SESSION['Authen'] = true;
     $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Rides.php';
-    header("Location:" . $url . " ");
-    exit;
-}
-
-?>
+header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php ");}?>

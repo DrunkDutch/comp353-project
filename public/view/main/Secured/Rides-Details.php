@@ -2,6 +2,10 @@
 <!--Authors: 26290515, 26795528, 27417888, 40039346-->
 <html>
 <head>
+    <?php  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }  ?>
     <title> Rides - Details </title>
     <!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
@@ -351,7 +355,7 @@ padding-bottom: 0; border-top: solid; margin-top:0;">Time Posted: '.$valeri['Pos
 	</div>
 	</form>
 	</div>
-        <?php include "/comp353-project/app/rate.php" ?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/app/rate.php');  ?>
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">

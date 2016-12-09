@@ -1,8 +1,13 @@
 <?php
 //Authors: 26290515, 26795528, 27417888, 40039346
+  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+
 $R = $_POST['user'];
 $username = trim($R, " ");
 $score = $_POST['score'];
@@ -64,12 +69,11 @@ function Rate($ratee, $score, $rideId)
 function Failure($msg) {
     $urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Reviews.php?alert=' . $msg;
 //	echo("FAIL");
-   header("Location:" .$urlAndAlert. " ");
+  header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php");
 }
 
 
 function Redirect() {
     $url ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Reviews.php';
-    header("Location:" .$url. " ");
-//	echo("sucess");
+   header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php?alert=Your rate was added");
 }

@@ -1,8 +1,8 @@
 <?php
 //Authors: 26290515, 26795528, 27417888, 40039346
 
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 if (session_status() == PHP_SESSION_NONE) { session_start(); }
 $userID = $_SESSION['UserId'];
 $rideID = $_POST['RideId'];
@@ -167,8 +167,8 @@ if(true){
 
 		// Redirect to home page...
 		
-	$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have joined the ride as rider the cost is ' .$CostPaul.'$ ';
-    header("Location:" .$urlAndAlert. " ");
+	//$urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=You have joined the ride as rider the cost is ' .$CostPaul.'$ ';
+        header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php?alert=You have joined the ride as rider ");
     exit;
 	    
 			

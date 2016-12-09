@@ -2,6 +2,10 @@
 <!--Authors: 26290515, 26795528, 27417888, 40039346-->
 <html>
 <head>
+    <?php  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }  ?>
     <title> Messages </title>
     <!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
@@ -24,7 +28,7 @@
 
 
     <?php
-    include $_SERVER['DOCUMENT_ROOT'] . '/app/sendMessage.php';
+    include ($_SERVER['DOCUMENT_ROOT'] ."/comp353-project/app/sendMessage.php");
 
     if (!empty($_GET['alert'])) {
         echo '<div class="row" style="background-color:orange; height:100px;margin-top:50px;"><h4>' . $_GET['alert'] . '</h4></div>';
@@ -74,7 +78,7 @@
         GetMessages();
         function GetMessages()
         {
-            include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
             $status = Connected();
             if ($status == 1) {

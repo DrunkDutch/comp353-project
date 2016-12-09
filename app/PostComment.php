@@ -1,7 +1,7 @@
 <?php
 //Authors: 26290515, 26795528, 27417888, 40039346
-include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -20,8 +20,7 @@ if (($a != 0) and ($b != 0) and ($c != 0)) {
 
 
     $urlAndAlert = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/index.php?alert=Your comment was added to ride:  ' . $rideID . ' ';
-    header("Location:" . $urlAndAlert . " ");
-    exit;
+    header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/index.php?alert=Your comment was added ");
 
 }
 

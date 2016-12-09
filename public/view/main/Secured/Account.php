@@ -2,6 +2,10 @@
 <!--Authors: 26290515, 26795528, 27417888, 40039346-->
 <html>
 <head>
+    <?php  if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }  ?>
     <title> Account </title>
     <!-- This section is for the Head -->
     
@@ -31,9 +35,7 @@
 <div id="page-content-wrapper">
 
     <?php
-    if (session_status() == PHP_SESSION_NONE) { session_start(); }
 
-    //include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
     // Get Detail On Account
     function GetAccountDetails($id)
@@ -93,7 +95,7 @@ include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php
                 echo '&nbsp;<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Edit Account</button>&nbsp;<a href="' . $url . '"><button class="btn btn-danger">Delete Account</button></a>';
 
                 // able to view balance
-                include "/comp353-project/app/updateFunds.php";
+                 include ($_SERVER['DOCUMENT_ROOT']. '/comp353-project/app/updateFunds.php');
                 $balance = $accountDetails['Balance'];
                 echo '<div id="myModal1" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Account Balance</h4></div>';
                 echo '<div class="modal-body"><form action="/comp353-project/app/updateFunds.php" method="POST">';
@@ -102,7 +104,7 @@ include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php
                 echo '<button class="btn btn-default" data-dismiss="modal">Close</button>&nbsp;<button type="submit" class="btn btn-success">Submit</button></form></div></div></div></div>';
 
                 // able to edit and delete account
-                include "/comp353-project/app/editAccount.php";
+     // include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/app/editAccount.php');
                 echo '<div id="myModal2" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">&times;</button><h4 class="modal-title">Edit Account</h4></div>';
                 echo '<div class="modal-body"><form action="/comp353-project/app/editAccount.php" method="POST"><div class="form-group"><label for="username">Username</label><input type="text" name="username" class="form-control" aria-describedby="UsernameHelp" id="exampleInputUsername1" placeholder="Username"></div>';
                 echo '<div class="form-group"><label for="FirstName">First Name</label><input type="text" name="FirstName" class="form-control" aria-describedby="FirstnameHelp" id="exampleInputFirstName1" placeholder="First Name"></div>';

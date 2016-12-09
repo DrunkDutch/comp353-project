@@ -1,10 +1,10 @@
 <?php
 //Authors: 26290515, 26795528, 27417888, 40039346
 
-if (session_status() == PHP_SESSION_NONE) { session_start(); }
+if (session_status() == PHP_SESSION_NONE) {  session_start();}
 
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
 // Field information
 $username = $_POST['username'];
@@ -132,10 +132,10 @@ function UpdateUniqueField($fieldName, $value) {
 
 function Redirect() {
     $url = "http://" . $_SERVER['SERVER_NAME']. '/comp353-project/public/view/main/Secured/Account.php?id=' . $_SESSION['UserId'];
-    header("Location:".$url." ");
+   header("Location:".$url." ");
 }
 
 function Failure($msg) {
     $urlAndAlert = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Account.php?id=' . $_SESSION['UserId'] . '&error=' . $msg;
-    header("Location:" . $urlAndAlert . " ");
+   header("Location:" . $urlAndAlert . " ");
 }

@@ -25,6 +25,10 @@ include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/app/route.php');
 ?>
 
 <script src="https://use.fontawesome.com/14dbbb1c44.js"></script>
-
+<style>
+.xdebug-error{
+display:none !important;
+}
+</style>
 </Head>
 

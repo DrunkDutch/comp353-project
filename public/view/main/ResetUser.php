@@ -31,7 +31,6 @@
 
 </div>
 <!-- END OF CONTENT -->
-<div><?php echo $this_page; ?></div>
 <!-- This Section is for the footer -->
 <?php include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/public/view/include/Footer.php'); ?>
 

@@ -1,8 +1,12 @@
 <?php
 //Authors: 26290515, 26795528, 27417888, 40039346
 
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
-include($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
+if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/config.php');
+include_once($_SERVER['DOCUMENT_ROOT']. '/comp353-project/config/dbMakeConnection.php');
 
 $username = $_POST['user'];
 $message = $_POST['message'];
@@ -14,7 +18,7 @@ if (!((empty($username)) and (empty($message)))) {
 function Redirect()
 {
     $urlAndAlert ="http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/Messages.php?alert= User does not exist. ';
-    header("Location:" .$urlAndAlert. " ");
+    header("Location:'https://tpc353_2.encs.concordia.ca/comp353-project/public/view/main/Secured/Messages.php?aler = User does not exist.");
 }
 
 function SendEmail($t, $m)
@@ -54,7 +58,7 @@ function SendEmail($t, $m)
             $_SESSION['MSG_ERROR'] = '';
 
             $url = "http://" . $_SERVER['SERVER_NAME'] . '/comp353-project/public/view/main/Secured/SentMessages.php';
-            header("Location:" . $url . " ");
+            header("Location:https://tpc353_2.encs.concordia.ca/comp353-project/public/view/main/Secured/SentMessages.php");
         }
     }
 }

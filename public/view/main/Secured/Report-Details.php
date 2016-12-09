@@ -2,6 +2,10 @@
 <!--Authors: 26290515, 26795528, 27417888, 40039346-->
 <html>
 <head>
+<?php if (session_status() == PHP_SESSION_NONE) {
+	 session_start();
+	  
+     }?>
     <title> Report - Details </title>
     <!-- This section is for the Head -->
     <?php include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/public/view/include/Head.php'); ?>
@@ -28,7 +32,7 @@
     {
         echo "<h3>Postings</h3>";
 
-        include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
         $status = Connected();
         if ($status == 1) {
@@ -81,7 +85,7 @@
 
         echo "<h3>Rides Offered</h3>";
 
-        include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
         $status = Connected();
         if ($status == 1) {
@@ -119,7 +123,7 @@
 
         echo "<h3>Rides Used</h3>";
 
-        include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
         $status = Connected();
         if ($status == 1) {
@@ -158,7 +162,7 @@
         if ($_SESSION['privi'] <= 2) {
             echo "<h3>Privilege Type</h3>";
 
-            include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
             // IF ADMIN OR ROOT SHOW ALL
 
@@ -208,7 +212,7 @@
         if ($_SESSION['privi'] <= 2) {
             echo "<h3>Status</h3>";
 
-            include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
             $status = Connected();
             if ($status == 1) {
@@ -255,7 +259,7 @@
 
             echo "<h3>Balance Status</h3>";
 
-            include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
             $status = Connected();
             if ($status == 1) {
@@ -287,7 +291,7 @@
 
         echo "<h3>Transaction Report</h3>";
 
-        include($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
+        include_once($_SERVER['DOCUMENT_ROOT'] . '/comp353-project/config/dbMakeConnection.php');
 
         $status = Connected();
         if ($status == 1) {
